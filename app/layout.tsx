@@ -6,6 +6,8 @@ import { cn } from "@/lib/utils";
 import localFont from "next/font/local";
 import QueryProvider from "@/components/providers/query-provider";
 
+import "@/public/fonts/material-symbols-rounded.css";
+
 const materialSymbols = localFont({
   src: "../public/fonts/material-symbols-rounded.woff2",
   variable: "--font-material-symbols-rounded",
