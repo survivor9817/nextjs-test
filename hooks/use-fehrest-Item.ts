@@ -1,4 +1,3 @@
-import { useBookContext } from "@/app/providers/book-provider";
 import type { FehrestSection } from "../data/fehrestsData";
 
 // sudo code
