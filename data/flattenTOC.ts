@@ -1,3 +1,5 @@
+import { BOOKS_TOC, FehrestSection } from "./fehrestsData";
+
 type BookSectionRow = {
   section_id: number; // PK یکتا در کل دیتابیس
   book_id: number;
@@ -54,7 +56,7 @@ function flattenTOC(): BookSectionRow[] {
   // پردازش تمام کتاب‌ها
   BOOKS_TOC.forEach((book) => {
     book.sections.forEach((section, index) => {
-      processSection(section, book.bookId, null, 1, index + 1);
+      processSection(section, +book.bookId, null, 1, index + 1);
     });
   });
 
