@@ -44,6 +44,7 @@ export default function Home() {
   return (
     <div className="flex flex-col flex-1 items-center justify-center bg-zinc-50 font-sans dark:bg-black p-8">
       <h1 className="text-2xl font-bold mb-6">لیست پست‌ها</h1>
+      <p>پستای عجیب</p>
       <div className="space-y-4 w-full max-w-2xl">
         {data?.map((post) => (
           <div key={post.id} className="bg-white dark:bg-zinc-900 p-4 rounded-lg shadow">
