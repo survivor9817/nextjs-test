@@ -18,7 +18,7 @@ export const checkActive = (currentSectionPage: number, section: FehrestSection)
 };
 
 const FehrestItem = ({ section, currentSectionPage }: Props) => {
-  const { changePage, createTocUrl } = useBookContext();
+  const { goToPage } = useBookContext();
   const isActive = checkActive(currentSectionPage, section);
   // const [isOpen, setIsOpen] = useState(isActive);
 
@@ -43,18 +43,16 @@ const FehrestItem = ({ section, currentSectionPage }: Props) => {
 
   return (
     <li className="">
-      <Link href={createTocUrl(section.page) as string}>
-        <div
-          className={`flex justify-between font-semibold py-1.25 px-2 pl-1 my-1 rounded cursor-pointer transition-colors duration-300 ${isHighlighted}`}
-          // onClick={() => changePage(section.page)}
-          // onClick={() => setIsOpen(true)}
-        >
-          <span className="h-full w-full my-auto text-sm">{section.title}</span>
-          <span className="flex justify-center w-7 h-full p-1 border-2 rounded text-xs">
-            {toFaDigits(section.page)}
-          </span>
-        </div>
-      </Link>
+      <div
+        className={`flex justify-between font-semibold py-1.25 px-2 pl-1 my-1 rounded cursor-pointer transition-colors duration-300 ${isHighlighted}`}
+        onClick={() => goToPage(section.page)}
+        // onClick={() => setIsOpen(true)}
+      >
+        <span className="h-full w-full my-auto text-sm">{section.title}</span>
+        <span className="flex justify-center w-7 h-full p-1 border-2 rounded text-xs">
+          {toFaDigits(section.page)}
+        </span>
+      </div>
 
       {subitems}
     </li>

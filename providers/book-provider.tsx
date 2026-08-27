@@ -1,6 +1,5 @@
 "use client";
-import { Book, BookOption } from "@/data/booksData";
-import { FehrestSection } from "@/data/fehrestsData";
+
 import { useBook } from "@/hooks/use-book";
 import { createContext, useContext, type ReactNode } from "react";
 

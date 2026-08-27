@@ -28,10 +28,10 @@ export const useBook = (
     parseAsInteger.withDefault(defaultPage),
   );
 
-  //   const { data: currentBookInfo } = useQuery({
-  //     queryKey: ["bookInfo", currentBookId],
-  //     queryFn: () => fetchBook(currentBookId),
-  //   });
+  const { data: currentBookInfo } = useQuery({
+    queryKey: ["bookInfo", currentBookId],
+    queryFn: () => fetchBook(currentBookId),
+  });
 
   const [pageInput, setPageInput] = useState<string>(toFaDigits(currentPage));
   const [pageInputError, setPageInputError] = useState(false);
@@ -57,7 +57,7 @@ export const useBook = (
 
   const parseValidPage = (page: string | number): number | null => {
     const min = 1;
-    const max = lastPage || 2;
+    const max = currentBookInfo?.lastPage || 2;
     if (typeof page === "number") {
       return isPageInRange(page, min, max) ? page : null;
     }
@@ -143,6 +143,7 @@ export const useBook = (
     currentBookId,
     setCurrentBookId,
     changeBook,
+    currentBookInfo,
 
     currentPage,
     pageInput,

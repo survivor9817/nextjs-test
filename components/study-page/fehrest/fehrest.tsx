@@ -9,7 +9,9 @@ const Fehrest = (props: Props) => {
       <header className="flex justify-center">
         <BookSelect />
       </header>
-      <div className="w-full flex justify-center">{/* <FehrestList /> */}</div>
+      <div className="w-full flex justify-center">
+        <FehrestList />
+      </div>
     </div>
   );
 };

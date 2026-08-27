@@ -9,31 +9,36 @@ function FehrestListSkeleton() {
   );
 
   return (
-    <section className="animate-pulse space-y-6 max-w-4xl mx-auto mt-4 px-4" aria-hidden="true">
-      {/* بخش ۱ */}
-      <div className="space-y-3">
-        <div className="h-6 w-[45%] bg-gray-200 rounded dark:bg-gray-400 animate-pulse" />
-        <SubItems />
-      </div>
+    <div className="mt-4 w-full max-w-80 min-w-0 wrap-break-word overflow-hidden">
+      <section
+        className="animate-pulse space-y-6 max-w-4xl mx-auto mt-4 px-4 w-full"
+        aria-hidden="true"
+      >
+        {/* بخش ۱ */}
+        <div className="space-y-3 w-full">
+          <div className="h-6 w-[45%] bg-gray-200 rounded dark:bg-gray-400 animate-pulse" />
+          <SubItems />
+        </div>
 
-      {/* بخش ۲ (کمی بازتر برای تنوع) */}
-      <div className="space-y-3">
-        <div className="h-6 w-[40%] bg-gray-200 rounded dark:bg-gray-400 animate-pulse" />
-        <SubItems />
-      </div>
+        {/* بخش ۲ (کمی بازتر برای تنوع) */}
+        <div className="space-y-3 w-full">
+          <div className="h-6 w-[40%] bg-gray-200 rounded dark:bg-gray-400 animate-pulse" />
+          <SubItems />
+        </div>
 
-      {/* بخش ۳ */}
-      <div className="space-y-3">
-        <div className="h-6 w-[50%] bg-gray-200 rounded dark:bg-gray-400 animate-pulse" />
-        <SubItems />
-      </div>
+        {/* بخش ۳ */}
+        <div className="space-y-3 w-full">
+          <div className="h-6 w-[50%] bg-gray-200 rounded dark:bg-gray-400 animate-pulse" />
+          <SubItems />
+        </div>
 
-      {/* بخش ۴ */}
-      <div className="space-y-3">
-        <div className="h-6 w-[42%] bg-gray-200 rounded dark:bg-gray-400 animate-pulse" />
-        <SubItems />
-      </div>
-    </section>
+        {/* بخش ۴ */}
+        <div className="space-y-3 w-full">
+          <div className="h-6 w-[42%] bg-gray-200 rounded dark:bg-gray-400 animate-pulse" />
+          <SubItems />
+        </div>
+      </section>
+    </div>
   );
 }
 
