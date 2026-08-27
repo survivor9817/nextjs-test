@@ -30,7 +30,11 @@ const Yavar = () => {
               placeholder="سؤالت رو اینجا بنویس..."
             ></textarea>
 
-            <IconBtn icon="arrow_circle_up" aria-label="ارسال جواب" />
+            <IconBtn
+              variant={"ghost"}
+              icon={<span className="msr text-5xl">arrow_circle_up</span>}
+              aria-label="ارسال جواب"
+            />
           </div>
         </div>
       </div>

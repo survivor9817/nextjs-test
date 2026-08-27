@@ -4,6 +4,9 @@ import { Input } from "@/components/ui/input";
 import { Slider } from "@/components/ui/slider";
 // import { useBook } from "@/app/hooks/useBook";
 import { cn } from "@/lib/utils";
+import { fetchBook } from "@/services/client/fetchBook";
+import { useQuery } from "@tanstack/react-query";
+import { useSearchParams } from "next/navigation";
 
 // type Props = {};
 
@@ -26,6 +29,12 @@ const BookPagination = () => {
 
   const inputError = pageInputError ? "bg-[rgb(255,124,124)]" : "";
 
+  const {} = useSearchParams();
+  const { data: lastPageData } = useQuery({
+    queryKey: ["books", bookId, "lastPage"],
+    queryFn: () => fetchBook(bookId),
+    initialData: bookId === defaultBookId ? initialLastPage : undefined,
+  });
   return (
     <>
       {currentPage && (

@@ -1,16 +1,16 @@
 "use client";
 
-import { useState, useCallback } from "react";
+import { useCallback } from "react";
+import { useQueryState, parseAsStringLiteral } from "nuqs";
 import { Tabs } from "@base-ui/react/tabs";
 import { cn } from "@/lib/utils";
 import { ScrollArea } from "@/components/ui/scroll-area";
 
-// محتوای تب‌ها را مستقیم اینجا import کن
 import Fehrest from "./fehrest/fehrest";
 import Book from "./book/book";
-// import Quiz from "./quiz/quiz";
-// import Yavar from "./yavar/yavar";
-// import Menu from "./menu/menu";
+import Quiz from "./quiz/quiz";
+import Yavar from "./yavar/yavar";
+import Menu from "./menu/menu";
 
 const TABS = [
   {
@@ -32,35 +32,44 @@ const TABS = [
     icon: "exercise",
     iconClass: "text-[32px] rotate-45",
     label: "تمرین",
-    content: "<Quiz />",
+    content: <Quiz />,
   },
   {
     value: "yavar",
     icon: "school",
     iconClass: "text-[32px]",
     label: "یاور",
-    content: "<Yavar />",
+    content: <Yavar />,
   },
   {
     value: "menu",
     icon: "menu",
     iconClass: "text-[28px]",
     label: "منو",
-    content: "<Menu />",
+    content: <Menu />,
   },
 ] as const;
 
 type TabValue = (typeof TABS)[number]["value"];
 const DEFAULT_TAB: TabValue = "book";
 
+// یک آرایه‌ی فقط از مقادیر ممکن، برای parser تایپ‌شده
+const TAB_VALUES = TABS.map((tab) => tab.value) as TabValue[];
+
 const StudyTabs = () => {
-  const [value, setValue] = useState<TabValue>(DEFAULT_TAB);
+  const [value, setValue] = useQueryState(
+    "tab",
+    parseAsStringLiteral(TAB_VALUES).withDefault(DEFAULT_TAB),
+  );
 
   const activeIndex = TABS.findIndex((tab) => tab.value === value);
 
-  const handleChange = useCallback((newValue: string) => {
-    setValue(newValue as TabValue);
-  }, []);
+  const handleChange = useCallback(
+    (newValue: string) => {
+      setValue(newValue as TabValue);
+    },
+    [setValue],
+  );
 
   return (
     <div className="w-full max-w-210 min-w-80 h-vh h-dvh mx-auto overflow-hidden flex">

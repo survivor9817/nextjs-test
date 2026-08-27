@@ -7,6 +7,7 @@ import localFont from "next/font/local";
 import QueryProvider from "@/providers/query-provider";
 
 import "@/public/fonts/material-symbols-rounded.css";
+import { NuqsAdapter } from "nuqs/adapters/next/app";
 
 const materialSymbols = localFont({
   src: "../public/fonts/material-symbols-rounded.woff2",
@@ -50,7 +51,9 @@ export default function RootLayout({
       )}
     >
       <body>
-        <QueryProvider>{children}</QueryProvider>
+        <NuqsAdapter>
+          <QueryProvider>{children}</QueryProvider>
+        </NuqsAdapter>
       </body>
     </html>
   );

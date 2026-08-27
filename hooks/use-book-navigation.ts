@@ -23,20 +23,60 @@ export const parseValidPage = (
 export function useBookNavigation(max: number) {
   const router = useRouter();
   const searchParams = useSearchParams();
+  // const changeBook = (newBookId: string, page?: string) => {
+  //   const p = page ? parseValidPage(page, 1, max) : 1;
+  //   if (p != null) {
+  //     const query = searchParams.toString();
+  //     router.push(`/study/${newBookId}/${p ?? 1}${query ? `?${query}` : ""}`);
+  //   }
+  // };
+
   const changeBook = (newBookId: string, page?: string) => {
     const p = page ? parseValidPage(page, 1, max) : 1;
+
     if (p != null) {
+      const validPage = p ?? 1;
       const query = searchParams.toString();
-      router.push(`/study/${newBookId}/${p ?? 1}${query ? `?${query}` : ""}`);
+      const newPath = `/study/${newBookId}/${validPage}${query ? `?${query}` : ""}`;
+
+      // ۱. آپدیت URL در نوار آدرس مرورگر بدون راه‌اندازی چرخه ناوبری Next.js
+      window.history.pushState(null, "", newPath);
+
+      // ۲. ارسال ایونت برای کامپوننت‌هایی که باید دیتای جدید را بگیرند (مثل E)
+      window.dispatchEvent(
+        new CustomEvent("book-change", {
+          detail: { bookId: newBookId, page: validPage },
+        }),
+      );
     }
   };
 
   const { bookId, page } = useBookParams();
+  // const changePage = (newPage: string | number) => {
+  //   const p = parseValidPage(newPage, 1, max);
+  //   if (p != null) {
+  //     const query = searchParams.toString();
+  //     router.push(`/study/${bookId}/${p ?? 1}${query ? `?${query}` : ""}`);
+  //   }
+  // };
+
   const changePage = (newPage: string | number) => {
     const p = parseValidPage(newPage, 1, max);
+
     if (p != null) {
+      const validPage = p ?? 1;
       const query = searchParams.toString();
-      router.push(`/study/${bookId}/${p ?? 1}${query ? `?${query}` : ""}`);
+      const newPath = `/study/${bookId}/${validPage}${query ? `?${query}` : ""}`;
+
+      // ۱. به‌روزرسانی URL بدون ایجاد Re-render در روت و قطع انیمیشن
+      window.history.pushState(null, "", newPath);
+
+      // ۲. ارسال رویداد صفحه برای کامپوننت مقصد (مثلاً E)
+      window.dispatchEvent(
+        new CustomEvent("page-change", {
+          detail: { page: validPage },
+        }),
+      );
     }
   };
 

@@ -17,25 +17,17 @@ export const checkActive = (currentSectionPage: number, section: FehrestSection)
   });
 };
 
-const createTocUrl = (newPage: string | number) => {
-  const p = newPage ? parseValidPage(newPage, 1, 200) : 1;
-  if (p != null) {
-    const url = `/study/${706}/${p ?? 1}`;
-    return url;
-  }
-};
-
 const FehrestItem = ({ section, currentSectionPage }: Props) => {
-  // const { changePage, createTocUrl } = useBookContext();
+  const { changePage, createTocUrl } = useBookContext();
   const isActive = checkActive(currentSectionPage, section);
   // const [isOpen, setIsOpen] = useState(isActive);
 
-  const isExpanded = isActive ? "max-h-screen" : "max-h-0";
+  const expandedClass = isActive ? "max-h-screen" : "max-h-0";
   const isHighlighted = isActive ? "bg-[#e1a3c1]" : "hover:bg-[#e1a3c175]";
 
   const subitems = section.sections && section.sections?.length > 0 && (
     <ol
-      className={`border-r-2 pr-1 mb-2 mr-3 overflow-hidden transition-[max-height] duration-300 ease-in-out ${isExpanded}`}
+      className={`border-r-2 pr-1 mb-2 mr-3 overflow-hidden transition-[max-height] duration-300 ease-in-out ${expandedClass}`}
     >
       {section.sections.map((section) => {
         return (

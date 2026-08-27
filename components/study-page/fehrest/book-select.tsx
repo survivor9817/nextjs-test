@@ -14,6 +14,8 @@ import type { BookOption } from "@/data/booksData";
 import { BaseUIEvent } from "@base-ui/react";
 import { Label } from "@/components/ui/label";
 import { useBookContext } from "@/providers/book-provider";
+import { useQuery } from "@tanstack/react-query";
+import { fetchBookSelectOptions } from "@/services/client/fetchBookSelectOptions";
 
 type BookSelectProps = {
   className?: string;
@@ -21,7 +23,18 @@ type BookSelectProps = {
 };
 
 const BookSelect = ({ className, label = "فهرست کتاب" }: BookSelectProps) => {
-  const { books, selectedBook } = useBookContext();
+  const { currentBookId, changeBook } = useBookContext();
+
+  const { data: books } = useQuery({
+    queryKey: ["books"],
+    queryFn: fetchBookSelectOptions,
+  });
+
+  const selectedBook = useMemo(
+    () => books?.find((b) => b.value === currentBookId) ?? null,
+    [books, currentBookId],
+  );
+
   const [open, setOpen] = useState(false);
   const [inputValue, setInputValue] = useState("");
   const [localValue, setLocalValue] = useState<BookOption | null>(selectedBook);
@@ -29,7 +42,7 @@ const BookSelect = ({ className, label = "فهرست کتاب" }: BookSelectProp
   const hasValue = Boolean(localValue);
   const isFloating = hasValue || open || inputValue.length > 0;
 
-  // Sync localValue with context when it changes externally
+  // Sync localValue with derived value when it changes externally
   useEffect(() => {
     setLocalValue(selectedBook);
   }, [selectedBook]);
@@ -63,12 +76,12 @@ const BookSelect = ({ className, label = "فهرست کتاب" }: BookSelectProp
     setInputValue(e.target.value);
   };
 
-  const { changeBook } = useBookContext();
   const handleSelect = (newSelectedBook: BookOption | null) => {
     if (!newSelectedBook) return;
     setLocalValue(newSelectedBook);
-    const newBookId = newSelectedBook.value;
-    if (newBookId !== selectedBook?.value) changeBook(newBookId);
+    if (newSelectedBook.value !== selectedBook?.value) {
+      changeBook(newSelectedBook.value);
+    }
     setOpen(false);
     setInputValue("");
   };
@@ -114,7 +127,6 @@ const BookSelect = ({ className, label = "فهرست کتاب" }: BookSelectProp
           ref={inputRef}
           value={comboboxInputValue}
           onChange={onInputChange}
-          // placeholder={!isFloating ? "کتابی که می‌خوای رو انتخاب کن." : ""}
           placeholder={isFloating ? "انتخاب کنید." : ""}
           className={cn(
             "h-11.5 w-full border-2 border-[rgb(200,200,200)] bg-background",
