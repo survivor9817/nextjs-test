@@ -4,7 +4,7 @@ import "./globals.css";
 import { cn } from "@/lib/utils";
 
 import localFont from "next/font/local";
-import QueryProvider from "@/components/providers/query-provider";
+import QueryProvider from "@/providers/query-provider";
 
 import "@/public/fonts/material-symbols-rounded.css";
 

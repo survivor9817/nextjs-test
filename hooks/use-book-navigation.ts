@@ -3,21 +3,24 @@
 import { useRouter, useSearchParams } from "next/navigation";
 import { toEnDigits } from "@/lib/toEnDigits";
 import { useBookParams } from "./use-study-params";
+export const isPageInRange = (page: number, min: number, max: number) => {
+  return Number.isInteger(page) && page >= min && page <= max;
+};
+
+export const parseValidPage = (
+  page: string | number,
+  min: number,
+  max: number = 2,
+): number | null => {
+  if (typeof page === "number") {
+    return isPageInRange(page, min, max) ? page : null;
+  }
+
+  const num = Number(toEnDigits(page));
+  return isPageInRange(num, min, max) ? num : null;
+};
 
 export function useBookNavigation(max: number) {
-  const isPageInRange = (page: number, min: number, max: number) => {
-    return Number.isInteger(page) && page >= min && page <= max;
-  };
-
-  const parseValidPage = (page: string | number, min: number, max: number = 2): number | null => {
-    if (typeof page === "number") {
-      return isPageInRange(page, min, max) ? page : null;
-    }
-
-    const num = Number(toEnDigits(page));
-    return isPageInRange(num, min, max) ? num : null;
-  };
-
   const router = useRouter();
   const searchParams = useSearchParams();
   const changeBook = (newBookId: string, page?: string) => {
