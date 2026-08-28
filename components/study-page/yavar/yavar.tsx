@@ -31,7 +31,6 @@ const Yavar = () => {
             ></textarea>
 
             <IconBtn
-              variant={"ghost"}
               icon={<span className="msr text-5xl">arrow_circle_up</span>}
               aria-label="ارسال جواب"
             />

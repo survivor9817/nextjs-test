@@ -112,7 +112,7 @@ const BookSelect = ({ className, label = "فهرست کتاب" }: BookSelectProp
       >
         <Label
           className={cn(
-            "pointer-events-none absolute z-10 px-2 ", // must be fixed by using useId
+            "pointer-events-none absolute z-10 px-2", // must be fixed by using useId
             "top-0 right-4 transition-transform duration-200 ease-out",
             "font-bold",
             isFloating
@@ -129,13 +129,13 @@ const BookSelect = ({ className, label = "فهرست کتاب" }: BookSelectProp
           onChange={onInputChange}
           placeholder={isFloating ? "انتخاب کنید." : ""}
           className={cn(
-            "h-11.5 w-full border-2 border-[rgb(200,200,200)] bg-background",
+            "h-11.5 w-full border-2 border-[rgb(200,200,200)] bg-background ",
             "px-3 text-center text-base font-black cursor-pointer",
             "focus-visible:ring-0 focus-visible:ring-offset-0",
           )}
         />
 
-        <ComboboxContent className="w-(--anchor-width) p-0">
+        <ComboboxContent className="w-(--anchor-width) p-0 ">
           <ComboboxList>
             <ComboboxEmpty className="p-2 text-center text-sm font-bold text-gray-500">
               {inputValue ? `هیچ کتابی با "${inputValue}" پیدا نشد` : "کتابی موجود نیست"}

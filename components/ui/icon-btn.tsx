@@ -20,6 +20,7 @@ const IconBtn = ({
   return (
     <Button
       {...props}
+      variant={"ghost"}
       disabled={disabled || loading}
       aria-busy={loading}
       className={cn("rounded-full p-0", className)}

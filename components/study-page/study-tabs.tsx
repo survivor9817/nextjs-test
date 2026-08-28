@@ -1,86 +1,81 @@
 "use client";
 
-import { useCallback } from "react";
-import { useQueryState, parseAsStringLiteral } from "nuqs";
-import { Tabs } from "@base-ui/react/tabs";
+import { ComponentType } from "react";
 import { cn } from "@/lib/utils";
 import { ScrollArea } from "@/components/ui/scroll-area";
+import { Tabs } from "@base-ui/react/tabs";
 
 import Fehrest from "./fehrest/fehrest";
 import Book from "./book/book";
 import Quiz from "./quiz/quiz";
 import Yavar from "./yavar/yavar";
 import Menu from "./menu/menu";
+import { useStudyTabs, StudyTabsProvider } from "./tabs-provider";
+import { TabValue, isTabValue } from "./use-study-tabs-state";
 
-const TABS = [
+interface TabConfigItem {
+  value: TabValue;
+  icon: string;
+  iconClass: string;
+  label: string;
+  Component: ComponentType;
+}
+
+const TABS_CONFIG: TabConfigItem[] = [
   {
     value: "fehrest",
     icon: "list",
     iconClass: "text-[34px] scale-x-[-1]",
     label: "فهرست",
-    content: <Fehrest />,
+    Component: Fehrest,
   },
   {
     value: "book",
     icon: "menu_book",
     iconClass: "text-[32px]",
     label: "کتاب",
-    content: <Book />,
+    Component: Book,
   },
   {
     value: "quiz",
     icon: "exercise",
     iconClass: "text-[32px] rotate-45",
     label: "تمرین",
-    content: <Quiz />,
+    Component: Quiz,
   },
   {
     value: "yavar",
     icon: "school",
     iconClass: "text-[32px]",
     label: "یاور",
-    content: <Yavar />,
+    Component: Yavar,
   },
   {
     value: "menu",
     icon: "menu",
     iconClass: "text-[28px]",
     label: "منو",
-    content: <Menu />,
+    Component: Menu,
   },
-] as const;
+];
 
-type TabValue = (typeof TABS)[number]["value"];
-const DEFAULT_TAB: TabValue = "book";
-
-// یک آرایه‌ی فقط از مقادیر ممکن، برای parser تایپ‌شده
-const TAB_VALUES = TABS.map((tab) => tab.value) as TabValue[];
-
-const StudyTabs = () => {
-  const [value, setValue] = useQueryState(
-    "tab",
-    parseAsStringLiteral(TAB_VALUES).withDefault(DEFAULT_TAB),
-  );
-
-  const activeIndex = TABS.findIndex((tab) => tab.value === value);
-
-  const handleChange = useCallback(
-    (newValue: string) => {
-      setValue(newValue as TabValue);
-    },
-    [setValue],
-  );
+const StudyTabsView = () => {
+  const { activeTab, changeTab, activeIndex } = useStudyTabs();
 
   return (
-    <div className="w-full max-w-210 min-w-80 h-vh h-dvh mx-auto overflow-hidden flex">
+    <div className="w-full max-w-210 min-w-80 h-dvh mx-auto overflow-hidden flex">
       <Tabs.Root
-        className="min-h-0 flex-1 flex flex-col-reverse sm:flex-col"
-        value={value}
-        onValueChange={handleChange}
+        className="min-h-0 flex-1 flex flex-col-reverse sm:flex-col min-w-0"
+        value={activeTab}
+        onValueChange={(val) => {
+          if (isTabValue(val)) {
+            changeTab(val);
+          }
+        }}
       >
         {/* Tab List */}
         <Tabs.List className="relative z-10 -mb-px flex gap-1">
-          {TABS.map((tab) => (
+          {TABS_CONFIG.map((tab) => (
             <Tabs.Tab
               key={tab.value}
               value={tab.value}
@@ -114,20 +109,19 @@ const StudyTabs = () => {
               transform: `translateX(${activeIndex * 100}%)`,
             }}
           >
-            {TABS.map((tab) => (
+            {TABS_CONFIG.map(({ value, Component }) => (
               <Tabs.Panel
-                key={tab.value}
-                value={tab.value}
+                key={value}
+                value={value}
                 keepMounted
                 hidden={false}
                 className={cn(
                   "flex h-full w-full min-w-full shrink-0 overflow-x-hidden overflow-y-auto",
                   "text-sm text-foreground outline-none",
-                  "focus-visible:z-10 focus-visible:outline-2 focus-visible:outline-ring focus-visible:-outline-offset-1",
                 )}
-                render={<ScrollArea className="h-full" />}
+                render={<ScrollArea className="h-full min-w-0" />}
               >
-                {tab.content}
+                <Component />
               </Tabs.Panel>
             ))}
           </div>
@@ -137,4 +131,10 @@ const StudyTabs = () => {
   );
 };
 
-export default StudyTabs;
+export default function StudyTabs() {
+  return (
+    <StudyTabsProvider>
+      <StudyTabsView />
+    </StudyTabsProvider>
+  );
+}

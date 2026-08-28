@@ -58,7 +58,7 @@ const BookPagination = () => {
             disabled={!currentBookId}
           /> */}
           <Slider
-            className="w-50  min-w-25 max-w-50 mx-1"
+            className="w-80  min-w-25 max-w-80 mx-1"
             min={1}
             max={currentBookInfo?.lastPage ?? 2}
             step={1}
