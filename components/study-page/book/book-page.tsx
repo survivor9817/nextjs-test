@@ -3,35 +3,47 @@ import { toFaDigits } from "@/lib/toFaDigits";
 import BookPageSkeleton from "./book-page-skeleton";
 import UnavailableBookError from "./unavailable-book-error";
 import { useBookContext } from "@/providers/book-provider";
+import { useQuery } from "@tanstack/react-query";
+import { fetchBookPage } from "@/services/client/fetchBookPage";
+import ErrorFallback from "@/components/error-fallback";
 
 const BookPage = () => {
-  const { bookInfo, page } = useBookContext();
+  const { currentBookId, currentPage } = useBookContext();
 
   // const { pageRef } = useBookPageScroll([currentBook, currentPage]);
-  // const { pageContent, isLoading, error, loadPageContent } = useBookPageData();
+  const {
+    data: pageContent,
+    isLoading,
+    error,
+    refetch: loadPageContent,
+  } = useQuery({
+    queryKey: ["pageContent", currentPage],
+    queryFn: () => fetchBookPage(currentBookId, currentPage),
+  });
 
-  // if (!currentBook || !currentPage) return <UnavailableBookError />;
-  // if (isLoading) return <BookPageSkeleton />;
-  // if (error) {
-  //   return (
-  //     <div className="h-full grid place-items-center">
-  //       <ErrorFallback onRefetch={loadPageContent} />
-  //     </div>
-  //   );
-  // }
+  if (!currentBookId || !currentPage) return <UnavailableBookError />;
+  if (isLoading) return <BookPageSkeleton />;
+  if (error) {
+    return (
+      <div className="h-full grid place-items-center">
+        <ErrorFallback onRefetch={loadPageContent} />
+      </div>
+    );
+  }
 
-  const pageNum = toFaDigits(+page);
+  const pageNum = toFaDigits(+currentPage);
   return (
     <section
       // ref={pageRef}
       // key={currentPage}
-      id={`page${page}`}
+      id={`page${currentPage}`}
       className="page relative"
     >
       <div className="absolute top-0 left-0 bg-pink-400 m-1 p-2 rounded">{`${pageNum}`}</div>
       <div className="p-2 pt-8">
-        <p>safhe {page}</p>
+        <p>safhe {currentPage}</p>
         <p>safhe {pageNum}</p>
+        <p>{pageContent}</p>
       </div>
     </section>
   );

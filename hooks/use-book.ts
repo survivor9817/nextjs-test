@@ -82,8 +82,13 @@ export const useBook = (
     goToPage(currentPage + 1);
   };
 
-  const onSliderChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    const newPage = Number(e.target.value);
+  // const onSliderChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+  //   const newPage = Number(e.target.value);
+  //   goToPage(newPage);
+  // };
+
+  const onSliderChange = (value: number | readonly number[]) => {
+    const newPage = Array.isArray(value) ? value[0] : value;
     goToPage(newPage);
   };
 

@@ -4,6 +4,7 @@ import { Input } from "@/components/ui/input";
 import { Slider } from "@/components/ui/slider";
 // import { useBook } from "@/app/hooks/useBook";
 import { cn } from "@/lib/utils";
+import { useBookContext } from "@/providers/book-provider";
 import { fetchBook } from "@/services/client/fetchBook";
 import { useQuery } from "@tanstack/react-query";
 import { useSearchParams } from "next/navigation";
@@ -12,7 +13,8 @@ import { useSearchParams } from "next/navigation";
 
 const BookPagination = () => {
   const {
-    currentBook,
+    currentBookId,
+    currentBookInfo,
     currentPage,
     pageInput,
     pageInputError,
@@ -25,52 +27,44 @@ const BookPagination = () => {
     onFocus,
     onBlur,
     onInputKeyDown,
-  } = useBook();
+  } = useBookContext();
 
   const inputError = pageInputError ? "bg-[rgb(255,124,124)]" : "";
 
-  const {} = useSearchParams();
-  const { data: lastPageData } = useQuery({
-    queryKey: ["books", bookId, "lastPage"],
-    queryFn: () => fetchBook(bookId),
-    initialData: bookId === defaultBookId ? initialLastPage : undefined,
-  });
   return (
     <>
       {currentPage && (
         <div className="flex items-center p-1 max-w-[86vw] sm:max-w-90 border-2 border-black rounded-[48px] bg-white">
           <IconBtn
-            icon="arrow_circle_right"
-            iconSize="48px"
+            icon={<span className="msr text-5xl">arrow_circle_right</span>}
             onClick={goToPrevPage}
-            isDisabled={!currentBook}
+            disabled={!currentBookId}
             aria-label="رفتن به صفحه بعدی"
           />
           <IconBtn
-            icon="arrow_circle_left"
-            iconSize="48px"
+            icon={<span className="msr text-5xl">arrow_circle_left</span>}
             onClick={goToNextPage}
-            isDisabled={!currentBook}
+            disabled={!currentBookId}
             aria-label="رفتن به صفحه قبلی"
           />
           {/* <input
             className="w-50 min-w-25 max-w-50 text-[rgba(225,163,193,1)] mx-1"
             type="range"
             min="1"
-            max={currentBook?.lastPage}
+            max={currentBookInfo?.lastPage}
             step="1"
             value={currentPage}
             onChange={onSliderChange}
-            disabled={!currentBook}
+            disabled={!currentBookId}
           /> */}
           <Slider
-            className="w-50 min-w-25 max-w-50 mx-1"
+            className="w-50  min-w-25 max-w-50 mx-1"
             min={1}
-            max={currentBook?.lastPage ?? 2}
+            max={currentBookInfo?.lastPage ?? 2}
             step={1}
             value={[currentPage]}
-            onValueChange={(value) => onSliderChange((value as number[])[0])}
-            disabled={!currentBook}
+            onValueChange={onSliderChange}
+            disabled={!currentBookId}
           />
           {/* <input
             className={`border-[3px] border-black rounded-3xl text-center p-0 h-11 w-11 text-[18px] appearance-none ${inputError}`}
@@ -81,7 +75,7 @@ const BookPagination = () => {
             onFocus={onFocus}
             onBlur={onBlur}
             onKeyDown={onInputKeyDown}
-            disabled={!currentBook}
+            disabled={!currentBookId}
             autoComplete="off"
           /> */}
           <Input
@@ -92,7 +86,7 @@ const BookPagination = () => {
             onFocus={onFocus}
             onBlur={onBlur}
             onKeyDown={onInputKeyDown}
-            disabled={!currentBook}
+            disabled={!currentBookId}
             autoComplete="off"
             className={cn(
               "h-11 w-11 min-w-11 max-w-11 rounded-3xl border-[3px] border-black p-0 text-center text-[18px] appearance-none",
