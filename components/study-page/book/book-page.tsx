@@ -2,7 +2,7 @@
 import { toFaDigits } from "@/lib/toFaDigits";
 import BookPageSkeleton from "./book-page-skeleton";
 import UnavailableBookError from "./unavailable-book-error";
-import { useBookContext } from "@/providers/book-provider";
+import { useBookContext } from "@/components/study-page/book/book-provider";
 import { useQuery } from "@tanstack/react-query";
 import { fetchBookPage } from "@/services/client/fetchBookPage";
 import ErrorFallback from "@/components/error-fallback";
@@ -18,8 +18,15 @@ const BookPage = () => {
     error,
     refetch: loadPageContent,
   } = useQuery({
-    queryKey: ["pageContent", currentPage],
+    queryKey: ["pageContent", currentBookId, currentPage],
     queryFn: () => fetchBookPage(currentBookId, currentPage),
+
+    // Data stays fresh for 1 minute. No new API calls within this window.
+    // staleTime: 60 * 1000,
+
+    // If the user leaves this page, keep the data in memory for 10 minutes
+    // before destroying it.
+    // gcTime: 10 * 60 * 1000,
   });
 
   if (!currentBookId || !currentPage) return <UnavailableBookError />;

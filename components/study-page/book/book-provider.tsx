@@ -1,6 +1,6 @@
 "use client";
 
-import { useBook } from "@/hooks/use-book";
+import { useBook } from "@/components/study-page/book/use-book";
 import { createContext, useContext, type ReactNode } from "react";
 
 type BookContextType = ReturnType<typeof useBook>;

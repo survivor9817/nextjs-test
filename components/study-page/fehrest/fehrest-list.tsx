@@ -2,7 +2,8 @@
 import FehrestItem from "./fehrest-item";
 import { FehrestSection } from "@/data/fehrestsData";
 import ErrorFallback from "@/components/error-fallback";
-import { useBookContext } from "@/providers/book-provider";
+import { useBookContext } from "@/components/study-page/book/book-provider";
+import { useStudyTabs } from "../tabs-provider";
 import { fetchFehrest } from "@/services/client/fetchFehrest";
 import { useQuery } from "@tanstack/react-query";
 import FehrestListSkeleton from "./fehrest-list-skeleton";
@@ -20,10 +21,16 @@ export const findSectionPage = (targetPage: number, sectionPages: number[]): num
   return largestNumber;
 };
 
-// type Props = {};
+export const checkActive = (currentSectionPage: number, section: FehrestSection): boolean => {
+  if (currentSectionPage === section.page) return true;
+  return !!section.sections?.some((subsection) => {
+    return checkActive(currentSectionPage, subsection);
+  });
+};
 
 const FehrestList = () => {
-  const { currentBookId, currentBookInfo, currentPage } = useBookContext();
+  const { currentBookId, currentBookInfo, currentPage, goToPage } = useBookContext();
+  const { changeTab } = useStudyTabs();
 
   const {
     data: currentFehrest,
@@ -54,6 +61,12 @@ const FehrestList = () => {
   const titlePages = collectSectionPages(currentFehrest);
   const currentSectionPage = findSectionPage(+currentPage, titlePages);
 
+  const handleSelect = (section: FehrestSection) => {
+    goToPage(section.page);
+    const hasSubSection = section.sections && section.sections.length > 0;
+    if (!hasSubSection) changeTab("book");
+  };
+
   return (
     <ol className="mt-4 w-full max-w-80 min-w-0 wrap-break-word overflow-hidden">
       {currentFehrest &&
@@ -62,6 +75,9 @@ const FehrestList = () => {
             key={section.page}
             section={section}
             currentSectionPage={currentSectionPage}
+            onClick={handleSelect}
+            isActive={checkActive(currentSectionPage, section)}
+            checkActive={checkActive}
           />
         ))}
     </ol>

@@ -1,25 +1,15 @@
 import { toFaDigits } from "@/lib/toFaDigits";
 import { FehrestSection } from "@/data/fehrestsData";
-import { useBookContext } from "@/providers/book-provider";
-import { useStudyTabs } from "../tabs-provider";
 
 type Props = {
   section: FehrestSection;
   currentSectionPage: number;
+  isActive: boolean;
+  onClick: (section: FehrestSection) => void;
+  checkActive: (currentSectionPage: number, section: FehrestSection) => boolean;
 };
 
-export const checkActive = (currentSectionPage: number, section: FehrestSection): boolean => {
-  if (currentSectionPage === section.page) return true;
-  return !!section.sections?.some((subsection) => {
-    return checkActive(currentSectionPage, subsection);
-  });
-};
-
-const FehrestItem = ({ section, currentSectionPage }: Props) => {
-  const { goToPage } = useBookContext();
-  const { changeTab } = useStudyTabs();
-  const isActive = checkActive(currentSectionPage, section);
-
+const FehrestItem = ({ section, currentSectionPage, onClick, isActive, checkActive }: Props) => {
   const expandedClass = isActive ? "max-h-screen" : "max-h-0";
   const isHighlighted = isActive ? "bg-[#e1a3c1]" : "hover:bg-[#e1a3c175]";
   const hasSubSection = section.sections && section.sections?.length > 0;
@@ -33,6 +23,9 @@ const FehrestItem = ({ section, currentSectionPage }: Props) => {
             key={section.title}
             section={section}
             currentSectionPage={currentSectionPage}
+            onClick={onClick}
+            isActive={checkActive(currentSectionPage, section)}
+            checkActive={checkActive}
           />
         );
       })}
@@ -43,10 +36,7 @@ const FehrestItem = ({ section, currentSectionPage }: Props) => {
     <li className="">
       <div
         className={`flex justify-between font-semibold py-1.25 px-2 pl-1 my-1 rounded cursor-pointer transition-colors duration-300 ${isHighlighted}`}
-        onClick={() => {
-          if (!hasSubSection) changeTab("book");
-          goToPage(section.page);
-        }}
+        onClick={() => onClick(section)}
       >
         <span className="h-full w-full my-auto text-sm">{section.title}</span>
         <span className="flex justify-center w-7 h-full p-1 border-2 rounded text-xs">

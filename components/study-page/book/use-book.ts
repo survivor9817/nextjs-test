@@ -1,5 +1,5 @@
 import { useRef, useState } from "react";
-import { useTimeoutFn } from "./useTimeoutFn";
+import { useTimeoutFn } from "../../../hooks/useTimeoutFn";
 import { toEnDigits } from "@/lib/toEnDigits";
 import { toFaDigits } from "@/lib/toFaDigits";
 import { parseAsInteger, parseAsString, useQueryState } from "nuqs";

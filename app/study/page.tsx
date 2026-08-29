@@ -1,5 +1,5 @@
 import StudyTabs from "@/components/study-page/study-tabs";
-import { BookProvider } from "@/providers/book-provider";
+import { BookProvider } from "@/components/study-page/book/book-provider";
 
 const StudyPage = () => {
   return (
