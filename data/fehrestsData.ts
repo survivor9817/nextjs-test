@@ -15,6 +15,7 @@ type Fehrest = {
   sections: FehrestSection[];
 };
 
+// add a property that shows there is a toc item in quiz filter options or not.
 export const BOOKS_TOC: Fehrest[] = [
   {
     bookId: "706",

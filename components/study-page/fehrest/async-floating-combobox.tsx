@@ -12,8 +12,9 @@ import {
 } from "@/components/ui/combobox";
 import { BaseUIEvent } from "@base-ui/react";
 import { Label } from "@/components/ui/label";
+import ErrorFallback from "@/components/error-fallback";
 
-type FloatingComboboxProps<T> = {
+type AsyncFloatingComboboxProps<T> = {
   items: T[];
   value: T | null;
   onValueChange: (item: T | null) => void;
@@ -22,10 +23,13 @@ type FloatingComboboxProps<T> = {
   label: string;
   emptyMessage?: string;
   className?: string;
+  error?: unknown;
+  onRetry: () => void; // چون این کامپوننت ذاتاً برای دیتای async هست، همیشه اجباریه
+  errorMessage?: string;
 };
 
-// منطق عمومی combobox با لیبل شناور - هیچ وابستگی به دامنه‌ی خاصی یا دیتای ناهمزمان نداره
-function FloatingCombobox<T>({
+// نسخه‌ی مخصوص دیتای ناهمزمان: با نمایش فالبک خطا داخل content هنگام fetch ناموفق
+function AsyncFloatingCombobox<T>({
   items,
   value,
   onValueChange,
@@ -34,7 +38,10 @@ function FloatingCombobox<T>({
   label,
   emptyMessage = "موردی پیدا نشد",
   className,
-}: FloatingComboboxProps<T>) {
+  error,
+  onRetry,
+  errorMessage = "خطا در بارگذاری گزینه‌ها",
+}: AsyncFloatingComboboxProps<T>) {
   const [open, setOpen] = useState(false);
   const [inputValue, setInputValue] = useState("");
   const [localValue, setLocalValue] = useState<T | null>(value);
@@ -137,25 +144,31 @@ function FloatingCombobox<T>({
         />
 
         <ComboboxContent className="w-(--anchor-width) p-0 ">
-          <ComboboxList>
-            <ComboboxEmpty className="p-2 text-center text-sm font-bold text-gray-500">
-              {inputValue ? `هیچ موردی با "${inputValue}" پیدا نشد` : emptyMessage}
-            </ComboboxEmpty>
+          {error ? (
+            <div className="p-2">
+              <ErrorFallback onRefetch={onRetry} ErrorMsg={errorMessage} />
+            </div>
+          ) : (
+            <ComboboxList>
+              <ComboboxEmpty className="p-2 text-center text-sm font-bold text-gray-500">
+                {inputValue ? `هیچ موردی با "${inputValue}" پیدا نشد` : emptyMessage}
+              </ComboboxEmpty>
 
-            {filteredItems.map((item) => (
-              <ComboboxItem
-                key={getKey(item)}
-                value={item}
-                className="justify-center font-bold cursor-pointer"
-              >
-                {getLabel(item)}
-              </ComboboxItem>
-            ))}
-          </ComboboxList>
+              {filteredItems.map((item) => (
+                <ComboboxItem
+                  key={getKey(item)}
+                  value={item}
+                  className="justify-center font-bold cursor-pointer"
+                >
+                  {getLabel(item)}
+                </ComboboxItem>
+              ))}
+            </ComboboxList>
+          )}
         </ComboboxContent>
       </Combobox>
     </div>
   );
 }
 
-export default FloatingCombobox;
+export default AsyncFloatingCombobox;

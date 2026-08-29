@@ -1,9 +1,8 @@
 "use client";
 
-import { useQuery } from "@tanstack/react-query";
 import { useBookContext } from "@/components/study-page/book/book-provider";
-import { fetchBookSelectOptions } from "@/services/client/fetchBookSelectOptions";
-import FloatingCombobox from "./floating-combobox";
+import AsyncFloatingCombobox from "./async-floating-combobox";
+import { useBookSelectData } from "./use-book-select-data";
 
 type BookSelectProps = {
   className?: string;
@@ -11,25 +10,22 @@ type BookSelectProps = {
 };
 
 const BookSelect = ({ className, label = "فهرست کتاب" }: BookSelectProps) => {
-  const { currentBookId, changeBook } = useBookContext();
-
-  const { data: books = [] } = useQuery({
-    queryKey: ["books"],
-    queryFn: fetchBookSelectOptions,
-  });
-
-  const selectedBook = books.find((b) => b.value === currentBookId) ?? null;
+  const { currentBookSelectOption, changeBook } = useBookContext();
+  const { BookSelectData, error, loadBookSelectData } = useBookSelectData();
 
   return (
-    <FloatingCombobox
-      items={books}
-      value={selectedBook}
+    <AsyncFloatingCombobox
+      items={BookSelectData}
+      value={currentBookSelectOption}
       onValueChange={(book) => book && changeBook(book.value)}
       getLabel={(book) => book.label}
       getKey={(book) => book.value}
       label={label}
       emptyMessage="کتابی موجود نیست"
       className={className}
+      error={error}
+      onRetry={loadBookSelectData}
+      errorMessage="خطا در بارگذاری فهرست کتاب‌ها"
     />
   );
 };

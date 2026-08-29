@@ -5,6 +5,7 @@ import { toFaDigits } from "@/lib/toFaDigits";
 import { parseAsInteger, parseAsString, useQueryState } from "nuqs";
 import { useQuery } from "@tanstack/react-query";
 import { fetchBook } from "@/services/client/fetchBook";
+import { BookOption } from "@/data/booksData";
 // import { Book } from "@/data/booksData";
 // import { useLocalStorage } from "./useLocalStorage";
 
@@ -32,6 +33,10 @@ export const useBook = (
     queryKey: ["bookInfo", currentBookId],
     queryFn: () => fetchBook(currentBookId),
   });
+
+  const currentBookSelectOption: BookOption | null = currentBookInfo
+    ? { value: currentBookInfo.value, label: currentBookInfo.label }
+    : null;
 
   const [pageInput, setPageInput] = useState<string>(toFaDigits(currentPage));
   const [pageInputError, setPageInputError] = useState(false);
@@ -149,6 +154,7 @@ export const useBook = (
     setCurrentBookId,
     changeBook,
     currentBookInfo,
+    currentBookSelectOption,
 
     currentPage,
     pageInput,
