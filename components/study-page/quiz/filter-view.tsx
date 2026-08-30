@@ -17,18 +17,12 @@ type Props = {
 const FilterView = ({ quizFilters, onChangeFilterSelect, startQuizLoading, startQuiz }: Props) => {
   const { quizFilterBoxRef, quizFilterBoxHeight, showLevel, showSource, showBtn } =
     useQuizFiltersProgressiveDisclosure(quizFilters);
-  // در FilterView
-  console.log("Render FilterView", {
-    showLevel,
-    showSource,
-    whereValue: quizFilters.where?.value,
-    levelValue: quizFilters.level?.value,
-  });
+
   return (
     <form
       onSubmit={(e) => e.preventDefault()}
       style={{ height: quizFilterBoxHeight }}
-      className="relative flex flex-col gap-8 border-2 rounded-4xl w-full max-w-115 mt-18 max-h-80 mx-auto
+      className="relative flex flex-col gap-8 border-2 border-gray-300 rounded-4xl w-full max-w-115 mt-18 max-h-80 mx-auto
                  transition-[height] ease-in-out duration-300" // min-h-90
     >
       <div className="absolute -top-5 right-8 text-2xl bg-white px-2">تمرین جدید</div>
@@ -67,7 +61,7 @@ const FilterView = ({ quizFilters, onChangeFilterSelect, startQuizLoading, start
         )}
       </div>
 
-      {/* <StartQuizBtn show={showBtn} loading={startQuizLoading} type="button" onClick={startQuiz} /> */}
+      <StartQuizBtn show={showBtn} loading={startQuizLoading} type="button" onClick={startQuiz} />
     </form>
   );
 };

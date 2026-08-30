@@ -27,6 +27,7 @@ const FilterSelect = ({
     const selectedOption = options?.find((option) => option.value === value) ?? null;
     onChange(filterId, selectedOption);
   };
+  console.log(options);
 
   return (
     <div className="relative">

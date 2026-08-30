@@ -4,6 +4,7 @@
 import { Button } from "@/components/ui/button";
 import { Loader2 } from "lucide-react";
 import { cn } from "@/lib/utils";
+import { Spinner } from "@/components/ui/spinner";
 
 /* ----------------------------------------------------------------
    Props
@@ -53,7 +54,7 @@ export const StartQuizBtn = ({
       >
         {loading ? (
           <>
-            <Loader2 className="animate-spin" />
+            <Spinner />
             <span>در حال شروع تمرین ...</span>
           </>
         ) : (
