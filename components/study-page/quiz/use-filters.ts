@@ -35,11 +35,14 @@ export const useFilters = () => {
     });
   };
 
-  // وقتی کتاب انتخابی عوض بشه، فیلترها ریست می‌شن و bookId جدید ست می‌شه
+  // در useFilters.ts
   useEffect(() => {
-    clearFilters();
+    // فقط اگر bookId واقعاً تغییر کرده باشد ریست کن، نه اگر فقط select option رفرش شده
+    if (currentBookId && quizFilters.book?.value !== currentBookId) {
+      clearFilters();
+    }
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [currentBookId, currentBookSelectOption]);
+  }, [currentBookId]); // فقط به bookId وابسته باشد، نه currentBookSelectOption
 
   const onChangeFilterSelect = (
     id: Exclude<QuizFiltersKey, "bookId">,

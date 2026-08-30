@@ -1,15 +1,14 @@
-import { useQuizFiltersProgressiveDisclosure } from "../hooks/useQuizFiltersProgressiveDisclosure";
-import QuizFilterSelect from "./QuizFilterSelect";
-import StartQuizBtn from "./StartQuizBtn";
-import type { QuizFiltersType } from "../hooks/useQuizFilters";
-import type { ActionMeta, SingleValue } from "react-select";
-import type { FilterOption } from "../data/quizFilterOptionsData";
+import { FilterOption } from "@/data/quizFilterOptionsData";
+import FilterSelect from "./filter-select";
+import { QuizFilterOption, QuizFiltersType } from "./use-filters";
+import { useQuizFiltersProgressiveDisclosure } from "./use-quiz-filters-progressive-disclosure";
+import StartQuizBtn from "./start-quiz-btn";
 
 type Props = {
   quizFilters: QuizFiltersType;
   onChangeFilterSelect: (
-    selected: SingleValue<FilterOption>,
-    action: ActionMeta<FilterOption>,
+    id: "where" | "level" | "source",
+    selectedOption: QuizFilterOption | null,
   ) => void;
   startQuizLoading: boolean;
   startQuiz: () => Promise<void>;
@@ -18,7 +17,13 @@ type Props = {
 const FilterView = ({ quizFilters, onChangeFilterSelect, startQuizLoading, startQuiz }: Props) => {
   const { quizFilterBoxRef, quizFilterBoxHeight, showLevel, showSource, showBtn } =
     useQuizFiltersProgressiveDisclosure(quizFilters);
-
+  // در FilterView
+  console.log("Render FilterView", {
+    showLevel,
+    showSource,
+    whereValue: quizFilters.where?.value,
+    levelValue: quizFilters.level?.value,
+  });
   return (
     <form
       onSubmit={(e) => e.preventDefault()}
@@ -34,16 +39,16 @@ const FilterView = ({ quizFilters, onChangeFilterSelect, startQuizLoading, start
       >
         {/* mishe bad az baste shodane menu yek filter, agar oon filtere khali nist shode, check konim ke aya filter badish khalie yaa na.
         agar khalie va componentesh load nashode, loadesh kone */}
-        <QuizFilterSelect
-          filterId="Where"
+        <FilterSelect
+          filterId="where"
           label="از کجای کتاب می‌خوای؟"
           quizFilters={quizFilters}
           onChange={onChangeFilterSelect}
           loadingMessage="در حال بارگذاری بخش‌های کتاب..."
         />
         {showLevel && (
-          <QuizFilterSelect
-            filterId="Level"
+          <FilterSelect
+            filterId="level"
             label="در چه سطحی باشند؟"
             quizFilters={quizFilters}
             onChange={onChangeFilterSelect}
@@ -51,8 +56,8 @@ const FilterView = ({ quizFilters, onChangeFilterSelect, startQuizLoading, start
           />
         )}
         {showSource && (
-          <QuizFilterSelect
-            filterId="Source"
+          <FilterSelect
+            filterId="source"
             label="از چه منبعی باشند؟"
             quizFilters={quizFilters}
             onChange={onChangeFilterSelect}
@@ -62,7 +67,7 @@ const FilterView = ({ quizFilters, onChangeFilterSelect, startQuizLoading, start
         )}
       </div>
 
-      <StartQuizBtn show={showBtn} loading={startQuizLoading} type="button" onClick={startQuiz} />
+      {/* <StartQuizBtn show={showBtn} loading={startQuizLoading} type="button" onClick={startQuiz} /> */}
     </form>
   );
 };

@@ -1,17 +1,19 @@
 import FilterSelect from "./filter-select";
-import { useFilters } from "./use-filters";
+import FilterView from "./filter-view";
+import { QuizFilterOption, useFilters } from "./use-filters";
 
 const Quiz = () => {
   const { quizFilters, clearFilters, onChangeFilterSelect } = useFilters();
   return (
     <>
-      <FilterSelect
-        filterId="where"
-        label="از کجای کتاب می‌خوای؟"
-        quizFilters={quizFilters}
-        onChange={onChangeFilterSelect}
-        loadingMessage="در حال بارگذاری بخش‌های کتاب..."
-      />
+      <div className="p-29">
+        <FilterView
+          quizFilters={quizFilters}
+          onChangeFilterSelect={onChangeFilterSelect}
+          startQuizLoading={false}
+          startQuiz={() => {}}
+        />
+      </div>
     </>
   );
 };

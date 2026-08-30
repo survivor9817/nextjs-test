@@ -1,5 +1,5 @@
-import { useRef, useState } from "react";
-import { useTimeoutFn } from "../../../hooks/useTimeoutFn";
+import { useMemo, useRef, useState } from "react";
+import { useTimeoutFn } from "../../../hooks/use-timeout-fn";
 import { toEnDigits } from "@/lib/toEnDigits";
 import { toFaDigits } from "@/lib/toFaDigits";
 import { parseAsInteger, parseAsString, useQueryState } from "nuqs";
@@ -34,9 +34,17 @@ export const useBook = (
     queryFn: () => fetchBook(currentBookId),
   });
 
-  const currentBookSelectOption: BookOption | null = currentBookInfo
-    ? { value: currentBookInfo.value, label: currentBookInfo.label }
-    : null;
+  // const currentBookSelectOption: BookOption | null = currentBookInfo
+  //   ? { value: currentBookInfo.value, label: currentBookInfo.label }
+  //   : null;
+
+  const currentBookSelectOption: BookOption | null = useMemo(() => {
+    if (!currentBookInfo) return null;
+    return {
+      value: currentBookInfo.value,
+      label: currentBookInfo.label,
+    };
+  }, [currentBookInfo]); // فقط وقتی currentBookInfo عوض شد، آبجکت جدید بساز
 
   const [pageInput, setPageInput] = useState<string>(toFaDigits(currentPage));
   const [pageInputError, setPageInputError] = useState(false);
