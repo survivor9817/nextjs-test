@@ -75,7 +75,7 @@ export function AsyncSelect<TOption extends AsyncSelectOption>({
 
       <SelectContent className={cn("z-[9999]", contentClassName)} alignItemWithTrigger={false}>
         {isLoading ? (
-          <div className="p-2 text-sm text-muted-foreground text-center">{loadingMessage}</div>
+          <div className="p-2 my-2 text-sm text-muted-foreground text-center">{loadingMessage}</div>
         ) : error ? (
           <div className="p-2">
             <ErrorFallback onRefetch={onRetry} ErrorMsg={errorMessage} />

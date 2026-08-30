@@ -42,7 +42,7 @@ export const StartQuizBtn = ({
     <div
       className={cn(
         "absolute bottom-0 right-1/2 translate-x-1/2 flex items-center p-1.75 min-w-57.5 h-16 border-2 rounded-full z-4",
-        "transition-[opacity,transform] duration-300 bg-white",
+        "transition-[opacity,transform] duration-300 bg-white border-gray-300",
         show ? "visible opacity-100 translate-y-9" : "opacity-0 invisible",
       )}
     >
