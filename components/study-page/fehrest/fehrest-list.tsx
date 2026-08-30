@@ -63,23 +63,29 @@ const FehrestList = () => {
 
   const handleSelect = (section: FehrestSection) => {
     goToPage(section.page);
-    const hasSubSection = section.sections && section.sections.length > 0;
-    if (!hasSubSection) changeTab("book");
+
+    const hasSubSection = Boolean(section.sections?.length);
+    const isActive = checkActive(currentSectionPage, section);
+    if (!hasSubSection || isActive) changeTab("book");
   };
 
   return (
     <ol className="mt-4 w-full max-w-80 min-w-0 wrap-break-word overflow-hidden">
       {currentFehrest &&
-        currentFehrest.map((section) => (
-          <FehrestItem
-            key={section.page}
-            section={section}
-            currentSectionPage={currentSectionPage}
-            onClick={handleSelect}
-            isActive={checkActive(currentSectionPage, section)}
-            checkActive={checkActive}
-          />
-        ))}
+        currentFehrest.map((section) => {
+          const isActive = checkActive(currentSectionPage, section);
+
+          return (
+            <FehrestItem
+              key={section.page}
+              section={section}
+              currentSectionPage={currentSectionPage}
+              onClick={handleSelect}
+              isActive={isActive}
+              checkActive={checkActive}
+            />
+          );
+        })}
     </ol>
   );
 };

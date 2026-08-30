@@ -46,7 +46,7 @@ const BookShelf = ({ books }: Props) => {
         ))}
       </CarouselContent>
 
-      <div className="flex justify-end gap-2 mt-4">
+      <div className="flex justify-end gap-4 mt-4">
         <CarouselPrevious className="static translate-y-0" />
         <CarouselNext className="static translate-y-0" />
       </div>

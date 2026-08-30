@@ -11,12 +11,14 @@ export function isTabValue(value: unknown): value is TabValue {
   return typeof value === "string" && (TAB_VALUES as readonly string[]).includes(value);
 }
 
-const DEFAULT_TAB: TabValue = "book";
+const DEFAULT_TAB: TabValue = "fehrest";
 
 export const useStudyTabsState = () => {
   const [activeTab, setActiveTabRaw] = useQueryState(
     "tab",
-    parseAsStringLiteral(TAB_VALUES).withDefault(DEFAULT_TAB).withOptions({ shallow: true }),
+    parseAsStringLiteral(TAB_VALUES)
+      .withDefault(DEFAULT_TAB)
+      .withOptions({ shallow: true, history: "replace" }), // can be replace
   );
 
   const changeTab = useCallback(

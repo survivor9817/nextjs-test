@@ -1,4 +1,3 @@
-import FilterSelect from "./filter-select";
 import FilterView from "./filter-view";
 import { QuizFilterOption, useFilters } from "./use-filters";
 

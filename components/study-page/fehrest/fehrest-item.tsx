@@ -17,14 +17,14 @@ const FehrestItem = ({ section, currentSectionPage, onClick, isActive, checkActi
     <ol
       className={`border-r-2 pr-1 mb-2 mr-3 overflow-hidden transition-[max-height] duration-300 ease-in-out ${expandedClass}`}
     >
-      {section.sections?.map((section) => {
+      {section.sections?.map((subSection) => {
         return (
           <FehrestItem
-            key={section.title}
-            section={section}
+            key={subSection.title}
+            section={subSection}
             currentSectionPage={currentSectionPage}
-            onClick={onClick}
-            isActive={checkActive(currentSectionPage, section)}
+            onClick={() => onClick(subSection)}
+            isActive={checkActive(currentSectionPage, subSection)}
             checkActive={checkActive}
           />
         );
