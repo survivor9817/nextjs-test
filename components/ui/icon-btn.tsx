@@ -23,7 +23,7 @@ const IconBtn = ({
       variant={"ghost"}
       disabled={disabled || loading}
       aria-busy={loading}
-      className={cn("rounded-full p-0", className)}
+      className={cn("rounded-full touch-manipulation p-0", className)}
     >
       {loading ? (
         <>

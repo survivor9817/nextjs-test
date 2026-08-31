@@ -14,10 +14,20 @@ import Answer from "./answer";
 import { toFaDigits } from "@/lib/toFaDigits";
 import { cn } from "@/lib/utils";
 import { useQuestionNavigation } from "./use-quiz-navigaiton";
+import StopWatchDrawer from "./stop-watch-drawer";
+import { useQuizAnswer } from "./use-quiz-answer";
+import { useQuizReactions } from "./useQuizReactions";
 
 type Props = {};
 
 const QuizView = (props: Props) => {
+  const author = "رضا";
+  const question = <p className="text-2xl">question</p>;
+  const descriptiveAnswer = <p className="text-2xl">descriptiveAnswer</p>;
+  const tags = ["some", "how"];
+  const progressLabel = `تمرین شماره ${toFaDigits(current + 1)} از ${toFaDigits(max + 1)}`;
+  const questionDetails = `${source} - ${date} - ${toFaDigits(score)} نمره`;
+
   const {
     currentQuestionIndex,
     lastQuestionIndex,
@@ -28,8 +38,18 @@ const QuizView = (props: Props) => {
     goToNextQuestion,
     resetQuestionIndex,
   } = useQuestionNavigation(10);
-  const progressLabel = `تمرین شماره ${toFaDigits(current + 1)} از ${toFaDigits(max + 1)}`;
-  const questionDetails = `${source} - ${date} - ${toFaDigits(score)} نمره`;
+
+  const { btnsMeta, msgsMeta, onClickOnReactionBtn } = useQuizReactions(
+    quiz.quizId,
+    id,
+    "123",
+    reactions,
+  );
+
+  const { answerContent, isAnswerVisible, toggleAnswer } = useQuizAnswer(
+    descriptiveAnswer,
+    currentQuestionIndex,
+  );
 
   return (
     <div className="quiz-box flex flex-col p-2 overflow-hidden">
@@ -61,15 +81,16 @@ const QuizView = (props: Props) => {
             disabled={isOnFirstQuestion}
             onClick={goToPrevQuestion}
           />
-          <IconBtn icon={<span className="msr text-5xl">timer</span>} onClick={openStopwatch} />
+          {/* <IconBtn icon={<span className="msr text-5xl">timer</span>} onClick={openStopwatch} /> */}
           {/* {stopwatch && <StopwatchModal onClose={closeStopwatch} />} */}
+          <StopWatchDrawer />
         </div>
 
         <div className="flex">
           <IconBtn
             className={"text-red-700"}
             icon={<span className="msr text-5xl">power_settings_circle</span>}
-            onClick={openEndConfirm}
+            // onClick={openEndConfirm}
           />
           <IconBtn
             icon={<span className="msr text-5xl">arrow_circle_left</span>}

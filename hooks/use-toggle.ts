@@ -1,6 +1,12 @@
-import { useState, useCallback } from "react";
+import { useState, useCallback, Dispatch, SetStateAction } from "react";
 
-export type UseToggleReturn = [boolean, () => void, () => void, () => void];
+export type UseToggleReturn = [
+  boolean,
+  () => void,
+  () => void,
+  () => void,
+  setValue: Dispatch<SetStateAction<boolean>>,
+];
 
 function useToggle(defaultValue: boolean = false): UseToggleReturn {
   const [value, setValue] = useState<boolean>(defaultValue);
@@ -17,7 +23,7 @@ function useToggle(defaultValue: boolean = false): UseToggleReturn {
     setValue(false);
   }, []);
 
-  return [value, toggle, setTrue, setFalse];
+  return [value, toggle, setTrue, setFalse, setValue];
 }
 
 export default useToggle;

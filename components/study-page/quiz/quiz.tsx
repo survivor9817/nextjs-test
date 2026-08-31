@@ -6,8 +6,8 @@ import QuestionTagBar from "./question-tag-bar";
 import ShowAnswerBtn from "./show-answer-btn";
 import { useFilters } from "./use-filters";
 import { useState } from "react";
-import DrawerMultiple from "./stop-watch-modal";
-import DrawerSwipeHandle from "./taar";
+import StopWatch from "./stop-watch";
+import StopWatchDrawer from "./stop-watch-drawer";
 
 const Quiz = () => {
   const { quizFilters, clearFilters, onChangeFilterSelect } = useFilters();
@@ -57,8 +57,7 @@ const Quiz = () => {
         </CollapsibleContent>
       </Collapsible>
 
-      <DrawerMultiple />
-      <DrawerSwipeHandle />
+      <StopWatchDrawer />
     </>
   );
 };

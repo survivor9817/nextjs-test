@@ -11,18 +11,20 @@ import {
   DrawerTitle,
   DrawerTrigger,
 } from "@/components/ui/drawer";
+import StopWatch from "./stop-watch";
+import IconBtn from "@/components/ui/icon-btn";
 
-function DrawerSwipeHandle() {
+function StopWatchDrawer() {
   return (
     <Drawer showSwipeHandle>
-      <DrawerTrigger render={<Button variant="secondary">Open Drawer</Button>} />
+      <DrawerTrigger render={<IconBtn icon={<span className="msr text-5xl">timer</span>} />} />
       <DrawerContent className="mx-0 mb-0 rounded-b-none">
         <DrawerHeader>
           <DrawerTitle>Drawer</DrawerTitle>
           <DrawerDescription>Drawer with a swipe handle.</DrawerDescription>
         </DrawerHeader>
         <div className="flex-1 p-4">
-          <div className="rounded-2xl bg-muted group-data-[swipe-axis=x]/drawer-popup:size-full group-data-[swipe-axis=y]/drawer-popup:h-80 group-data-[swipe-axis=y]/drawer-popup:w-full" />
+          <StopWatch />
         </div>
         <DrawerFooter>
           <DrawerClose render={<Button>Close</Button>} />
@@ -32,4 +34,4 @@ function DrawerSwipeHandle() {
   );
 }
 
-export default DrawerSwipeHandle;
+export default StopWatchDrawer;
