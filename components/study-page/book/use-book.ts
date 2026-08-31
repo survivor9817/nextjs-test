@@ -68,9 +68,11 @@ export const useBook = (
     return Number.isInteger(page) && page >= min && page <= max;
   };
 
+  const currentBookLastPage = currentBookInfo?.lastPage || 2;
+
   const parseValidPage = (page: string | number): number | null => {
     const min = 1;
-    const max = currentBookInfo?.lastPage || 2;
+    const max = currentBookLastPage;
     if (typeof page === "number") {
       return isPageInRange(page, min, max) ? page : null;
     }
@@ -156,12 +158,12 @@ export const useBook = (
     setPageInputValue(newPage);
     setCurrentPage(newPage);
   };
-
   return {
     currentBookId,
     setCurrentBookId,
     changeBook,
     currentBookInfo,
+    currentBookLastPage,
     currentBookSelectOption,
 
     currentPage,

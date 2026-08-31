@@ -10,8 +10,8 @@ import { useBookContext } from "@/components/study-page/book/book-provider";
 const BookPagination = () => {
   const {
     currentBookId,
-    currentBookInfo,
     currentPage,
+    currentBookLastPage,
     pageInput,
     pageInputError,
 
@@ -47,7 +47,7 @@ const BookPagination = () => {
           className="  mx-1"
           // className="flex-1 min-w-25 max-w-80 mx-1"
           min={1}
-          max={currentBookInfo?.lastPage ?? 2}
+          max={currentBookLastPage}
           step={1}
           value={[currentPage]}
           onValueChange={onSliderChange}

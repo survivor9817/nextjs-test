@@ -1,34 +1,15 @@
-// ──────────────────────────────────────────────────────────────
-//  فایل: StartQuizBtn.tsx
-// ──────────────────────────────────────────────────────────────
 import { Button } from "@/components/ui/button";
-import { Loader2 } from "lucide-react";
 import { cn } from "@/lib/utils";
 import { Spinner } from "@/components/ui/spinner";
 
-/* ----------------------------------------------------------------
-   Props
------------------------------------------------------------------ */
 type StartQuizBtnProps = {
-  /** نمایش یا مخفی شدن دکمه (برای انیمیشن) */
   show?: boolean;
-
-  /** حالت Loading – آیکون spinner و متن جایگزین می‌شوند */
   loading?: boolean;
-
-  /** حالت غیرفعال (به‌علاوه حالت loading) */
   disabled?: boolean;
-
-  /** handler کلیک (اگر داخل فرم استفاده می‌کنید می‌توانید `type="submit"` بگذارید) */
   onClick?: React.MouseEventHandler<HTMLButtonElement>;
-
-  /** نوع دکمه – پیش‌فرض "button" (می‌توانید "submit" هم بدهید) */
   type?: "button" | "submit";
 };
 
-/* ----------------------------------------------------------------
-   کامپوننت
------------------------------------------------------------------ */
 export const StartQuizBtn = ({
   show = true,
   loading = false,

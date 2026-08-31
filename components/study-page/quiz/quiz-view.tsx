@@ -3,11 +3,21 @@ import React from "react";
 import ProgressBar from "./progress-bar";
 import { Label } from "@/components/ui/label";
 import QuestionTagBar from "./question-tag-bar";
+import Question from "./question";
+import QuestionReactionMsgs from "./question-reaction-msgs";
+import Author from "./author";
+import ShowAnswerBtn from "./show-answer-btn";
+import QuestionDetails from "./question-details";
+import QuizReactionBtns from "./question-reaction-btns";
+import { Collapsible, CollapsibleContent, CollapsibleTrigger } from "@/components/ui/collapsible";
+import Answer from "./answer";
+import { toFaDigits } from "@/lib/toFaDigits";
 
 type Props = {};
 
-const quizView = (props: Props) => {
-  //   const progressLabel = `تمرین شماره ${toFaNums(current + 1)} از ${toFaNums(max + 1)}`;
+const QuizView = (props: Props) => {
+  const progressLabel = `تمرین شماره ${toFaDigits(current + 1)} از ${toFaDigits(max + 1)}`;
+  const questionDetails = `${source} - ${date} - ${toFaDigits(score)} نمره`;
 
   return (
     <div className="quiz-box flex flex-col p-2 overflow-hidden">
@@ -36,28 +46,25 @@ const quizView = (props: Props) => {
         <div className="flex">
           <IconBtn
             icon={<span className="msr text-5xl">arrow_circle_left</span>}
-            // loading={prevLoading}
-            // disabled={nextLoading || isFirstQuestion}
-            // onClick={goToPrevQuestion}
+            loading={prevLoading}
+            disabled={nextLoading || isFirstQuestion}
+            onClick={goToPrevQuestion}
           />
-          <IconBtn
-            icon={"timer"}
-            //    onClick={openStopwatch}
-          />
+          <IconBtn icon={<span className="msr text-5xl">timer</span>} onClick={openStopwatch} />
           {/* {stopwatch && <StopwatchModal onClose={closeStopwatch} />} */}
         </div>
 
         <div className="flex">
           <IconBtn
             className={"text-red-700"}
-            i={"power_settings_circle"}
-            // onClick={openEndConfirm}
+            icon={<span className="msr text-5xl">power_settings_circle</span>}
+            onClick={openEndConfirm}
           />
           <IconBtn
-            i={"arrow_circle_left"}
+            icon={<span className="msr text-5xl">arrow_circle_left</span>}
             loading={nextLoading}
             disabled={prevLoading || isLastQuestion}
-            // onClick={goToNextQuestion}
+            onClick={goToNextQuestion}
           />
         </div>
       </div>
@@ -84,7 +91,7 @@ const quizView = (props: Props) => {
         {/* <!-- Row 4 : Question Box --> */}
         <div className="relative min-h-30">
           <Question question={question} />
-          <QuizReactionMessages msgs={msgsMeta} />
+          <QuestionReactionMsgs msgs={msgsMeta} />
         </div>
       </div>
 
@@ -94,10 +101,14 @@ const quizView = (props: Props) => {
           className="flex items-center w-full sm:w-85 h-16 border-2 rounded-full overflow-hidden transition-[border-radius] duration-400"
           style={{ borderRadius: isAnswerVisible ? "150px 150px 25px 150px" : "150px" }}
         >
-          <ShowAnswerBtn onClick={toggleAnswer} isAnswerVisible={isAnswerVisible} />
+          {/* <ShowAnswerBtn onClick={toggleAnswer} isAnswerVisible={isAnswerVisible} /> */}
+          <Collapsible open={isAnswerVisible} onOpenChange={toggleAnswer}>
+            <CollapsibleTrigger render={<ShowAnswerBtn isAnswerVisible={isAnswerVisible} />} />
+          </Collapsible>
           <Author author={author} />
         </div>
 
+        {/* <div aria-hidden={isAnswerVisible} inert={isAnswerVisible ? true : undefined}></div> */}
         <div
           className="grid items-center overflow-hidden sm:w-85 h-16 border-2 rounded-full transition-[border-radius] duration-400"
           style={{ borderRadius: isAnswerVisible ? "25px 150px 150px 150px" : "150px" }}
@@ -106,18 +117,21 @@ const quizView = (props: Props) => {
             className="grid grid-cols-2 w-[200%] justify-center content-center h-12 transition-transform duration-400 ease-in-out"
             style={{ transform: isAnswerVisible ? "translateX(50%)" : "translateX(0%)" }}
           >
-            <QuestionDetails source={source} date={date} score={score} />
-            <QuizReactionButtons btnsMeta={btnsMeta} onClick={onClickOnReactionBtn} />
+            <QuestionDetails questionDetails={questionDetails} />
+            <QuizReactionBtns btnsMeta={btnsMeta} onClick={onClickOnReactionBtn} />
           </div>
         </div>
       </div>
 
       {/* <!-- Row 6 : Answer Box --> */}
-      <Collapsible isExpanded={isAnswerVisible}>
-        <Answer answer={answerContent} />
+
+      <Collapsible open={isAnswerVisible} onOpenChange={toggleAnswer}>
+        <CollapsibleContent>
+          <Answer answer={answerContent} />
+        </CollapsibleContent>
       </Collapsible>
     </div>
   );
 };
 
-export default quiz - view;
+export default QuizView;

@@ -16,6 +16,7 @@ const ProgressBar = ({ value }: Props) => {
   return (
     <div className="px-2">
       <div className="bg-[#e0e0e0] rounded-[20px] h-3 w-full overflow-hidden">
+        {/** bg-[#ccedd8] */}
         <div
           style={{ width: `${value}%` }}
           className="h-full bg-linear-to-r from-[#4caf50] to-[#8bc34a] rounded-[20px] w-0 
