@@ -6,6 +6,7 @@ import { parseAsInteger, parseAsString, useQueryState } from "nuqs";
 import { useQuery } from "@tanstack/react-query";
 import { fetchBook } from "@/services/client/fetchBook";
 import { BookOption } from "@/data/booksData";
+import { isInRange } from "@/lib/isInRange";
 // import { Book } from "@/data/booksData";
 // import { useLocalStorage } from "./useLocalStorage";
 
@@ -65,7 +66,7 @@ export const useBook = (
   };
 
   const isPageInRange = (page: number, min: number, max: number) => {
-    return Number.isInteger(page) && page >= min && page <= max;
+    return isInRange(page, min, max);
   };
 
   const currentBookLastPage = currentBookInfo?.lastPage || 2;

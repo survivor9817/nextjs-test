@@ -7,6 +7,7 @@ import { useStudyTabs } from "../tabs-provider";
 import { fetchFehrest } from "@/services/client/fetchFehrest";
 import { useQuery } from "@tanstack/react-query";
 import FehrestListSkeleton from "./fehrest-list-skeleton";
+import { useRef } from "react";
 
 export const collectSectionPages = (fehrest: FehrestSection[]): number[] => {
   return fehrest.flatMap((s) => {
@@ -42,6 +43,27 @@ const FehrestList = () => {
     queryFn: () => fetchFehrest(currentBookInfo?.id || currentBookId),
   });
 
+  // this or use react-roving-tabindex
+  // const listRef = useRef<HTMLOListElement>(null);
+  // const handleKeyDown = (e: React.KeyboardEvent) => {
+  //   if (e.key !== "ArrowDown" && e.key !== "ArrowUp") return;
+
+  //   const buttons = Array.from(
+  //     listRef.current?.querySelectorAll<HTMLButtonElement>("button") ?? [],
+  //   );
+  //   const currentIndex = buttons.indexOf(document.activeElement as HTMLButtonElement);
+  //   if (currentIndex === -1) return;
+
+  //   e.preventDefault();
+
+  //   const nextIndex =
+  //     e.key === "ArrowDown"
+  //       ? (currentIndex + 1) % buttons.length
+  //       : (currentIndex - 1 + buttons.length) % buttons.length;
+
+  //   buttons[nextIndex]?.focus();
+  // };
+
   if (isLoading) return <FehrestListSkeleton />;
 
   if (error) {
@@ -70,7 +92,11 @@ const FehrestList = () => {
   };
 
   return (
-    <ol className="mt-4 w-full max-w-80 min-w-0 wrap-break-word overflow-hidden">
+    <ol
+      // ref={listRef}
+      // onKeyDown={handleKeyDown}
+      className="mt-4 w-full max-w-80 min-w-0 wrap-break-word overflow-hidden"
+    >
       {currentFehrest &&
         currentFehrest.map((section) => {
           const isActive = checkActive(currentSectionPage, section);

@@ -12,10 +12,22 @@ import QuizReactionBtns from "./question-reaction-btns";
 import { Collapsible, CollapsibleContent, CollapsibleTrigger } from "@/components/ui/collapsible";
 import Answer from "./answer";
 import { toFaDigits } from "@/lib/toFaDigits";
+import { cn } from "@/lib/utils";
+import { useQuestionNavigation } from "./use-quiz-navigaiton";
 
 type Props = {};
 
 const QuizView = (props: Props) => {
+  const {
+    currentQuestionIndex,
+    lastQuestionIndex,
+    isOnFirstQuestion,
+    isOnLastQuestion,
+    goToQuestion,
+    goToPrevQuestion,
+    goToNextQuestion,
+    resetQuestionIndex,
+  } = useQuestionNavigation(10);
   const progressLabel = `تمرین شماره ${toFaDigits(current + 1)} از ${toFaDigits(max + 1)}`;
   const questionDetails = `${source} - ${date} - ${toFaDigits(score)} نمره`;
 
@@ -46,8 +58,7 @@ const QuizView = (props: Props) => {
         <div className="flex">
           <IconBtn
             icon={<span className="msr text-5xl">arrow_circle_left</span>}
-            loading={prevLoading}
-            disabled={nextLoading || isFirstQuestion}
+            disabled={isOnFirstQuestion}
             onClick={goToPrevQuestion}
           />
           <IconBtn icon={<span className="msr text-5xl">timer</span>} onClick={openStopwatch} />
@@ -62,8 +73,7 @@ const QuizView = (props: Props) => {
           />
           <IconBtn
             icon={<span className="msr text-5xl">arrow_circle_left</span>}
-            loading={nextLoading}
-            disabled={prevLoading || isLastQuestion}
+            disabled={isOnLastQuestion}
             onClick={goToNextQuestion}
           />
         </div>
@@ -126,7 +136,14 @@ const QuizView = (props: Props) => {
       {/* <!-- Row 6 : Answer Box --> */}
 
       <Collapsible open={isAnswerVisible} onOpenChange={toggleAnswer}>
-        <CollapsibleContent>
+        <CollapsibleContent
+          className={cn(
+            "flex flex-col gap-2 overflow-hidden transition-all duration-300",
+            "h-(--collapsible-panel-height) data-starting-style:h-0 data-ending-style:h-0",
+            "opacity-100 data-starting-style:opacity-0 data-ending-style:opacity-0",
+          )}
+          keepMounted
+        >
           <Answer answer={answerContent} />
         </CollapsibleContent>
       </Collapsible>
