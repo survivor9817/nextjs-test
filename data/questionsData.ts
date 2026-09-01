@@ -247,11 +247,11 @@ export type QuestionType = {
   bookId: string; // momkene soal mota allegh be yek yaa chand ketaab baashe.
   fehrestSectionId: string; // soal mota'allegh be kodaam bakhsh az ketaabe darsie. marboot be kodam titr az fehreste ketaabe. mitoone marboot be bish az yek bakhsh baashe.
   levelId: string; // sathe sakhtie soal. faghat yek sath.
-  sourceId: string; // soal mota'allegh be kodam manba e tarrahie soale. (kodaam aazmon or ketab komak darsi). momkene dar bish az yek manba baashe.
+  source: string; // soal mota'allegh be kodam manba e tarrahie soale. (kodaam aazmon or ketab komak darsi). momkene dar bish az yek manba baashe.
   hasImg: boolean;
-  question: string; // har style ya saakhtaare htmli mitone daashte baashe. ghaabele taeen nist.
-  descriptiveAnswer: string; // har style ya saakhtaare htmli mitone daashte baashe. ghaabele taeen nist.
-  authorId: string; // esm famile nevisande soal ya pasokhe tashrihi ya hardosh. har soal faghat yek esm nevisande dare.
+  questionContent: string; // har style ya saakhtaare htmli mitone daashte baashe. ghaabele taeen nist.
+  answerContent: string; // har style ya saakhtaare htmli mitone daashte baashe. ghaabele taeen nist.
+  author: string; // esm famile nevisande soal ya pasokhe tashrihi ya hardosh. har soal faghat yek esm nevisande dare.
   date: string; // maah va saal tarrahie soal gharare zakhire beshe. tooye ui maah irani be horoof va saal be adade.
   score: number; // number. testi haa hame yek nomre baashan ta bebinim che mi shavad dar aayande.
   tags: string[]; // tag haaye type soaalaat. har soal mitoone type haaye mokhtalefi daashte baashe.
@@ -267,9 +267,9 @@ export const questionsData: QuestionType[] = [
     bookId: "زیست‌شناسی ۱",
     fehrestSectionId: "۶. گوارش و جذب مواد",
     levelId: "2",
-    sourceId: "کنکور سراسری",
+    source: "کنکور سراسری",
     hasImg: false,
-    question: `
+    questionContent: `
     <div class="question">
       <p>در انسان، به منظور عبور مولکول‌های گلوکز از غشای یاخته‌ی پوششی پرز روده، به‌طور حتم لازم است تا ..........</p>
     </div>
@@ -280,7 +280,7 @@ export const questionsData: QuestionType[] = [
       <li>۴) گلوکز همراه با سدیم از یاخته خارج گردد.</li>
     </ul>
     `,
-    descriptiveAnswer: `
+    answerContent: `
     <h2>پاسخ: گزینه ۱</h2>
     <p>
       گلوکز از طریق انتقال فعال ثانویه و با کمک پروتئین‌های ناقل مخصوص (SGLT1) وارد یاخته‌های پوششی روده می‌شود. این انتقال وابسته به شیب غلظت سدیم است و نیاز به پروتئین‌های ویژه دارد.
@@ -297,7 +297,7 @@ export const questionsData: QuestionType[] = [
       <strong>گزینه ۴:</strong> نادرست. گلوکز به داخل یاخته وارد می‌شود، نه خارج.
     </div>
     `,
-    authorId: "سامان رضایی",
+    author: "سامان رضایی",
     date: "اردیبهشت ۱۴۰۱",
     score: 1,
     tags: ["چهار گزینه ای", "جای خالی", "مفهومی", "آسان"],
@@ -307,9 +307,9 @@ export const questionsData: QuestionType[] = [
     bookId: "زیست‌شناسی ۱",
     fehrestSectionId: "۶. گوارش و جذب مواد",
     levelId: "2",
-    sourceId: "کنکور سراسری",
+    source: "کنکور سراسری",
     hasImg: false,
-    question: `
+    questionContent: `
     <div class="question">
       <p>کدام گزینه، عبارت زیر را به طور مناسب کامل میکند؟</p>
       <p>«در .................. ، ساختاری که به ذخیرۀ غذا کمک می‌کند و به جانور امکان می‌دهد تا با دفعات کمتر تغذیه، انرژی مورد نیاز خود را تأمین کند، .....................»</p>
@@ -321,7 +321,7 @@ export const questionsData: QuestionType[] = [
       <li>۴) پرندة دانه‌خوار – مواد غذایی را ابتدا به بخش عقبی معده وارد می‌نماید.</li>
     </ul>
     `,
-    descriptiveAnswer: `
+    answerContent: `
     <h2>پاسخ: گزینه ۴</h2>
     <p>
       در پرندگان دانه‌خوار، چینه‌دان به ذخیره غذا کمک می‌کند. مواد غذایی از چینه‌دان ابتدا به پیش معده (قسمت عقبی معده) وارد می‌شود.
@@ -338,7 +338,7 @@ export const questionsData: QuestionType[] = [
       <strong>گزینه ۳:</strong> نادرست. چینه‌دان کرم خاکی فاقد دندانه است.
     </div>
     `,
-    authorId: "رضا قزلسفلو",
+    author: "رضا قزلسفلو",
     date: "اردیبهشت ۱۳۹۸",
     score: 2,
     tags: ["چهار گزینه ای", "جای خالی", "صورت مبهم", "مقایسه ای", "مفهومی", "متوسط"],
@@ -348,9 +348,9 @@ export const questionsData: QuestionType[] = [
     bookId: "زیست‌شناسی ۱",
     fehrestSectionId: "۶. گوارش و جذب مواد",
     levelId: "3",
-    sourceId: "کنکور سراسری",
+    source: "کنکور سراسری",
     hasImg: false,
-    question: `
+    questionContent: `
     <div class="question">
       <p>کدام گزینه، عبارت زیر را به‌طور مناسب کامل می‌کند؟</p>
       <p>«در ........... ساختاری که به ذخیرۀ غذا کمک میکند و به جانور امکان میدهد تا با دفعات کمتر تغذیه، انرژی مورد نیاز خود را تأمین کند، ............»</p>
@@ -362,7 +362,7 @@ export const questionsData: QuestionType[] = [
       <li>۴) پرندة دانه‌خوار - ابتدا مواد غذایی را به بخشی در جلوی سنگدان منتقل می‌کند.</li>
     </ul>
     `,
-    descriptiveAnswer: `
+    answerContent: `
     <h2>پاسخ: گزینه ۴</h2>
     <p>
       در پرنده دانه‌خوار، چینه‌دان (ساختار ذخیره غذا) مواد غذایی را ابتدا به پیش‌معده (بخشی در جلوی سنگدان) منتقل می‌کند.
@@ -379,7 +379,7 @@ export const questionsData: QuestionType[] = [
       <strong>گزینه ۳:</strong> نادرست. در ملخ، چینه‌دان خودش بخش حجیم انتهای مری است.
     </div>
     `,
-    authorId: "محمد حسنی",
+    author: "محمد حسنی",
     date: "اسفند ۱۴۰۰",
     score: 2,
     tags: ["چهار گزینه ای", "جای خالی", "مقایسه ای", "سخت"],
@@ -389,9 +389,9 @@ export const questionsData: QuestionType[] = [
     bookId: "زیست‌شناسی ۱",
     fehrestSectionId: "۳. ساختار گیاهان",
     levelId: "3",
-    sourceId: "کنکور سراسری",
+    source: "کنکور سراسری",
     hasImg: false,
-    question: `
+    questionContent: `
   <div class="question">
     <p>کدام مورد، برای تکمیل عبارت زیر مناسب است؟</p>
     <p>«در نوعی گیاه، ............... قرار دارند، در این گیاه به طور حتم، ..............»</p>
@@ -403,7 +403,7 @@ export const questionsData: QuestionType[] = [
     <li>۴) دسته آوندهای چوبی و آبکش ساقه، بر روی یک دایره – فقط یاخته‌هایی با دیوارة نخستین نازک در مرکز ریشه قرار دارند.</li>
   </ul>
   `,
-    descriptiveAnswer: `
+    answerContent: `
   <h2>پاسخ: گزینه ۴</h2>
   <p>
     گیاه مورد بحث گیاه دو لپه است که ساختار ساقه آن از نوع دسته های آوندی باز است. در این گیاهان دسته های آوندی چوب و آبکش روی یک دایره قرار دارند...
@@ -420,7 +420,7 @@ export const questionsData: QuestionType[] = [
     <strong>گزینه ۳:</strong> نادرست. قرارگیری دسته های آوندی روی دایره‌های هم‌مرکز مربوط به ساختار ریشه است نه ساقه.
   </div>
   `,
-    authorId: "سید حسین قاضوی",
+    author: "سید حسین قاضوی",
     date: "خرداد ۱۴۰۲",
     score: 3,
     tags: ["چهار گزینه ای", "جای خالی", "مقایسه ای", "مفهومی", "سخت"],
@@ -430,9 +430,9 @@ export const questionsData: QuestionType[] = [
     bookId: "زیست‌شناسی ۲",
     fehrestSectionId: "۴. گردش مواد در بدن",
     levelId: "2",
-    sourceId: "کنکور سراسری",
+    source: "کنکور سراسری",
     hasImg: false,
-    question: `
+    questionContent: `
     <div class="question">
       <p>در یک فرد بالغ، آهن آزاد شده از هموگلوبین، در داخل اندامی از بدن که خون لولۀ گوارش ابتدا به آن وارد می‌شود، ذخیره می‌گردد. کدام عبارت، دربارۀ این اندام نادرست است؟</p>
     </div>
@@ -443,7 +443,7 @@ export const questionsData: QuestionType[] = [
       <li>۴) فاصلة یاخته‌های بافت پوششی مویرگ‌های آن بسیار زیاد است.</li>
     </ul>
     `,
-    descriptiveAnswer: `
+    answerContent: `
     <h2>پاسخ: گزینه ۳</h2>
     <p>
       اندام مورد بحث کبد است. گزینه ۳ نادرست است زیرا گلبول‌های قرمز در مغز استخوان تولید می‌شوند، نه در کبد.
@@ -460,7 +460,7 @@ export const questionsData: QuestionType[] = [
       <strong>گزینه ۴:</strong> درست. مویرگ‌های سینوزوئیدی کبد دارای فاصله بین یاخته‌ای زیاد هستند.
     </div>
     `,
-    authorId: "حمید رضایی",
+    author: "حمید رضایی",
     date: "دی ۱۴۰۱",
     score: 2,
     tags: ["چهار گزینه ای", "مفهومی", "متوسط"],
@@ -470,9 +470,9 @@ export const questionsData: QuestionType[] = [
     bookId: "زیست‌شناسی ۱",
     fehrestSectionId: "۶. گوارش و جذب مواد",
     levelId: "2",
-    sourceId: "کنکور سراسری",
+    source: "کنکور سراسری",
     hasImg: false,
-    question: `
+    questionContent: `
     <div class="question">
       <p>کدام مورد برای تکمیل عبارت زیر نامناسب است؟</p>
       <p>« در انسان، ............ ماهیچه‌های حلقوی (اسفنکترهای) لولۀ گوارش، فقط ...........»</p>
@@ -484,7 +484,7 @@ export const questionsData: QuestionType[] = [
       <li>۴) بعضی از – در شرایط خاصی، مواد غذایی را با سرعت به سمت دهان میرانند.</li>
     </ul>
     `,
-    descriptiveAnswer: `
+    answerContent: `
     <h2>پاسخ: گزینه ۲</h2>
     <p>
       گزینه ۲ نامناسب است زیرا همه اسفنکترهای لوله گوارش هنگام عبور مواد رها نمی‌شوند. برای مثال، اسفنکتر تحتانی مری فقط هنگام عبور غذا باز می‌شود.
@@ -501,7 +501,7 @@ export const questionsData: QuestionType[] = [
       <strong>گزینه ۴:</strong> مناسب. بعضی اسفنکترها در استفراغ نقش دارند.
     </div>
     `,
-    authorId: "سعید کریمی",
+    author: "سعید کریمی",
     date: "بهمن ۱۳۹۹",
     score: 1,
     tags: ["چهار گزینه ای", "جای خالی", "مفهومی", "آسان"],
@@ -511,9 +511,9 @@ export const questionsData: QuestionType[] = [
     bookId: "زیست‌شناسی ۱",
     fehrestSectionId: "۶. گوارش و جذب مواد",
     levelId: "3",
-    sourceId: "کنکور سراسری",
+    source: "کنکور سراسری",
     hasImg: false,
-    question: `
+    questionContent: `
     <div class="question">
       <p>کدام گزینه، عبارت زیر به‌طور مناسب کامل می‌کند؟</p>
       <p>«به‌طور معمول در انسان، .......... ماهیچه‌های حلقوی که بخش‌های مختلف لولۀ گوارش را از هم جدا میکنند، فقط .............»</p>
@@ -525,7 +525,7 @@ export const questionsData: QuestionType[] = [
       <li>۴) بعضی از - به هنگام حرکات رو به عقب مواد غذایی باز می‌شوند.</li>
     </ul>
     `,
-    descriptiveAnswer: `
+    answerContent: `
     <h2>پاسخ: گزینه ۳</h2>
     <p>
       بعضی از اسفنکترها مانند اسفنکتر مقعد خارجی دارای تارهای عضلانی مخطط (چند هسته‌ای) و بعضی مانند اسفنکتر تحتانی مری دارای تارهای صاف (تک هسته‌ای) هستند.
@@ -542,7 +542,7 @@ export const questionsData: QuestionType[] = [
       <strong>گزینه ۴:</strong> نادرست. باز شدن اسفنکترها در استفراغ اتفاق می‌افتد.
     </div>
     `,
-    authorId: "مهدی احمدی",
+    author: "مهدی احمدی",
     date: "فروردین ۱۴۰۲",
     score: 2,
     tags: ["چهار گزینه ای", "جای خالی", "مفهومی", "متوسط"],
@@ -552,9 +552,9 @@ export const questionsData: QuestionType[] = [
     bookId: "زیست‌شناسی ۱",
     fehrestSectionId: "۶. گوارش و جذب مواد",
     levelId: "2",
-    sourceId: "کنکور سراسری",
+    source: "کنکور سراسری",
     hasImg: false,
-    question: `
+    questionContent: `
     <div class="question">
       <p>کدام گزینه عبارت زیر را به طور مناسب کامل می‌کند؟</p>
       <p>«قبل از ورود کیموس به بخشی از لولۀ گوارش انسان که مراحل پایانی گوارش مواد غذایی در آن آغاز می‌شود، .............»</p>
@@ -566,7 +566,7 @@ export const questionsData: QuestionType[] = [
       <li>۴) یاخته‌های پوششی سطحی و بعضی یاخته‌های غدد، مادة مخاطی زیادی ترشح می‌کنند.</li>
     </ul>
     `,
-    descriptiveAnswer: `
+    answerContent: `
     <h2>پاسخ: گزینه ۴</h2>
     <p>
       بخش مورد بحث روده باریک است. قبل از ورود کیموس به روده باریک، سلول‌های پوششی معده و غدد آن مخاط ترشح می‌کنند تا از دیواره معده محافظت شود.
@@ -583,7 +583,7 @@ export const questionsData: QuestionType[] = [
       <strong>گزینه ۳:</strong> نادرست. لیپیدها به طور کامل در روده گوارش می‌یابند.
     </div>
     `,
-    authorId: "حسین میرزایی",
+    author: "حسین میرزایی",
     date: "آبان ۱۴۰۱",
     score: 1,
     tags: ["چهار گزینه ای", "جای خالی", "مفهومی", "آسان"],
@@ -593,9 +593,9 @@ export const questionsData: QuestionType[] = [
     bookId: "زیست‌شناسی ۱",
     fehrestSectionId: "۶. گوارش و جذب مواد",
     levelId: "3",
-    sourceId: "کنکور سراسری",
+    source: "کنکور سراسری",
     hasImg: false,
-    question: `
+    questionContent: `
     <div class="question">
       <p>کدام گزینه، برای تکمیل عبارت زیر مناسب است؟</p>
       <p>«قبل از ورود کیموس به بخشی از لولۀ گوارش انسان که مراحل پایانی گوارش مواد غذایی در آن آغاز می‌شود، .............»</p>
@@ -607,7 +607,7 @@ export const questionsData: QuestionType[] = [
       <li>۴) با حضور ترکیبی فاقد آنزیم، چربی‌ها گوارش یافته و به محیط داخلی وارد شده‌اند.</li>
     </ul>
     `,
-    descriptiveAnswer: `
+    answerContent: `
     <h2>پاسخ: گزینه ۲</h2>
     <p>
       قبل از ورود به روده باریک، در معده، سلول‌های پوششی سطحی برای افزایش سطح ترشح، به داخل بافت زیرین فرو رفته و حفره‌های معدی را ایجاد می‌کنند.
@@ -624,7 +624,7 @@ export const questionsData: QuestionType[] = [
       <strong>گزینه ۴:</strong> نادرست. گوارش چربی‌ها نیاز به آنزیم دارد.
     </div>
     `,
-    authorId: "امیرحسین نجفی",
+    author: "امیرحسین نجفی",
     date: "مهر ۱۴۰۲",
     score: 2,
     tags: ["چهار گزینه ای", "جای خالی", "مفهومی", "متوسط"],
@@ -634,9 +634,9 @@ export const questionsData: QuestionType[] = [
     bookId: "زیست‌شناسی ۱",
     fehrestSectionId: "۶. گوارش و جذب مواد",
     levelId: "4",
-    sourceId: "کنکور سراسری",
+    source: "کنکور سراسری",
     hasImg: false,
-    question: `
+    questionContent: `
     <div class="question">
       <p>در ارتباط با کمبود ترشح کلریدریک‌اسید بدن انسان، کدام مورد غیرممکن است؟</p>
     </div>
@@ -647,7 +647,7 @@ export const questionsData: QuestionType[] = [
       <li>۴) همة ترشحات برون‌ریز در طول لولة گوارش فرد کاهش یابد.</li>
     </ul>
     `,
-    descriptiveAnswer: `
+    answerContent: `
     <h2>پاسخ: گزینه ۴</h2>
     <p>
       کمبود HCl فقط روی ترشحات معده تأثیر می‌گذارد، نه روی تمام ترشحات برون‌ریز در طول لوله گوارش. سایر غدد مانند غدد بزاقی، لوزالمعده و روده مستقل عمل می‌کنند.
@@ -664,7 +664,7 @@ export const questionsData: QuestionType[] = [
       <strong>گزینه ۳:</strong> ممکن است. HCl در جذب ویتامین B12 نقش دارد که برای سیستم عصبی ضروری است.
     </div>
     `,
-    authorId: "محمد جوادی",
+    author: "محمد جوادی",
     date: "تیر ۱۴۰۲",
     score: 3,
     tags: ["چهار گزینه ای", "مفهومی", "تحلیلی", "سخت"],

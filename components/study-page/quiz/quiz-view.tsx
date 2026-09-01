@@ -1,5 +1,5 @@
 import IconBtn from "@/components/ui/icon-btn";
-import React from "react";
+import React, { useState } from "react";
 import ProgressBar from "./progress-bar";
 import { Label } from "@/components/ui/label";
 import QuestionTagBar from "./question-tag-bar";
@@ -17,27 +17,50 @@ import { useQuestionNavigation } from "./use-quiz-navigaiton";
 import StopWatchDrawer from "./stop-watch-drawer";
 import { useQuizAnswer } from "./use-quiz-answer";
 import { useQuizReactions } from "./useQuizReactions";
+import { QuizSession } from "@/data/quizSessionsData";
+import { useQuestionData } from "./useQuestionData";
 
-type Props = {};
-
-const QuizView = (props: Props) => {
-  const author = "رضا";
-  const question = <p className="text-2xl">question</p>;
-  const descriptiveAnswer = <p className="text-2xl">descriptiveAnswer</p>;
-  const tags = ["some", "how"];
-  const progressLabel = `تمرین شماره ${toFaDigits(current + 1)} از ${toFaDigits(max + 1)}`;
-  const questionDetails = `${source} - ${date} - ${toFaDigits(score)} نمره`;
+type Props = {
+  quiz: QuizSession;
+  questionIds: string[];
+  submitLoading: boolean;
+  submitResult: string;
+};
+// {
+//   openEndConfirm,
+//   endConfirmModal,
+//   submitQuiz,
+//   closeEndConfirm,
+//   resultsModal,
+//   terminateQuiz,
+//   closeResultsModal,
+// }
+const QuizView = ({ quiz, questionIds }: Props) => {
+  const totalQuestions = questionIds.length;
 
   const {
     currentQuestionIndex,
-    lastQuestionIndex,
+    // lastQuestionIndex,
     isOnFirstQuestion,
     isOnLastQuestion,
-    goToQuestion,
+    // goToQuestion,
     goToPrevQuestion,
     goToNextQuestion,
-    resetQuestionIndex,
-  } = useQuestionNavigation(10);
+    // resetQuestionIndex,
+  } = useQuestionNavigation(0, totalQuestions, 0);
+
+  const currentQuestionId = questionIds[currentQuestionIndex];
+
+  const { question, questionLoading, questionError, loadQuestion } = useQuestionData(
+    currentQuestionId,
+    quiz.quizId,
+  );
+
+  const { id, reactions, tags, questionContent, author, source, date, score, answerContent } =
+    question;
+
+  const progressLabel = `تمرین شماره ${toFaDigits(currentQuestionIndex + 1)} از ${toFaDigits(totalQuestions + 1)}`;
+  const questionDetails = `${source} - ${date} - ${toFaDigits(score)} نمره`;
 
   const { btnsMeta, msgsMeta, onClickOnReactionBtn } = useQuizReactions(
     quiz.quizId,
@@ -46,10 +69,18 @@ const QuizView = (props: Props) => {
     reactions,
   );
 
-  const { answerContent, isAnswerVisible, toggleAnswer } = useQuizAnswer(
-    descriptiveAnswer,
-    currentQuestionIndex,
-  );
+  const {
+    answerContent: descriptiveAnswer,
+    isAnswerVisible,
+    toggleAnswer,
+  } = useQuizAnswer(answerContent, currentQuestionIndex);
+
+  const [isEndConfirmOpen, setIsEndConfirmOpen] = useState(false);
+
+  const handleConfirmEnd = () => {
+    setIsEndConfirmOpen(false);
+    // submitQuiz()
+  };
 
   return (
     <div className="quiz-box flex flex-col p-2 overflow-hidden">
@@ -91,6 +122,7 @@ const QuizView = (props: Props) => {
             className={"text-red-700"}
             icon={<span className="msr text-5xl">power_settings_circle</span>}
             // onClick={openEndConfirm}
+            onClick={() => setIsEndConfirmOpen(true)}
           />
           <IconBtn
             icon={<span className="msr text-5xl">arrow_circle_left</span>}
@@ -102,8 +134,11 @@ const QuizView = (props: Props) => {
 
       {/* Question Box */}
       <div
-        className="border-2 rounded-t-3xl rounded-b-2xl transition-[border-radius]"
-        style={{ borderBottomLeftRadius: isAnswerVisible ? "6px" : "16px" }}
+        className={cn(
+          "border-2 rounded-t-3xl rounded-b-2xl transition-[border-radius]",
+          isAnswerVisible ? "rounded-bl-1.5" : "rounded-bl-2xl",
+        )}
+        // style={{ borderBottomLeftRadius: isAnswerVisible ? "6px" : "16px" }}
       >
         {/* <!-- Row 2 : Quiz Number and Tags --> */}
         <div className="relative h-14.5">
@@ -113,7 +148,7 @@ const QuizView = (props: Props) => {
 
           {/* <QuizProgressLabel current={currentQuestionIndex} max={lastQuestionIndex} /> */}
 
-          <QuestionTagBar tags={tags} />
+          <QuestionTagBar tags={tags} loading={questionLoading} />
         </div>
 
         {/* <!-- Row 3 : Quiz Number and Tags --> */}
@@ -121,7 +156,12 @@ const QuizView = (props: Props) => {
 
         {/* <!-- Row 4 : Question Box --> */}
         <div className="relative min-h-30">
-          <Question question={question} />
+          <Question
+            question={questionContent}
+            isLoading={questionLoading}
+            error={questionError}
+            refetch={loadQuestion}
+          />
           <QuestionReactionMsgs msgs={msgsMeta} />
         </div>
       </div>
@@ -129,24 +169,40 @@ const QuizView = (props: Props) => {
       {/* <!-- Row 5 : Middle Row : answerToggle-authorLink-userInputs --> */}
       <div className="flex flex-col-reverse sm:flex-row justify-between gap-2 my-2 w-full text-[16px]">
         <div
-          className="flex items-center w-full sm:w-85 h-16 border-2 rounded-full overflow-hidden transition-[border-radius] duration-400"
-          style={{ borderRadius: isAnswerVisible ? "150px 150px 25px 150px" : "150px" }}
+          className={cn(
+            "flex items-center w-full sm:w-85 h-16 border-2 overflow-hidden transition-[border-radius] duration-400",
+            isAnswerVisible ? "rounded-[150px_150px_25px_150px]" : "rounded-[150px]",
+          )}
+          // className="flex items-center w-full sm:w-85 h-16 border-2 rounded-full overflow-hidden transition-[border-radius] duration-400"
+          // style={{ borderRadius: isAnswerVisible ? "150px 150px 25px 150px" : "150px" }}
         >
           {/* <ShowAnswerBtn onClick={toggleAnswer} isAnswerVisible={isAnswerVisible} /> */}
           <Collapsible open={isAnswerVisible} onOpenChange={toggleAnswer}>
-            <CollapsibleTrigger render={<ShowAnswerBtn isAnswerVisible={isAnswerVisible} />} />
+            <CollapsibleTrigger
+              render={
+                <ShowAnswerBtn isAnswerVisible={isAnswerVisible} disabled={questionLoading} />
+              }
+            />
           </Collapsible>
           <Author author={author} />
         </div>
 
         {/* <div aria-hidden={isAnswerVisible} inert={isAnswerVisible ? true : undefined}></div> */}
         <div
-          className="grid items-center overflow-hidden sm:w-85 h-16 border-2 rounded-full transition-[border-radius] duration-400"
-          style={{ borderRadius: isAnswerVisible ? "25px 150px 150px 150px" : "150px" }}
+          className={cn(
+            "grid items-center overflow-hidden sm:w-85 h-16 border-2 transition-[border-radius] duration-400",
+            isAnswerVisible ? "rounded-[25px_150px_150px_150px]" : "rounded-[150px]",
+          )}
+          // className="grid items-center overflow-hidden sm:w-85 h-16 border-2 rounded-full transition-[border-radius] duration-400"
+          // style={{ borderRadius: isAnswerVisible ? "25px 150px 150px 150px" : "150px" }}
         >
           <div
-            className="grid grid-cols-2 w-[200%] justify-center content-center h-12 transition-transform duration-400 ease-in-out"
-            style={{ transform: isAnswerVisible ? "translateX(50%)" : "translateX(0%)" }}
+            className={cn(
+              "grid grid-cols-2 w-[200%] justify-center content-center h-12 transition-transform duration-400 ease-in-out",
+              isAnswerVisible ? "translate-x-[50%]" : "translate-x-0",
+            )}
+            // className="grid grid-cols-2 w-[200%] justify-center content-center h-12 transition-transform duration-400 ease-in-out"
+            // style={{ transform: isAnswerVisible ? "translateX(50%)" : "translateX(0%)" }}
           >
             <QuestionDetails questionDetails={questionDetails} />
             <QuizReactionBtns btnsMeta={btnsMeta} onClick={onClickOnReactionBtn} />
@@ -165,7 +221,7 @@ const QuizView = (props: Props) => {
           )}
           keepMounted
         >
-          <Answer answer={answerContent} />
+          <Answer answer={descriptiveAnswer} />
         </CollapsibleContent>
       </Collapsible>
     </div>

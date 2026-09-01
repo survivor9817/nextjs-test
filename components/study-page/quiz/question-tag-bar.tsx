@@ -4,9 +4,10 @@ import { cn } from "@/lib/utils";
 
 type Props = {
   tags: string[];
+  loading?: boolean;
 };
 
-const QuestionTagBar = ({ tags }: Props) => {
+const QuestionTagBar = ({ tags, loading = false }: Props) => {
   const onMouseLeave = (e: MouseEvent) => {
     e.currentTarget.scrollTo({ left: 0 });
   };
@@ -22,15 +23,24 @@ const QuestionTagBar = ({ tags }: Props) => {
       onMouseLeave={onMouseLeave}
     >
       <ul className="inline-flex rounded-full flex-row gap-2 mx-2 h-12">
-        {tags.map((tag) => (
+        {loading ? (
           <Badge
-            key={tag}
             render={<li className="shrink-0 first:w-30" />}
-            className="cursor-pointer whitespace-nowrap rounded-[48px] bg-black px-4 py-2 text-[16px] text-white hover:bg-[#333]"
+            className="cursor-pointer whitespace-nowrap rounded-[48px] bg-black px-4 py-2 text-[16px] text-white hover:bg-[#333] h-full"
           >
-            {tag}
+            <div className="animate-pulse h-4 md:h-5 flex-1 bg-gray-200 rounded dark:bg-gray-400" />
           </Badge>
-        ))}
+        ) : (
+          tags.map((tag) => (
+            <Badge
+              key={tag}
+              render={<li className="shrink-0 first:w-30" />}
+              className="cursor-pointer whitespace-nowrap rounded-[48px] bg-black px-4 py-2 text-[16px] text-white hover:bg-[#333] h-full"
+            >
+              {tag}
+            </Badge>
+          ))
+        )}
       </ul>
     </div>
   );

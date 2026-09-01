@@ -14,7 +14,7 @@ const Quiz = () => {
   const [isAnswerVisible, setIsAnswerVisible] = useState<boolean>(false);
   return (
     <>
-      <QuestionTagBar tags={["some", "how"]} />
+      <QuestionTagBar tags={["some", "how"]} loading={true} />
       <div className="flex justify-center">
         <FilterView
           quizFilters={quizFilters}
