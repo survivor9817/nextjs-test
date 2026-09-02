@@ -12,7 +12,7 @@ const QuestionDetails = ({ questionDetails }: Props) => {
       {false ? (
         <span className="animate-pulse h-4 w-full mx-10 md:h-5 bg-gray-200 rounded dark:bg-gray-400" />
       ) : (
-        <span>{questionDetails}dawdad</span>
+        <span>{questionDetails}</span>
       )}
     </div>
   );

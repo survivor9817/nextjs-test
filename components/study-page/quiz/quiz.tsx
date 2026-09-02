@@ -68,7 +68,7 @@ const Quiz = () => {
 
       <QuizView
         quiz={{
-          quizId: "",
+          quizId: "1",
           userId: "",
           bookId: "",
           startTime: "",

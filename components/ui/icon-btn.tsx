@@ -23,7 +23,10 @@ const IconBtn = ({
       variant={"unstyled"}
       disabled={disabled || loading}
       aria-busy={loading}
-      className={cn("rounded-full touch-manipulation p-0", className)}
+      className={cn(
+        "rounded-full touch-manipulation p-0 bg-transparent transition-transform duration-100 ease-in-out select-none tap-highlight-transparent outline-none hover:scale-[1.07] active:scale-[0.95] focus:outline-none",
+        className,
+      )}
     >
       {loading ? (
         <>

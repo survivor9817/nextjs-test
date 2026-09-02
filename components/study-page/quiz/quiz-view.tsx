@@ -66,7 +66,9 @@ const QuizView = ({ quiz, questionIds }: Props) => {
   const { questionLoading, questionError, loadQuestion } = q;
 
   const progressLabel = `تمرین شماره ${toFaDigits(currentIndex + 1)} از ${toFaDigits(totalQuestions + 1)}`;
-  const questionDetails = cn(source, date, score && toFaDigits(score) + " نمره");
+  const questionDetails = [source, date, score && toFaDigits(score) + " نمره"]
+    .filter(Boolean)
+    .join(" - ");
   const progressBarLength = ((currentIndex + 1) / (totalQuestions + 1)) * 100;
 
   const { btnsMeta, msgsMeta, onClickOnReactionBtn } = useQuizReactions(
@@ -139,7 +141,7 @@ const QuizView = ({ quiz, questionIds }: Props) => {
         {/* Question Box */}
         <div
           className={cn(
-            "border-2 rounded-t-3xl rounded-b-2xl transition-[border-radius]",
+            "border-2 rounded-t-3xl rounded-b-2xl transition-[border-radius] border-[#bcbcbc]",
             isAnswerVisible ? "rounded-bl-[6px]" : "rounded-bl-2xl",
           )}
         >
@@ -169,7 +171,7 @@ const QuizView = ({ quiz, questionIds }: Props) => {
         <div className="flex flex-col-reverse sm:flex-row justify-between gap-2 my-2 w-full text-[16px]">
           <div
             className={cn(
-              "flex items-center w-full sm:w-85 h-16 border-2 overflow-hidden transition-[border-radius] duration-400",
+              "flex items-center w-full sm:w-85 h-16 border-2 border-[#bcbcbc] overflow-hidden transition-[border-radius] duration-400",
               isAnswerVisible ? "rounded-[150px_150px_25px_150px]" : "rounded-[150px]",
             )}
           >
@@ -184,7 +186,7 @@ const QuizView = ({ quiz, questionIds }: Props) => {
           {/* <div aria-hidden={isAnswerVisible} inert={isAnswerVisible ? true : undefined}></div> */}
           <div
             className={cn(
-              "grid items-center overflow-hidden sm:w-85 h-16 max-h-16 border-2 transition-[border-radius] duration-400",
+              "grid items-center overflow-hidden sm:w-85 h-16 max-h-16 border-2 border-[#bcbcbc] transition-[border-radius] duration-400",
               isAnswerVisible ? "rounded-[25px_150px_150px_150px]" : "rounded-[150px]",
             )}
           >
@@ -207,7 +209,7 @@ const QuizView = ({ quiz, questionIds }: Props) => {
             "h-(--collapsible-panel-height) data-starting-style:h-0 data-ending-style:h-0",
             "opacity-100 data-starting-style:opacity-0 data-ending-style:opacity-0",
 
-            "border-2 rounded-[16px_6px_28px_28px] mb-4 leading-[1.6] text-justify overflow-hidden transition-[max-height,opacity] duration-400 ease-in-out pb-12 min-h-32.5 relative",
+            "border-2 border-[#bcbcbc] rounded-[16px_6px_28px_28px] mb-4 leading-[1.6] text-justify overflow-hidden transition-[max-height,opacity] duration-400 ease-in-out pb-12 min-h-32.5 relative",
           )}
           keepMounted
         >

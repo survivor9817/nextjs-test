@@ -21,11 +21,11 @@ const QuestionTagBar = ({ tags }: Props) => {
       )}
       onMouseLeave={onMouseLeave}
     >
-      <ul className="inline-flex rounded-full flex-row gap-2 mx-2 h-12">
+      <ul className="inline-flex rounded-full flex-row gap-2 mx-2 h-12 items-center">
         {!Boolean(tags?.length) ? (
           <Badge
             render={<li className="shrink-0 first:w-30" />}
-            className="cursor-pointer whitespace-nowrap rounded-[48px] bg-black px-4 py-2 text-[16px] text-white hover:bg-[#333] h-full"
+            className="cursor-pointer whitespace-nowrap rounded-[48px] bg-black px-4 py-2 text-[16px] text-white hover:bg-[#333] h-10"
           >
             <div className="animate-pulse h-4 md:h-5 flex-1 bg-gray-300 rounded dark:bg-gray-400" />
           </Badge>
@@ -34,7 +34,7 @@ const QuestionTagBar = ({ tags }: Props) => {
             <Badge
               key={tag}
               render={<li className="shrink-0 first:w-30" />}
-              className="cursor-pointer whitespace-nowrap rounded-[48px] bg-black px-4 py-2 text-[16px] text-white hover:bg-[#333] h-full"
+              className="cursor-pointer whitespace-nowrap rounded-[48px] bg-black px-4 py-2 text-[16px] text-white hover:bg-[#333] h-10"
             >
               {tag}
             </Badge>
