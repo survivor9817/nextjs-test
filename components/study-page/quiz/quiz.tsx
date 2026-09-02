@@ -8,14 +8,19 @@ import { useFilters } from "./use-filters";
 import { useState } from "react";
 import StopWatch from "./stop-watch";
 import StopWatchDrawer from "./stop-watch-drawer";
+import QuizViewSkeleton from "./quiz-skeleton";
+import { cn } from "@/lib/utils";
+import { toFaDigits } from "@/lib/toFaDigits";
+import QuizView from "./quiz-view";
 
 const Quiz = () => {
   const { quizFilters, clearFilters, onChangeFilterSelect } = useFilters();
   const [isAnswerVisible, setIsAnswerVisible] = useState<boolean>(false);
+
   return (
     <>
-      <QuestionTagBar tags={["some", "how"]} loading={true} />
-      <div className="flex justify-center">
+      {/* <QuestionTagBar tags={["some", "how"]} loading={true} /> */}
+      {/* <div className="flex justify-center">
         <FilterView
           quizFilters={quizFilters}
           onChangeFilterSelect={onChangeFilterSelect}
@@ -58,6 +63,25 @@ const Quiz = () => {
       </Collapsible>
 
       <StopWatchDrawer />
+
+      <QuizViewSkeleton /> */}
+
+      <QuizView
+        quiz={{
+          quizId: "",
+          userId: "",
+          bookId: "",
+          startTime: "",
+          endTime: null,
+          duration: 0,
+          progress: 0,
+          lastVisitedQuestion: "",
+          filterTags: "",
+          questionIds: [],
+          questionsCount: 0,
+        }}
+        questionIds={["1"]}
+      />
     </>
   );
 };

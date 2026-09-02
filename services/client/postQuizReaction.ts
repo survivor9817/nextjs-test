@@ -1,5 +1,5 @@
-import { saveReactionToDB, type DbReaction, type DbReactionId } from "../data/questionsData";
-import type { UiReactionId } from "../data/reactionData";
+import { DbReaction, DbReactionId, saveReactionToDB } from "@/data/questionsData";
+import { UiReactionId } from "@/data/reactionData";
 
 export const createDbReaction = (
   quizId: string,

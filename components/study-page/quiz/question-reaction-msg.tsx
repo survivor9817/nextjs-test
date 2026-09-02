@@ -17,7 +17,7 @@ const QuestionReactionMsg = ({ icon, label, color, isOn }: Props) => {
         rounded-[16px_4px_16px_4px] text-center transition-transform duration-300 ease-in-out 
         ${color} ${popInClass}`}
     >
-      {icon}
+      <span className="msr text-2xl font-normal">{icon}</span>
       <span className="mr-2"> {label} </span>
     </div>
   );

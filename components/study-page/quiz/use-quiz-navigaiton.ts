@@ -3,50 +3,50 @@ import { isInRange } from "@/lib/isInRange";
 import { useState } from "react";
 
 export const useQuestionNavigation = (minIndex: number, maxIndex: number, initialIndex: number) => {
-  const [currentQuestionIndex, setCurrentQuestionIndex] = useState(initialIndex);
+  const [currentIndex, setCurrentIndex] = useState(initialIndex);
 
-  const lastQuestionIndex = maxIndex > minIndex ? maxIndex - 1 : minIndex;
-  const isOnFirstQuestion = currentQuestionIndex === minIndex;
-  const isOnLastQuestion = currentQuestionIndex === lastQuestionIndex;
+  const lastIndex = maxIndex > minIndex ? maxIndex - 1 : minIndex;
+  const isOnFirst = currentIndex === minIndex;
+  const isOnLast = currentIndex === lastIndex;
 
   const isIndexInRange = (index: number) => {
     return isInRange(index, minIndex, maxIndex);
   };
 
-  const goToQuestion = (index: number) => {
+  const goTo = (index: number) => {
     if (!maxIndex) return;
     if (isIndexInRange(index)) {
-      setCurrentQuestionIndex(index);
+      setCurrentIndex(index);
     }
   };
 
-  const goToPrevQuestion = () => {
-    setCurrentQuestionIndex((prev) => {
+  const goToPrev = () => {
+    setCurrentIndex((prev) => {
       if (prev === minIndex) return prev;
       return isInRange(prev - 1, minIndex, maxIndex) ? prev - 1 : prev;
     });
   };
 
-  const goToNextQuestion = () => {
-    setCurrentQuestionIndex((prev) => {
-      if (prev === lastQuestionIndex) return prev;
+  const goToNext = () => {
+    setCurrentIndex((prev) => {
+      if (prev === lastIndex) return prev;
       return isInRange(prev + 1, minIndex, maxIndex) ? prev + 1 : prev;
     });
   };
 
-  const resetQuestionIndex = () => {
-    setCurrentQuestionIndex(minIndex);
+  const resetIndex = () => {
+    setCurrentIndex(minIndex);
   };
 
   return {
-    currentQuestionIndex,
-    lastQuestionIndex,
-    isOnFirstQuestion,
-    isOnLastQuestion,
-    goToQuestion,
-    goToPrevQuestion,
-    goToNextQuestion,
-    resetQuestionIndex,
+    currentIndex,
+    lastIndex,
+    isOnFirst,
+    isOnLast,
+    goTo,
+    goToPrev,
+    goToNext,
+    resetIndex,
   };
 };
 

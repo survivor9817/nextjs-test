@@ -1,5 +1,4 @@
 import { useEffect, useState } from "react";
-import { Progress, ProgressIndicator, ProgressTrack } from "@/components/ui/progress";
 
 type Props = {
   value: number;

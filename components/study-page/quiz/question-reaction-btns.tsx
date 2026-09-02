@@ -8,12 +8,12 @@ type Props = {
 
 const QuizReactionBtns = ({ btnsMeta, onClick }: Props) => {
   return (
-    <div className="flex justify-between items-center mx-2">
+    <div className="flex justify-between items-center mx-2 h-full max-h-full">
       {/* dokme haaye feedback */}
       {btnsMeta.map((item) => (
         <QuestionReactionBtn
           key={item.id}
-          i={item.icon}
+          icon={item.icon}
           color={item.color}
           isOn={item.isOn}
           onClick={() => onClick(item.id)}

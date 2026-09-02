@@ -10,7 +10,7 @@ type Props = {
 const Question = ({ question, isLoading, error, refetch }: Props) => {
   if (isLoading) {
     return (
-      <div className="text-[16px] py-4 px-4 text-justify leading-7">
+      <div className="animate-pulse text-[16px] py-4 px-4 text-justify leading-7">
         <div className="space-y-2">
           <div className="h-4 md:h-5 flex-1 mr-4 bg-gray-200 rounded dark:bg-gray-400" />
           <div className="h-4 md:h-5 flex-1 bg-gray-200 rounded dark:bg-gray-400" />
