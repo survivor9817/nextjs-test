@@ -9,10 +9,10 @@ type Props = ComponentProps<typeof Button> & {
 const ShowAnswerBtn = ({ isAnswerVisible, className, ...props }: Props) => {
   return (
     <div
-      className="shrink-0 w-full px-2 transition-[width] ease-in-out duration-400"
-      style={{
-        width: isAnswerVisible ? "120px" : "100%",
-      }}
+      className={cn(
+        "shrink-0 w-full px-2 transition-[width] ease-in-out duration-400",
+        isAnswerVisible ? "w-30" : "w-full",
+      )}
     >
       <Button
         {...props}
@@ -20,11 +20,9 @@ const ShowAnswerBtn = ({ isAnswerVisible, className, ...props }: Props) => {
           "shrink-0 w-full h-12 p-2 flex items-center justify-center",
           "bg-black text-white whitespace-nowrap overflow-hidden",
           "hover:bg-[#333] transition-[width,border-radius] duration-400 ease-in-out",
+          isAnswerVisible ? "rounded-[150px_150px_25px_150px]" : "rounded-[150px]",
           className,
         )}
-        style={{
-          borderRadius: isAnswerVisible ? "150px 150px 25px 150px" : "150px",
-        }}
       >
         {isAnswerVisible ? "بستن پاسخ" : "مشاهده پاسخ تشریحی"}
       </Button>

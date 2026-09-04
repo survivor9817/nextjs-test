@@ -14,7 +14,8 @@ export type QuizSession = {
   questionsCount: number;
 };
 
-const INITIAL_SESSIONS: QuizSession[] = [
+// سشن‌های اولیه همگی پایان‌یافته هستند
+export const QUIZ_SESSIONS: QuizSession[] = [
   {
     quizId: "1",
     userId: "123",
@@ -43,29 +44,7 @@ const INITIAL_SESSIONS: QuizSession[] = [
   },
 ];
 
-const STORAGE_KEY = "mock_quiz_sessions";
-
-// شبیه‌سازی خواندن از DB (با پشتیبانی از رفرش)
-const getSessionsFromStorage = (): QuizSession[] => {
-  if (typeof window === "undefined") return INITIAL_SESSIONS;
-  const stored = localStorage.getItem(STORAGE_KEY);
-  if (!stored) {
-    localStorage.setItem(STORAGE_KEY, JSON.stringify(INITIAL_SESSIONS));
-    return INITIAL_SESSIONS;
-  }
-  return JSON.parse(stored);
-};
-
-// شبیه‌سازی ذخیره در DB
-const saveSessionsToStorage = (sessions: QuizSession[]) => {
-  if (typeof window !== "undefined") {
-    localStorage.setItem(STORAGE_KEY, JSON.stringify(sessions));
-  }
-};
-
-export const getAllQuizes = (): QuizSession[] => {
-  return getSessionsFromStorage();
-};
+const getAllQuizes = () => QUIZ_SESSIONS;
 
 export const getQuizes = (userId: string, bookId?: string) => {
   return getAllQuizes().filter((s) => s.userId === userId && (!bookId || s.bookId === bookId));
@@ -75,6 +54,7 @@ export const getQuizById = (quizId: string) => {
   return getAllQuizes().find((s) => s.quizId === quizId);
 };
 
+// جستجوی سشن فعالی که endTime آن null است
 export const getActiveQuizByUserId = (userId: string, bookId: string): QuizSession | null => {
   const active = getAllQuizes().find(
     (s) => s.userId === userId && s.bookId === bookId && s.endTime === null,
@@ -86,24 +66,21 @@ const randomQuestionIdsBasedOnUserFilter = ["1", "2", "3", "4", "5", "6", "7", "
 export const getQuestionIdsFromDbByFilter = (_filters?: string) =>
   randomQuestionIdsBasedOnUserFilter;
 
-// درج کوئیز جدید در دیتابیس ماک
-export const addQuizSessionToDB = (newSession: QuizSession) => {
-  const current = getSessionsFromStorage();
-  const updated = [newSession, ...current];
-  saveSessionsToStorage(updated);
-};
+export const addQuizSessionToDB = (newSession: QuizSession) => QUIZ_SESSIONS.unshift(newSession);
 
+let fakeId = 2;
+
+// سشن جدید با endTime: null ایجاد و به دیتابیس ماک اضافه می‌شود
 export const createNewQuiz = (userId: string, bookId: string, filters: string): QuizSession => {
-  const sessions = getSessionsFromStorage();
-  const nextId = sessions.length ? Math.max(...sessions.map((s) => Number(s.quizId) || 0)) + 1 : 1;
+  fakeId += 1;
   const questionIds = getQuestionIdsFromDbByFilter(filters);
 
   const newQuiz: QuizSession = {
-    quizId: String(nextId),
+    quizId: `${fakeId}`,
     userId,
     bookId,
     startTime: new Date().toISOString(),
-    endTime: null,
+    endTime: null, // ناتمام برای شروع سشن جاری
     duration: 0,
     progress: 0,
     lastVisitedQuestion: questionIds[0] || "",
@@ -120,15 +97,15 @@ export const startNewQuiz = (userId: string, bookId: string, filters: string) =>
   return createNewQuiz(userId, bookId, filters);
 };
 
-// مختومه کردن کوئیز در دیتابیس ماک
+// data/quizSessionsData.ts
+
 export const completeQuizSessionInDB = (quizId: string): QuizSession | null => {
-  const sessions = getSessionsFromStorage();
-  const target = sessions.find((s) => s.quizId === quizId);
-  if (!target) return null;
+  const session = getAllQuizes().find((s) => s.quizId === quizId);
+  if (!session) return null;
 
-  target.endTime = new Date().toISOString();
-  target.progress = 100;
+  // پایان دادن به سشن
+  session.endTime = new Date().toISOString();
+  session.progress = 100; // یا محاسبه درصد واقعی پاسخ‌ها
 
-  saveSessionsToStorage(sessions);
-  return target;
+  return session;
 };

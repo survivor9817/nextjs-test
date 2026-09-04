@@ -11,11 +11,9 @@ export const useQuizAnswer = (descriptiveAnswer: string, currentQuestionIndex: n
 
   useEffect(() => {
     hideAnswer();
-
     const timerId = setTimeout(() => setAnswerContent(descriptiveAnswer), 700);
-
     return () => clearTimeout(timerId);
-  }, [currentQuestionIndex]);
+  }, [currentQuestionIndex, descriptiveAnswer]);
 
   return { answerContent, isAnswerVisible, toggleAnswer };
 };

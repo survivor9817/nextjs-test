@@ -1,88 +1,59 @@
-import { CollapsibleContent, Collapsible, CollapsibleTrigger } from "@/components/ui/collapsible";
-import Answer from "./answer";
-import FilterView from "./filter-view";
-import ProgressBar from "./progress-bar";
-import QuestionTagBar from "./question-tag-bar";
-import ShowAnswerBtn from "./show-answer-btn";
+// Quiz.tsx
 import { useFilters } from "./use-filters";
-import { useState } from "react";
-import StopWatch from "./stop-watch";
-import StopWatchDrawer from "./stop-watch-drawer";
-import QuizViewSkeleton from "./quiz-skeleton";
-import { cn } from "@/lib/utils";
-import { toFaDigits } from "@/lib/toFaDigits";
+import { useQuizSession } from "./useQuizSession";
+import FilterView from "./filter-view";
 import QuizView from "./quiz-view";
 
-const Quiz = () => {
-  const { quizFilters, clearFilters, onChangeFilterSelect } = useFilters();
-  const [isAnswerVisible, setIsAnswerVisible] = useState<boolean>(false);
+// مقادیر userId و bookId می‌توانند از props یا context/params خوانده شوند
+const USER_ID = "123";
+const BOOK_ID = "706";
 
-  return (
-    <>
-      {/* <QuestionTagBar tags={["some", "how"]} loading={true} /> */}
-      {/* <div className="flex justify-center">
+const Quiz = () => {
+  const { quizFilters, onChangeFilterSelect } = useFilters();
+
+  const {
+    activeSession,
+    isQuizStarted,
+    isLoading,
+    isSubmitting,
+    startSession,
+    resumeSession,
+    submitQuiz,
+    terminateSession,
+  } = useQuizSession(USER_ID, BOOK_ID);
+
+  // ۱. اگر هنوز کوئیزی شروع نشده یا سشن فعال نداریم
+  if (!isQuizStarted || !activeSession) {
+    return (
+      <div className="flex flex-col justify-center items-center gap-18 p-2">
         <FilterView
           quizFilters={quizFilters}
           onChangeFilterSelect={onChangeFilterSelect}
-          startQuizLoading={false}
-          startQuiz={() => {}}
-        />
-      </div>
-      <div className="my-8">
-        <ProgressBar value={80} />
-      </div>
-      <div
-        className="flex items-center w-full sm:w-85 h-16 border-2 rounded-full overflow-hidden transition-[border-radius] duration-400"
-        style={{ borderRadius: false ? "150px 150px 25px 150px" : "150px" }}
-      >
-        <ShowAnswerBtn
-          isAnswerVisible={false}
-          onClick={function (): void {
-            throw new Error("Function not implemented.");
+          startQuizLoading={isLoading}
+          startQuiz={() => {
+            startSession(JSON.stringify(quizFilters));
           }}
         />
+
+        {/* لیست سوابق قبلی برای امکان مرور */}
+        {/* <QuizReview
+          reviewQuiz={(quizId) => resumeSession(quizId)}
+          startQuizLoading={isLoading}
+        /> */}
       </div>
+    );
+  }
 
-      <Collapsible open={isAnswerVisible} onOpenChange={setIsAnswerVisible}>
-        <CollapsibleTrigger render={<ShowAnswerBtn isAnswerVisible={isAnswerVisible} />} />
-      </Collapsible>
-      <Collapsible open={isAnswerVisible} onOpenChange={setIsAnswerVisible}>
-        <CollapsibleContent
-          keepMounted
-          className={
-            // "flex h-(--collapsible-panel-height) flex-col gap-2 overflow-hidden transition-all duration-300 data-ending-style:h-0 data-starting-style:h-0 border-2 mt-5"
-            "flex h-(--collapsible-panel-height) flex-col gap-2 overflow-hidden transition-all duration-300 opacity-100 data-ending-style:opacity-0 data-starting-style:opacity-0 data-ending-style:h-0 data-starting-style:h-0 border-2 mt-5"
-          }
-        >
-          Lorem ipsum dolor sit amet consectetur adipisicing elit. Tempora aut, ducimus aspernatur
-          neque delectus excepturi accusantium unde exercitationem officiis vero impedit dolore
-          corporis maiores, aperiam ratione itaque eius illo optio eum? Magnam quam recusandae
-          commodi impedit suscipit quis, qui odit, in molestiae quo laborum ex enim eum, error
-          delectus fuga!
-        </CollapsibleContent>
-      </Collapsible>
-
-      <StopWatchDrawer />
-
-      <QuizViewSkeleton /> */}
-
-      <QuizView
-        quiz={{
-          quizId: "1",
-          userId: "",
-          bookId: "",
-          startTime: "",
-          endTime: null,
-          duration: 0,
-          progress: 0,
-          lastVisitedQuestion: "",
-          filterTags: "",
-          questionIds: [],
-          questionsCount: 0,
-        }}
-        questionIds={["1"]}
-      />
-    </>
+  // ۲. نمایش محیط کوئیز
+  return (
+    <QuizView
+      key={activeSession.quizId} // ریست کامل استیت فرزند با تغییر آیدی سشن
+      quiz={activeSession}
+      questionIds={activeSession.questionIds}
+      isSubmitting={isSubmitting}
+      onSubmitQuiz={submitQuiz}
+      onTerminateQuiz={terminateSession}
+    />
   );
 };
 

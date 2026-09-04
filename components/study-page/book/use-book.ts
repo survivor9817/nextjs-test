@@ -45,12 +45,10 @@ export const useBook = (
       value: currentBookInfo.value,
       label: currentBookInfo.label,
     };
-  }, [currentBookInfo]); // فقط وقتی currentBookInfo عوض شد، آبجکت جدید بساز
+  }, [currentBookInfo]);
 
   const [pageInput, setPageInput] = useState<string>(toFaDigits(currentPage));
   const [pageInputError, setPageInputError] = useState(false);
-
-  const onFocusPageNumber = useRef(currentPage);
 
   const { set: autoHideError } = useTimeoutFn(() => {
     setPageInputError(false);
@@ -136,6 +134,8 @@ export const useBook = (
     setPageInputValue(newPage);
     setCurrentPage(newPage);
   };
+
+  const onFocusPageNumber = useRef(currentPage);
 
   const onFocus = (e: React.FocusEvent<HTMLInputElement>) => {
     onFocusPageNumber.current = currentPage;

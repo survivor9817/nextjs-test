@@ -40,6 +40,17 @@ export const useFilters = () => {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [currentBookId, currentBookSelectOption]);
 
+  // useEffect(() => {
+  //   if (currentBookId) {
+  //     setQuizFilters({
+  //       book: currentBookSelectOption || null,
+  //       where: null,
+  //       level: null,
+  //       source: null,
+  //     });
+  //   }
+  // }, [currentBookId]);
+
   // // در useFilters.ts
   // useEffect(() => {
   //   // فقط اگر bookId واقعاً تغییر کرده باشد ریست کن، نه اگر فقط select option رفرش شده

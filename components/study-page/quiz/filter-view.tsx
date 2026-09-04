@@ -11,7 +11,7 @@ type Props = {
     selectedOption: QuizFilterOption | null,
   ) => void;
   startQuizLoading: boolean;
-  startQuiz: () => Promise<void>;
+  startQuiz: () => void | Promise<unknown>; // اصلاح تایپ برای پذیرش هر نوع خروجی
 };
 
 const FilterView = ({ quizFilters, onChangeFilterSelect, startQuizLoading, startQuiz }: Props) => {

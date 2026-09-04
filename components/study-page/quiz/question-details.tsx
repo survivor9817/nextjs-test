@@ -7,9 +7,7 @@ const QuestionDetails = ({ questionDetails }: Props) => {
 
   return (
     <div className="flex justify-center items-center h-full max-h-full border-2 rounded-full mx-2 bg-black text-white text-center">
-      {/* {"نمره تاریخ منبع"} */}
-
-      {false ? (
+      {isEmpty ? (
         <span className="animate-pulse h-4 w-full mx-10 md:h-5 bg-gray-200 rounded dark:bg-gray-400" />
       ) : (
         <span>{questionDetails}</span>
