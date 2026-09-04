@@ -15,12 +15,22 @@ const Quiz = () => {
     activeSession,
     isQuizStarted,
     isLoading,
+    isCheckingActiveSession,
     isSubmitting,
     startSession,
     resumeSession,
     submitQuiz,
     terminateSession,
   } = useQuizSession(USER_ID, BOOK_ID);
+
+  // ۱. در زمان بررسی اولیه، هیچ نمایی رندر نشود و فقط لودینگ باشد
+  if (isCheckingActiveSession) {
+    return (
+      <div className="flex justify-center items-center min-h-80">
+        <span className="text-gray-500 text-sm">در حال بررسی سشن فعال...</span>
+      </div>
+    );
+  }
 
   // ۱. اگر هنوز کوئیزی شروع نشده یا سشن فعال نداریم
   if (!isQuizStarted || !activeSession) {

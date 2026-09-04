@@ -60,6 +60,7 @@ export const useQuizSession = (userId: string, bookId: string) => {
     isQuizCompleted: Boolean(activeSession?.endTime),
     isLoading:
       isCheckingActiveSession || startQuizMutation.isPending || resumeQuizMutation.isPending,
+    isCheckingActiveSession,
     isSubmitting: submitQuizMutation.isPending,
     error: activeSessionError || startQuizMutation.error || resumeQuizMutation.error,
     // startSession: (filters: string) => startQuizMutation.mutate(filters),

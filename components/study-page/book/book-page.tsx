@@ -6,7 +6,7 @@ import { useBookContext } from "@/components/study-page/book/book-provider";
 import { useQuery } from "@tanstack/react-query";
 import { fetchBookPage } from "@/services/client/fetchBookPage";
 import ErrorFallback from "@/components/error-fallback";
-import { Slider } from "@/components/ui/slider";
+import { ResponsiveDialog } from "@/components/ui/responsive-dialog";
 
 const BookPage = () => {
   const { currentBookId, currentPage } = useBookContext();
@@ -56,6 +56,12 @@ const BookPage = () => {
         <p>safhe {pageNum}</p>
         <p>{pageContent}</p>
         <p>{pageContent}</p>
+        <ResponsiveDialog
+          trigger={<button> باز شود دیده شود</button>}
+          children={<p className="h-80"> flds</p>}
+          title={"مودال"}
+          description={"adwadیشیصش"}
+        />
         <p>{pageContent}</p>
         <p>{pageContent}</p>
       </div>
