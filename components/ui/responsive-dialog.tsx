@@ -30,13 +30,8 @@ export interface ResponsiveDialogProps {
   onOpenChange?: (open: boolean) => void;
   className?: string;
   contentClassName?: string;
-
-  /** نوع نمایش: در حالت پیش‌فرض بر اساس مدیاکوئری تصمیم‌گیری می‌شود */
   type?: "dialog" | "drawer" | "auto";
-
-  /** شرط مدیاکوئری برای حالت دسکتاپ */
   desktopBreakpoint?: string;
-
   snapPoints?: (string | number)[];
   snapPoint?: string | number | null;
   onSnapPointChange?: (snapPoint: string | number | null) => void;
@@ -53,7 +48,7 @@ export function ResponsiveDialog({
   className,
   contentClassName,
   type = "auto",
-  desktopBreakpoint = "(min-width: 768px)",
+  desktopBreakpoint = "(min-width: 640px)",
   snapPoints,
   snapPoint,
   onSnapPointChange,

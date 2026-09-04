@@ -3,6 +3,7 @@ import { useFilters } from "./use-filters";
 import { useQuizSession } from "./useQuizSession";
 import FilterView from "./filter-view";
 import QuizView from "./quiz-view";
+import QuizReviews from "./quiz-reviews";
 
 // مقادیر userId و bookId می‌توانند از props یا context/params خوانده شوند
 const USER_ID = "123";
@@ -46,10 +47,7 @@ const Quiz = () => {
         />
 
         {/* لیست سوابق قبلی برای امکان مرور */}
-        {/* <QuizReview
-          reviewQuiz={(quizId) => resumeSession(quizId)}
-          startQuizLoading={isLoading}
-        /> */}
+        <QuizReviews reviewQuiz={(quizId) => resumeSession(quizId)} startQuizLoading={isLoading} />
       </div>
     );
   }
