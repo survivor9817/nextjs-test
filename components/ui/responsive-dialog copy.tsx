@@ -31,12 +31,6 @@ export interface ResponsiveDialogProps {
   className?: string;
   contentClassName?: string;
 
-  /** نوع نمایش: در حالت پیش‌فرض بر اساس مدیاکوئری تصمیم‌گیری می‌شود */
-  type?: "dialog" | "drawer" | "auto";
-
-  /** شرط مدیاکوئری برای حالت دسکتاپ */
-  desktopBreakpoint?: string;
-
   snapPoints?: (string | number)[];
   snapPoint?: string | number | null;
   onSnapPointChange?: (snapPoint: string | number | null) => void;
@@ -52,22 +46,19 @@ export function ResponsiveDialog({
   onOpenChange: controlledOnOpenChange,
   className,
   contentClassName,
-  type = "auto",
-  desktopBreakpoint = "(min-width: 768px)",
   snapPoints,
   snapPoint,
   onSnapPointChange,
 }: ResponsiveDialogProps) {
   const [internalOpen, setInternalOpen] = React.useState(false);
-  const isDesktop = useMediaQuery(desktopBreakpoint);
+  const isDesktop = useMediaQuery("(min-width: 768px)");
 
   const isControlled = controlledOpen !== undefined;
   const open = isControlled ? controlledOpen : internalOpen;
   const setOpen = isControlled ? controlledOnOpenChange : setInternalOpen;
 
-  const renderAsDialog = type === "dialog" || (type === "auto" && isDesktop);
-
-  if (renderAsDialog) {
+  // رندر دسکتاپ: با محدودیت حداکثر ارتفاع و اسکرول داخلی برای محتوای بلند
+  if (isDesktop) {
     return (
       <Dialog open={open} onOpenChange={setOpen}>
         {trigger && <DialogTrigger render={trigger} />}
@@ -89,6 +80,7 @@ export function ResponsiveDialog({
             </DialogHeader>
           )}
 
+          {/* محتوا اسکرول می‌خورد بدون اینکه هدر جابه‌جا شود */}
           <div className={cn("overflow-y-auto px-6 pb-6", hideHeader && "pt-6", contentClassName)}>
             {children}
           </div>
@@ -97,6 +89,7 @@ export function ResponsiveDialog({
     );
   }
 
+  // رندر موبایل: هماهنگ با ارتفاع خودکار یا SnapPoints
   return (
     <Drawer
       open={open}
@@ -110,6 +103,7 @@ export function ResponsiveDialog({
       <DrawerContent
         className={cn(
           "mx-0 mb-0 rounded-b-none flex flex-col",
+          // اگر snapPoints باشد، دراور تمام قد می‌ایستد تا اسنپ‌ها کار کنند؛ در غیر این صورت به اندازه محتوا باز می‌شود
           snapPoints ? "h-full max-h-[92vh]" : "max-h-[85vh]",
           className,
         )}
