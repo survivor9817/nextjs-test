@@ -1,5 +1,5 @@
 import { useLayoutEffect, useEffect, useRef, useState } from "react";
-import { QuizFiltersType } from "./use-filters";
+import { QuizFiltersType } from "../use-filters";
 
 export const useQuizFiltersProgressiveDisclosure = (quizFilters: QuizFiltersType) => {
   const quizFilterBoxRef = useRef<HTMLDivElement>(null);

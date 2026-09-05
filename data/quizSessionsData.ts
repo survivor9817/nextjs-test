@@ -132,3 +132,18 @@ export const completeQuizSessionInDB = (quizId: string): QuizSession | null => {
   saveSessionsToStorage(sessions);
   return target;
 };
+
+// در انتهای data/quizSessionsData.ts
+
+export const updateQuizLastVisitedQuestionInDB = (
+  quizId: string,
+  questionId: string,
+): QuizSession | null => {
+  const sessions = getSessionsFromStorage();
+  const target = sessions.find((s) => s.quizId === quizId);
+  if (!target) return null;
+
+  target.lastVisitedQuestion = questionId;
+  saveSessionsToStorage(sessions);
+  return target;
+};

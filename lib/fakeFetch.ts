@@ -12,7 +12,7 @@ export const fakeFetch = <T>(
   resolver: () => T | Promise<T>,
   options: FetchOptions & { signal?: AbortSignal } = {},
 ): Promise<T> => {
-  const { delay = 100, errorChance = 0, errorMessage, signal } = options;
+  const { delay = 2000, errorChance = 0, errorMessage, signal } = options;
 
   return new Promise((resolve, reject) => {
     // اگر signal قبلاً abort شده

@@ -19,7 +19,7 @@
 // use-quiz-filter-focus.ts
 import { useEffect, useRef } from "react";
 import { useTimeoutFn } from "@/hooks/use-timeout-fn";
-import { useStudyTabs } from "../tabs-provider";
+import { useStudyTabs } from "../../tabs-provider";
 
 export const useQuizFilterFocus = () => {
   const { activeTab } = useStudyTabs();

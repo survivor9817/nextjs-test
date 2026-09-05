@@ -1,6 +1,6 @@
 import { useEffect, useRef } from "react";
-import { useStudyTabs } from "../tabs-provider";
-import { useBookContext } from "../book/book-provider";
+import { useStudyTabs } from "../../tabs-provider";
+import { useBookContext } from "../../book/book-provider";
 
 type Props = { answer: string | TrustedHTML };
 

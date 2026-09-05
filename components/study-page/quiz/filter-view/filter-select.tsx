@@ -1,7 +1,7 @@
-import { useQuizFilterSelectData } from "./use-filters-data";
-import { QuizFilterOption, QuizFiltersType } from "./use-filters";
+import { useFilterSelectData } from "./use-filter-select-data";
+import { QuizFilterOption, QuizFiltersType } from "../use-filters";
 import { useQuizFilterFocus } from "./use-quiz-filter-focus";
-import { AsyncSelect } from "./async-select";
+import { AsyncSelect } from "@/components/ui/async-select";
 
 type Props = {
   filterId: "where" | "level" | "source";
@@ -18,7 +18,8 @@ const FilterSelect = ({
   onChange,
   loadingMessage = "در حال بارگذاری گزینه‌ها...",
 }: Props) => {
-  const { options, isLoading, error, loadOptions } = useQuizFilterSelectData(filterId, quizFilters);
+  const { options, isLoading, error, loadOptions } = useFilterSelectData(filterId, quizFilters);
+
   const { filterSelectRef } = useQuizFilterFocus();
 
   const selectedValue = quizFilters[filterId]?.value ?? "";

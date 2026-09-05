@@ -1,17 +1,16 @@
 // Quiz.tsx
 import { useFilters } from "./use-filters";
-import { useQuizSession } from "./useQuizSession";
-import FilterView from "./filter-view";
-import QuizView from "./quiz-view";
-import QuizReviews from "./quiz-reviews";
+import { useQuizSession } from "./use-quiz-session";
+import QuizView from "./quiz-view/quiz-view";
+import QuizReviews from "./quiz-reviews/quiz-reviews";
+import FilterView from "./filter-view/filter-view";
+import { useBookContext } from "../book/book-provider";
 
-// مقادیر userId و bookId می‌توانند از props یا context/params خوانده شوند
 const USER_ID = "123";
-const BOOK_ID = "706";
 
 const Quiz = () => {
-  const { quizFilters, onChangeFilterSelect } = useFilters();
-
+  const { quizFilters, onChangeFilterSelect, clearFilters } = useFilters();
+  const { currentBookId } = useBookContext();
   const {
     activeSession,
     isQuizStarted,
@@ -22,9 +21,15 @@ const Quiz = () => {
     resumeSession,
     submitQuiz,
     terminateSession,
-  } = useQuizSession(USER_ID, BOOK_ID);
+  } = useQuizSession(USER_ID, currentBookId);
 
-  // ۱. در زمان بررسی اولیه، هیچ نمایی رندر نشود و فقط لودینگ باشد
+  // اتمام نهایی تمرین: تخلیه کش سشن و ریست فیلترها
+  const handleTerminateAndReset = () => {
+    terminateSession();
+    clearFilters();
+  };
+
+  // ۱. بررسی اولیه وضعیت سشن
   if (isCheckingActiveSession) {
     return (
       <div className="flex justify-center items-center min-h-80">
@@ -33,7 +38,7 @@ const Quiz = () => {
     );
   }
 
-  // ۱. اگر هنوز کوئیزی شروع نشده یا سشن فعال نداریم
+  // ۲. نمایش فرم فیلترها و سوابق در صورت عدم وجود سشن فعال
   if (!isQuizStarted || !activeSession) {
     return (
       <div className="flex flex-col justify-center items-center gap-18 p-2">
@@ -41,26 +46,23 @@ const Quiz = () => {
           quizFilters={quizFilters}
           onChangeFilterSelect={onChangeFilterSelect}
           startQuizLoading={isLoading}
-          startQuiz={() => {
-            startSession(JSON.stringify(quizFilters));
-          }}
+          startQuiz={() => startSession(JSON.stringify(quizFilters))}
         />
 
-        {/* لیست سوابق قبلی برای امکان مرور */}
         <QuizReviews reviewQuiz={(quizId) => resumeSession(quizId)} startQuizLoading={isLoading} />
       </div>
     );
   }
 
-  // ۲. نمایش محیط کوئیز
+  // ۳. نمایش پخش‌کننده کوئیز
   return (
     <QuizView
-      key={activeSession.quizId} // ریست کامل استیت فرزند با تغییر آیدی سشن
+      key={activeSession.quizId}
       quiz={activeSession}
       questionIds={activeSession.questionIds}
       isSubmitting={isSubmitting}
       onSubmitQuiz={submitQuiz}
-      onTerminateQuiz={terminateSession}
+      onTerminateQuiz={handleTerminateAndReset}
     />
   );
 };

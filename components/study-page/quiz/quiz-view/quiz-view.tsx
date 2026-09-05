@@ -11,14 +11,17 @@ import QuizReactionBtns from "./question-reaction-btns";
 import { Collapsible, CollapsibleContent, CollapsibleTrigger } from "@/components/ui/collapsible";
 import { toFaDigits } from "@/lib/toFaDigits";
 import { cn } from "@/lib/utils";
-import { useQuestionNavigation } from "./use-quiz-navigaiton";
+import { useQuestionNavigation } from "./use-quiz-navigation";
 import { useQuizAnswer } from "./use-quiz-answer";
-import { useQuizReactions } from "./useQuizReactions";
+import { useQuizReactions } from "../useQuizReactions";
 import { QuizSession } from "@/data/quizSessionsData";
-import { useQuestionData } from "./useQuestionData";
+import { useQuestionData } from "./use-question-data";
 import Answer from "./answer";
 import IconBtn from "@/components/ui/icon-btn";
 import StopWatchDrawer from "./stop-watch-drawer";
+import QuizEndConfirm from "./quiz-end-confirm";
+import QuizResultsModal from "./quiz-results-modal";
+import { useSyncLastVisitedQuestion } from "./useSyncLastVisitedQuestion";
 // کامپوننت‌های مودال را از مسیر پروژه‌ات ایمپورت کن:
 // import QuizEndConfirm from "./quiz-end-confirm";
 // import QuizResultsModal from "./quiz-results-modal";
@@ -135,8 +138,26 @@ const QuizView = ({
     onTerminateQuiz();
   };
 
+  useSyncLastVisitedQuestion(quiz.quizId, currentQuestionId, quiz.userId, quiz.bookId);
+
   return (
     <Collapsible open={isAnswerVisible} onOpenChange={toggleAnswer}>
+      <QuizEndConfirm
+        isOpen={isEndConfirmOpen}
+        isLoading={isSubmitting}
+        onConfirm={handleConfirmEnd}
+        onClose={() => setIsEndConfirmOpen(false)}
+      />
+
+      {/* مودال کارنامه نتیجه */}
+      <QuizResultsModal
+        isOpen={isResultsModalOpen}
+        quizId={quiz.quizId}
+        onReview={handleReviewAgain}
+        onTerminate={handleFinalTerminate}
+        onClose={() => setIsResultsModalOpen(false)}
+      />
+
       <div className="quiz-box flex flex-col p-2 overflow-hidden">
         {/* نوار ابزار بالا */}
         <div className="flex justify-between items-center h-12 mb-1">
@@ -242,25 +263,6 @@ const QuizView = ({
         >
           <Answer answer={descriptiveAnswer} />
         </CollapsibleContent>
-
-        {/* جایگاه رندر مودال‌ها بر اساس استیت‌ها:
-        {isEndConfirmOpen && (
-          <QuizEndConfirm
-            onAction={handleConfirmEnd}
-            endLoading={isSubmitting}
-            onClose={() => setIsEndConfirmOpen(false)}
-          />
-        )}
-
-        {isResultsModalOpen && (
-          <QuizResultsModal
-            quizId={quiz.quizId}
-            onReview={handleReviewAgain}
-            onTerminate={handleFinalTerminate}
-            onClose={() => setIsResultsModalOpen(false)}
-          />
-        )}
-        */}
       </div>
     </Collapsible>
   );

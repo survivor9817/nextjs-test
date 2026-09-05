@@ -9,7 +9,7 @@ import {
 } from "@/lib/convertToJalaliDate";
 import { toFaDigits } from "@/lib/toFaDigits";
 import QuizReviewModal from "./quiz-review-modal";
-import { useQuizSessionsData } from "./useQuizSessionsData";
+import { useQuizSessionsData } from "./use-quiz-sessions-data";
 import ErrorFallback from "@/components/error-fallback";
 
 type Props = {

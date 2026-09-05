@@ -1,4 +1,3 @@
-// data/questionsData.ts
 import { getQuizById } from "./quizSessionsData";
 
 export type DbReactionId =
@@ -28,85 +27,94 @@ export type UiReaction = {
   isReport: boolean;
 };
 
-export type QuizResults = {
-  correctsCount: number;
-  incorrectsCount: number;
-  nullsCount: number;
-  questionsCount: number;
-};
-
-export type QuestionType = {
-  id: string;
-  bookId: string;
-  fehrestSectionId: string;
-  levelId: string;
-  source: string;
-  hasImg: boolean;
-  questionContent: string;
-  answerContent: string;
-  author: string;
-  date: string;
-  score: number;
-  tags: string[];
-  reactions?: UiReaction;
-  refPages?: number[];
-  suggestedDuratuion?: number;
-};
-
-const STORAGE_KEY = "mock_quiz_reactions";
-
-const INITIAL_REACTIONS: DbReaction[] = [
+const now = new Date().toISOString();
+// beshee baraaye har reaction bish az yek mored ham sabt kard ammaa moghe gereftanesh az db
+// baraaye neshaan daadane feedbacke ghabli be user, AKHARIN reaction az oon noo ro begir bahaash
+// ui reaction object ro besaaz. az har reaction user mitoonim 5 saabeghe negah darim.
+export const REACTIONS: DbReaction[] = [
   {
-    quizId: "1",
+    quizId: "3",
     userId: "123",
     questionId: "1",
     reactionId: "isLike",
     reactionType: "feedback",
-    createdAt: new Date().toISOString(),
+    createdAt: now,
+  },
+  {
+    quizId: "3",
+    userId: "123",
+    questionId: "2",
+    reactionId: "isStar",
+    reactionType: "feedback",
+    createdAt: now,
+  },
+  {
+    quizId: "3",
+    userId: "123",
+    questionId: "3",
+    reactionId: "isLike",
+    reactionType: "feedback",
+    createdAt: now,
+  },
+  {
+    quizId: "3",
+    userId: "123",
+    questionId: "3",
+    reactionId: "isReport",
+    reactionType: "feedback",
+    createdAt: now,
+  },
+  {
+    quizId: "3",
+    userId: "123",
+    questionId: "4",
+    reactionId: "isLike",
+    reactionType: "feedback",
+    createdAt: now,
+  },
+  {
+    quizId: "3",
+    userId: "123",
+    questionId: "4",
+    reactionId: "isStar",
+    reactionType: "feedback",
+    createdAt: now,
   },
 ];
 
-// دریافت واکنش‌ها با پشتیبانی از رفرش و localStorage
-const getStoredReactions = (): DbReaction[] => {
-  if (typeof window === "undefined") return INITIAL_REACTIONS;
-  const stored = localStorage.getItem(STORAGE_KEY);
-  if (!stored) {
-    localStorage.setItem(STORAGE_KEY, JSON.stringify(INITIAL_REACTIONS));
-    return INITIAL_REACTIONS;
-  }
-  try {
-    return JSON.parse(stored);
-  } catch {
-    return INITIAL_REACTIONS;
-  }
+export const addReactionToDB = (newReaction: DbReaction) => REACTIONS.push(newReaction);
+export const removeReactionFromDB = (existingReaction: DbReaction) => {
+  const index = REACTIONS.indexOf(existingReaction);
+  index !== -1 && REACTIONS.splice(index, 1);
 };
 
-const saveStoredReactions = (reactions: DbReaction[]) => {
-  if (typeof window !== "undefined") {
-    localStorage.setItem(STORAGE_KEY, JSON.stringify(reactions));
-  }
-};
-
-export const getReactions = (
-  userId?: string,
-  questionId?: string,
-  quizId?: string,
-): DbReaction[] => {
-  const all = getStoredReactions();
-  return all.filter((r) => {
+// from db
+// getLatestReactions esme behtarie.
+export const getReactions = (userId?: string, questionId?: string): DbReaction[] | undefined => {
+  const filtered = REACTIONS.filter((r) => {
     const matchUser = userId ? r.userId === userId : true;
     const matchQuestion = questionId ? r.questionId === questionId : true;
-    const matchQuiz = quizId ? r.quizId === quizId : true;
-    return matchUser && matchQuestion && matchQuiz;
+    return matchUser && matchQuestion;
   });
+
+  const isSpecificQuery = Boolean(userId) || Boolean(questionId);
+  if (isSpecificQuery && filtered.length === 0) {
+    return undefined;
+  }
+
+  return filtered;
 };
 
-export const getReactionsByQuizId = (quizId: string): DbReaction[] => {
-  return getStoredReactions().filter((r) => r.quizId === quizId);
+export const getReactionsByQuizId = (quizId: string): DbReaction[] | undefined => {
+  // حالا ری‌اکشن‌هایی که questionIdشون توی لیست ما هست رو فیلتر کن
+  const reactions = REACTIONS.filter((r) => r.quizId === quizId);
+
+  // اگه ری‌اکشنی پیدا نشد، undefined برگردون
+  return reactions.length > 0 ? reactions : undefined;
 };
 
-export const createUiReactionsObject = (dbReactions: DbReaction[]): UiReaction => {
-  const result: UiReaction = {
+export const createUiReactionsObject = (dbReactions: DbReaction[] | undefined): UiReaction => {
+  const empty: UiReaction = {
     isCorrect: false,
     isIncorrect: false,
     isLike: false,
@@ -114,84 +122,144 @@ export const createUiReactionsObject = (dbReactions: DbReaction[]): UiReaction =
     isReport: false,
   };
 
-  if (!dbReactions?.length) return result;
+  if (!dbReactions?.length) return empty;
 
   const present = new Set<DbReactionId>(dbReactions.map((r) => r.reactionId));
 
-  result.isCorrect = present.has("isCorrect");
-  result.isIncorrect = present.has("isIncorrect");
-  result.isLike = present.has("isLike");
-  result.isStar = present.has("isStar");
-  result.isReport = present.has("isReport");
+  const result: UiReaction = {
+    isCorrect: present.has("isCorrect"),
+    isIncorrect: present.has("isIncorrect"),
+    isLike: present.has("isLike"),
+    isStar: present.has("isStar"),
+    isReport: present.has("isReport"),
+  };
 
+  // در صورتی که هم isCorrect و هم isIncorrect وجود داشته باشند
+  // (خطای ورودی) اولویت به isCorrect می‌دهیم و isIncorrect را false می‌کنیم
   if (result.isCorrect) result.isIncorrect = false;
 
   return result;
 };
 
-export const getUiReactionObjectForQuiz = (
-  questionId: string,
-  quizId: string,
-  userId = "123",
-): UiReaction => {
-  const reactions = getReactions(userId, questionId, quizId);
-  return createUiReactionsObject(reactions);
+// masalan api get req
+// gets latest reaction for an id
+export const getUiReactionObjectFromDB = (userId?: string, questionId?: string): UiReaction => {
+  return createUiReactionsObject(getReactions(userId, questionId));
 };
 
-export const saveReactionToDB = (newReaction: DbReaction) => {
-  let all = getStoredReactions();
-  const { quizId, userId, questionId } = newReaction;
+export const getUiReactionObjectForQuiz = (questionId: string, quizId: string): UiReaction => {
+  return createUiReactionsObject(
+    getReactionsByQuizId(quizId)?.filter((r) => r.questionId === questionId),
+  );
+};
 
-  const matchTarget = (r: DbReaction) =>
-    r.quizId === quizId && r.userId === userId && r.questionId === questionId;
+// masalan api post req
+export const saveReactionToDB = (newReaction: DbReaction) => {
+  const { quizId, userId, questionId } = newReaction;
+  const saved = getReactions(userId, questionId);
 
   if (newReaction.reactionType === "answer") {
-    const existing = all.find((r) => matchTarget(r) && r.reactionType === "answer");
+    const existing = saved?.find((r) => r.reactionType === "answer");
 
-    if (!existing) {
-      all.push(newReaction);
-    } else if (newReaction.reactionId === existing.reactionId) {
-      all = all.filter((r) => r !== existing);
-      all.push({
-        quizId,
-        userId,
-        questionId,
+    if (!existing) return addReactionToDB(newReaction);
+
+    const isTurningOff = newReaction.reactionId === existing.reactionId;
+    if (isTurningOff) {
+      removeReactionFromDB(existing);
+      addReactionToDB({
+        quizId: quizId,
+        userId: userId,
+        questionId: questionId,
         reactionId: "isNull",
         reactionType: "answer",
         createdAt: new Date().toISOString(),
       });
-    } else {
-      all = all.filter((r) => r !== existing);
-      all.push(newReaction);
+    } else if (!isTurningOff) {
+      removeReactionFromDB(existing);
+      addReactionToDB(newReaction);
     }
-  } else {
-    const existing = all.find((r) => matchTarget(r) && r.reactionId === newReaction.reactionId);
 
-    if (existing) {
-      all = all.filter((r) => r !== existing);
-    } else {
-      all.push(newReaction);
-    }
+    return;
   }
 
-  saveStoredReactions(all);
+  const existing = saved?.find((r) => r.reactionId === newReaction.reactionId);
+  existing ? removeReactionFromDB(existing) : addReactionToDB(newReaction);
 };
 
-export const getResultsByQuizId = (quizId: string): QuizResults => {
-  const quiz = getQuizById(quizId);
-  const questionsCount = quiz?.questionsCount || quiz?.questionIds?.length || 10;
-  const answers = getReactionsByQuizId(quizId).filter((r) => r.reactionType === "answer");
+export type QuizResults = {
+  correctsCount: number;
+  incorrectsCount: number;
+  nullsCount: number;
+  questionsCount: number;
+};
 
-  const correctsCount = answers.filter((r) => r.reactionId === "isCorrect").length;
-  const incorrectsCount = answers.filter((r) => r.reactionId === "isIncorrect").length;
-  const nullsCount = Math.max(0, questionsCount - (correctsCount + incorrectsCount));
+// masalan api get result, aakhare quiz in taabe ro map mikonim roye array array mifrestim map mikone ba in.
+// export const getLatestResultsFromDB = (userId: string, questionIds: string[]): QuizResults => {
+// export const getLatestResultsFromDB = (userId: string, questionIds: string[]): QuizResults => {
+//   // ################ get latest. jadid tarin reactioni ke user be yek soal dade ro begir neshoon bedim
+//   const answers = questionIds.map((questionId) => {
+//     const reactions = getReactions(userId, questionId); // ############ then filter by time.
+//     return reactions?.find((reaction) => reaction.reactionType === "answer");
+//   });
+
+//   const correctsCount = answers?.reduce((a, c) => a + Number(c?.reactionId === "isCorrect"), 0);
+//   const incorrectsCount = answers?.reduce((a, c) => a + Number(c?.reactionId === "isIncorrect"), 0);
+//   const nullsCount = answers?.reduce((a, c) => a + Number(c?.reactionId === "isNull"), 0);
+
+//   return { correctsCount, incorrectsCount, nullsCount };
+// };
+
+// age reactioni baraaye yek soal sabt nashode, ke hichi. agar shode, akharinesh ro begir.
+// agar user
+export const getResultsByQuizId = (quizId: string): QuizResults => {
+  const questionsCount = getQuizById(quizId)?.questionsCount || 1;
+
+  const answers = getReactionsByQuizId(quizId)?.filter((r) => r.reactionType === "answer");
+
+  if (!answers)
+    return {
+      questionsCount,
+      correctsCount: 0,
+      incorrectsCount: 0,
+      nullsCount: questionsCount,
+    };
+
+  const correctsCount = answers?.reduce((a, c) => a + Number(c?.reactionId === "isCorrect"), 0);
+  const incorrectsCount = answers?.reduce((a, c) => a + Number(c?.reactionId === "isIncorrect"), 0);
+  // seen but there is not any answer for them. right?
+  // const nullsCount = answers?.reduce((a, c) => a + Number(c?.reactionId === "isNull"), 0);
+
+  const nullsCount = questionsCount - (correctsCount + incorrectsCount);
 
   return { correctsCount, incorrectsCount, nullsCount, questionsCount };
 };
 
+// injaa array soalaati ke user filter zade saakhte mishe.
 export const requestedQuestionsIDs = ["1", "2", "3", "4", "5", "6", "7", "8", "9", "10"];
 
-export const getQuestionIds = () => requestedQuestionsIDs;
+// masalan api getQuestionIdsByUserFilter.
+export const getQuestionIds = (/** quizFilters sent from front. */) => requestedQuestionsIDs;
+
+// jadvale taghaaye har soal.
+
+export type QuestionType = {
+  id: string;
+  bookId: string; // momkene soal mota allegh be yek yaa chand ketaab baashe.
+  fehrestSectionId: string; // soal mota'allegh be kodaam bakhsh az ketaabe darsie. marboot be kodam titr az fehreste ketaabe. mitoone marboot be bish az yek bakhsh baashe.
+  levelId: string; // sathe sakhtie soal. faghat yek sath.
+  source: string; // soal mota'allegh be kodam manba e tarrahie soale. (kodaam aazmon or ketab komak darsi). momkene dar bish az yek manba baashe.
+  hasImg: boolean;
+  questionContent: string; // har style ya saakhtaare htmli mitone daashte baashe. ghaabele taeen nist.
+  answerContent: string; // har style ya saakhtaare htmli mitone daashte baashe. ghaabele taeen nist.
+  author: string; // esm famile nevisande soal ya pasokhe tashrihi ya hardosh. har soal faghat yek esm nevisande dare.
+  date: string; // maah va saal tarrahie soal gharare zakhire beshe. tooye ui maah irani be horoof va saal be adade.
+  score: number; // number. testi haa hame yek nomre baashan ta bebinim che mi shavad dar aayande.
+  tags: string[]; // tag haaye type soaalaat. har soal mitoone type haaye mokhtalefi daashte baashe.
+  reactions?: UiReaction;
+  refPages?: number[]; // tooye descriptive answereshaan be che safhe haayee az ketaab ref zade shode.
+  // mikhaam dar aayande alaave bar adade safhe javaabhaa, jomle i ke toye oon safhe marboot be javaabe in soal hastesh ro ham highlight konam toye ui. nemidoonam chetor in kaar ro anjaam bedam.
+  suggestedDuratuion?: number; // milisecond. modat zamaane pishnahaadie moalem baraaye hale yek soal.
+};
 
 export const questionsData: QuestionType[] = [
   {
@@ -324,34 +392,34 @@ export const questionsData: QuestionType[] = [
     source: "کنکور سراسری",
     hasImg: false,
     questionContent: `
-    <div class="question">
-      <p>کدام مورد، برای تکمیل عبارت زیر مناسب است؟</p>
-      <p>«در نوعی گیاه، ............... قرار دارند، در این گیاه به طور حتم، ..............»</p>
-    </div>
-    <ul class="options">
-      <li>۱) بر روی ریشة قطور، ریشه‌های فرعی فراوان – پوست ریشه کاملا مشخص است.</li>
-      <li>۲) یاخته‌هایی حاوی چوب پنبه در مجاورت لایة ریشه‌زای ریشه – پوست ریشه کاملا نازک است.</li>
-      <li>۳) دسته آوندهای چوبی و آبکش ساقه، بر روی دایره‌های هم‌مرکز – آوندهای چوبی کم‌قطر در مرکز ریشه قرار دارند.</li>
-      <li>۴) دسته آوندهای چوبی و آبکش ساقه، بر روی یک دایره – فقط یاخته‌هایی با دیوارة نخستین نازک در مرکز ریشه قرار دارند.</li>
-    </ul>
-    `,
+  <div class="question">
+    <p>کدام مورد، برای تکمیل عبارت زیر مناسب است؟</p>
+    <p>«در نوعی گیاه، ............... قرار دارند، در این گیاه به طور حتم، ..............»</p>
+  </div>
+  <ul class="options">
+    <li>۱) بر روی ریشة قطور، ریشه‌های فرعی فراوان – پوست ریشه کاملا مشخص است.</li>
+    <li>۲) یاخته‌هایی حاوی چوب پنبه در مجاورت لایة ریشه‌زای ریشه – پوست ریشه کاملا نازک است.</li>
+    <li>۳) دسته آوندهای چوبی و آبکش ساقه، بر روی دایره‌های هم‌مرکز – آوندهای چوبی کم‌قطر در مرکز ریشه قرار دارند.</li>
+    <li>۴) دسته آوندهای چوبی و آبکش ساقه، بر روی یک دایره – فقط یاخته‌هایی با دیوارة نخستین نازک در مرکز ریشه قرار دارند.</li>
+  </ul>
+  `,
     answerContent: `
-    <h2>پاسخ: گزینه ۴</h2>
-    <p>
-      گیاه مورد بحث گیاه دو لپه است که ساختار ساقه آن از نوع دسته های آوندی باز است. در این گیاهان دسته های آوندی چوب و آبکش روی یک دایره قرار دارند.
-      <span class="ref-page" data-ref-page="68" data-ref-id="ref1">۶۸</span>
-    </p>
-    <h2>بررسی سایر گزینه‌ها:</h2>
-    <div class="option">
-      <strong>گزینه ۱:</strong> نادرست. وجود ریشه‌های فرعی فراوان لزوماً به معنای مشخص بودن پوست ریشه نیست.
-    </div>
-    <div class="option">
-      <strong>گزینه ۲:</strong> نادرست. وجود چوب پنبه در مجاورت لایه ریشه‌زا با نازک بودن پوست ریشه در تضاد است.
-    </div>
-    <div class="option">
-      <strong>گزینه ۳:</strong> نادرست. قرارگیری دسته های آوندی روی دایره‌های هم‌مرکز مربوط به ساختار ریشه است نه ساقه.
-    </div>
-    `,
+  <h2>پاسخ: گزینه ۴</h2>
+  <p>
+    گیاه مورد بحث گیاه دو لپه است که ساختار ساقه آن از نوع دسته های آوندی باز است. در این گیاهان دسته های آوندی چوب و آبکش روی یک دایره قرار دارند...
+    <span class="ref-page" data-ref-page="68" data-ref-id="ref1">۶۸</span>
+  </p>
+  <h2>بررسی سایر گزینه‌ها:</h2>
+  <div class="option">
+    <strong>گزینه ۱:</strong> نادرست. وجود ریشه‌های فرعی فراوان لزوماً به معنای مشخص بودن پوست ریشه نیست.
+  </div>
+  <div class="option">
+    <strong>گزینه ۲:</strong> نادرست. وجود چوب پنبه در مجاورت لایه ریشه‌زا با نازک بودن پوست ریشه در تضاد است.
+  </div>
+  <div class="option">
+    <strong>گزینه ۳:</strong> نادرست. قرارگیری دسته های آوندی روی دایره‌های هم‌مرکز مربوط به ساختار ریشه است نه ساقه.
+  </div>
+  `,
     author: "سید حسین قاضوی",
     date: "خرداد ۱۴۰۲",
     score: 3,
@@ -603,22 +671,24 @@ export const questionsData: QuestionType[] = [
   },
 ];
 
-export const getQuestionById = (qId: string): QuestionType | null => {
-  return questionsData.find((q) => q.id === qId) || null;
-};
+// masalan api daryaft soal az server baa id.
 
-export const getQuestionFromDB = (questionId: string): QuestionType | null => {
-  const q = getQuestionById(questionId);
-  if (q) {
-    q.reactions = createUiReactionsObject(getReactions("123", questionId));
-  }
+export const getQuestionById = (qId: string) => {
+  const q = questionsData.find((q) => q.id === qId) || null;
   return q;
 };
 
-export const getQuestionForQuiz = (questionId: string, quizId: string): QuestionType | null => {
+export const getQuestionFromDB = (questionId: string) => {
   const q = getQuestionById(questionId);
-  if (q) {
-    q.reactions = getUiReactionObjectForQuiz(questionId, quizId, "123");
-  }
+  // if (q) q.reactions = getUiReactionObject("3", qId);
+  if (q) q.reactions = getUiReactionObjectFromDB("123", questionId);
   return q;
 };
+
+export const getQuestionForQuiz = (questionId: string, quizId: string) => {
+  const q = getQuestionById(questionId);
+  if (q) q.reactions = getUiReactionObjectForQuiz(questionId, quizId); // chera baraaye reactionhaa sabr konim taa baa soaal biaan?
+  return q;
+};
+
+// fetch reactions mizanim.

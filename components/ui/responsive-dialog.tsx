@@ -35,6 +35,7 @@ export interface ResponsiveDialogProps {
   snapPoints?: (string | number)[];
   snapPoint?: string | number | null;
   onSnapPointChange?: (snapPoint: string | number | null) => void;
+  showSwipeHandle?: boolean;
 }
 
 export function ResponsiveDialog({
@@ -52,6 +53,7 @@ export function ResponsiveDialog({
   snapPoints,
   snapPoint,
   onSnapPointChange,
+  showSwipeHandle = true,
 }: ResponsiveDialogProps) {
   const [internalOpen, setInternalOpen] = React.useState(false);
   const isDesktop = useMediaQuery(desktopBreakpoint);
@@ -96,7 +98,7 @@ export function ResponsiveDialog({
     <Drawer
       open={open}
       onOpenChange={setOpen}
-      showSwipeHandle
+      showSwipeHandle={showSwipeHandle}
       snapPoints={snapPoints}
       snapPoint={snapPoint}
       onSnapPointChange={onSnapPointChange}

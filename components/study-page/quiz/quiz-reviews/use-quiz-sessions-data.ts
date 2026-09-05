@@ -1,6 +1,6 @@
 // hooks/useQuizSessionsData.ts
 import { useQuery } from "@tanstack/react-query";
-import { useBookContext } from "../book/book-provider";
+import { useBookContext } from "../../book/book-provider";
 import { fetchQuizSessions } from "@/services/client/fetchQuizSessions";
 
 const USER_ID = "123";

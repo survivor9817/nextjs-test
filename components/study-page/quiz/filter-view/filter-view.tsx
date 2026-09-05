@@ -1,8 +1,8 @@
-import FilterSelect from "./filter-select";
-import { QuizFilterOption, QuizFiltersType } from "./use-filters";
-import { useQuizFiltersProgressiveDisclosure } from "./use-quiz-filters-progressive-disclosure";
-import StartQuizBtn from "./start-quiz-btn";
 import { cn } from "@/lib/utils";
+import StartQuizBtn from "./start-quiz-btn";
+import { QuizFiltersType, QuizFilterOption } from "../use-filters";
+import { useQuizFiltersProgressiveDisclosure } from "./use-quiz-filters-progressive-disclosure";
+import FilterSelect from "./filter-select";
 
 type Props = {
   quizFilters: QuizFiltersType;
