@@ -2,16 +2,16 @@ import { Collapsible, CollapsibleContent } from "@/components/ui/collapsible";
 import { toFaDigits } from "@/lib/toFaDigits";
 import { FehrestSection } from "@/data/fehrestsData";
 import { Button } from "@/components/ui/button";
+import { checkActive } from "./fehrest-utils";
 
 type Props = {
   section: FehrestSection;
-  currentSectionPage: number;
+  currentSectionPage: number | null;
   isActive: boolean;
   onClick: (section: FehrestSection) => void;
-  checkActive: (currentSectionPage: number, section: FehrestSection) => boolean;
 };
 
-const FehrestItem = ({ section, currentSectionPage, onClick, isActive, checkActive }: Props) => {
+const FehrestItem = ({ section, currentSectionPage, onClick, isActive }: Props) => {
   const isHighlighted = isActive ? "bg-[#e1a3c1]" : "hover:bg-[#e1a3c175]";
   const hasSubSection = section.sections && section.sections?.length > 0;
 
@@ -38,10 +38,9 @@ const FehrestItem = ({ section, currentSectionPage, onClick, isActive, checkActi
               <FehrestItem
                 key={subSection.title}
                 section={subSection}
-                currentSectionPage={currentSectionPage}
+                isActive={currentSectionPage !== null && checkActive(currentSectionPage, section)}
                 onClick={() => onClick(subSection)}
-                isActive={checkActive(currentSectionPage, subSection)}
-                checkActive={checkActive}
+                currentSectionPage={currentSectionPage}
               />
             ))}
           </CollapsibleContent>

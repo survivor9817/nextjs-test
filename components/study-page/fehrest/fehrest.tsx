@@ -1,12 +1,7 @@
-import { useQuery } from "@tanstack/react-query";
-import { useBookContext } from "../book/book-provider";
 import BookSelect from "./book-select";
 import FehrestList from "./fehrest-list";
-import { fetchBookSelectOptions } from "@/services/client/fetchBookSelectOptions";
 
-type Props = {};
-
-const Fehrest = (props: Props) => {
+const Fehrest = () => {
   return (
     <div>
       <header className="flex justify-center min-w-0">
