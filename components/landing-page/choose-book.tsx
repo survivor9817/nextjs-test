@@ -1,5 +1,5 @@
 "use client";
-import { useChooseBook } from "@/hooks/use-choose-book";
+import { useChooseBook } from "@/components/landing-page/use-choose-book";
 import BookShelf from "./book-shelf";
 import { Button } from "../ui/button";
 import FieldSelect from "./field-select";

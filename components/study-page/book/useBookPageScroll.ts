@@ -1,10 +1,10 @@
 import { useEffect, useRef } from "react";
-import { useBookContext } from "../components/BookProvider";
+import { useBookContext } from "./book-provider";
 
 export const useBookPageScroll = () => {
   const pageRef = useRef<HTMLDivElement>(null);
 
-  const { currentBook, currentPage } = useBookContext();
+  const { currentBookId, currentPage } = useBookContext();
   useEffect(() => {
     if (pageRef.current) {
       pageRef.current.scrollIntoView({
@@ -14,7 +14,7 @@ export const useBookPageScroll = () => {
 
       // pageRef.current.scrollTo({ top: 0, behavior: "smooth" });
     }
-  }, [currentBook, currentPage]);
+  }, [currentBookId, currentPage]);
 
   return { pageRef };
 };

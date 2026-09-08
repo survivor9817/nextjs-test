@@ -1,7 +1,6 @@
 import { cn } from "@/lib/utils";
 import StartQuizBtn from "./start-quiz-btn";
 import { QuizFiltersType, QuizFilterOption } from "../use-filters";
-import { useQuizFiltersProgressiveDisclosure } from "./use-quiz-filters-progressive-disclosure";
 import FilterSelect from "./filter-select";
 import { useProgressiveDisclosure } from "./use-progressive-disclosure";
 
@@ -21,7 +20,7 @@ const FilterView = ({ quizFilters, onChangeFilterSelect, startQuizLoading, start
 
   const {
     containerRef,
-    height,
+    containerHeight,
     isStepVisible,
     visibility: [showWhere, showLevel, showSource, showBtn],
   } = useProgressiveDisclosure({
@@ -40,7 +39,7 @@ const FilterView = ({ quizFilters, onChangeFilterSelect, startQuizLoading, start
   return (
     <form
       onSubmit={(e) => e.preventDefault()}
-      style={{ height: height }}
+      style={{ height: containerHeight }}
       className="relative flex flex-col gap-8 border-2 border-gray-300 rounded-4xl w-full max-w-115 mt-18 max-h-80 mx-2
                  transition-[height] ease-in-out duration-300" // min-h-90
     >

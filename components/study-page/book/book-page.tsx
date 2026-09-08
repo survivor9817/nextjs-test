@@ -7,11 +7,12 @@ import { useQuery } from "@tanstack/react-query";
 import { fetchBookPage } from "@/services/client/fetchBookPage";
 import ErrorFallback from "@/components/error-fallback";
 import { ResponsiveDialog } from "@/components/ui/responsive-dialog";
+import { useBookPageScroll } from "./useBookPageScroll";
 
 const BookPage = () => {
   const { currentBookId, currentPage } = useBookContext();
 
-  // const { pageRef } = useBookPageScroll([currentBook, currentPage]);
+  const { pageRef } = useBookPageScroll();
   const {
     data: pageContent,
     isLoading,
@@ -42,7 +43,7 @@ const BookPage = () => {
   const pageNum = toFaDigits(+currentPage);
   return (
     <section
-      // ref={pageRef}
+      ref={pageRef}
       // key={currentPage}
       id={`page${currentPage}`}
       className="page relative"
