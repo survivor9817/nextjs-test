@@ -3,6 +3,7 @@ import StartQuizBtn from "./start-quiz-btn";
 import { QuizFiltersType, QuizFilterOption } from "../use-filters";
 import { useQuizFiltersProgressiveDisclosure } from "./use-quiz-filters-progressive-disclosure";
 import FilterSelect from "./filter-select";
+import { useProgressiveDisclosure } from "./use-progressive-disclosure";
 
 type Props = {
   quizFilters: QuizFiltersType;
@@ -15,20 +16,38 @@ type Props = {
 };
 
 const FilterView = ({ quizFilters, onChangeFilterSelect, startQuizLoading, startQuiz }: Props) => {
-  const { quizFilterBoxRef, quizFilterBoxHeight, showLevel, showSource, showBtn } =
-    useQuizFiltersProgressiveDisclosure(quizFilters);
+  // const { quizFilterBoxRef: containerRef, quizFilterBoxHeight: height, showLevel, showSource, showBtn } =
+  //   useQuizFiltersProgressiveDisclosure(quizFilters);
+
+  const {
+    containerRef,
+    height,
+    isStepVisible,
+    visibility: [showWhere, showLevel, showSource, showBtn],
+  } = useProgressiveDisclosure({
+    // ترتیب وابستگی فیلترها از بالا به پایین:
+    conditions: [
+      quizFilters.where?.value, // مرحله 0: همیشه هست، پر شد -> مرحله 1 باز می‌شود
+      quizFilters.level?.value, // مرحله 1: پر شد -> مرحله 2 باز می‌شود
+      quizFilters.source?.value, // مرحله 2: پر شد -> دکمه ثبت باز می‌شود
+      true, // مرحله 3: دکمه اقدام نهایی
+    ],
+    initialHeight: 110,
+    extraHeight: 24,
+    resetKey: quizFilters.book?.value, // هنگام تغییر کتاب، کانتینر بسته یا ریست شود
+  });
 
   return (
     <form
       onSubmit={(e) => e.preventDefault()}
-      style={{ height: quizFilterBoxHeight }}
+      style={{ height: height }}
       className="relative flex flex-col gap-8 border-2 border-gray-300 rounded-4xl w-full max-w-115 mt-18 max-h-80 mx-2
                  transition-[height] ease-in-out duration-300" // min-h-90
     >
       <div className="absolute -top-5 right-8 text-2xl bg-white px-2">تمرین جدید</div>
 
       <div
-        ref={quizFilterBoxRef}
+        ref={containerRef}
         className={cn(
           "flex flex-col gap-7 overflow-hidden w-full h-full px-6 pb-8",
           showLevel ? "pt-10" : "pt-8",
