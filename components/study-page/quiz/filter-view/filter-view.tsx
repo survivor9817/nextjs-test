@@ -38,7 +38,7 @@ const FilterView = ({ quizFilters, onChangeFilterSelect, startQuizLoading, start
         agar khalie va componentesh load nashode, loadesh kone */}
         <FilterSelect
           filterId="where"
-          label="از کجای کتاب می‌خوای؟"
+          label="از کجای کتاب باشه؟"
           quizFilters={quizFilters}
           onChange={onChangeFilterSelect}
           loadingMessage="در حال بارگذاری بخش‌های کتاب..."

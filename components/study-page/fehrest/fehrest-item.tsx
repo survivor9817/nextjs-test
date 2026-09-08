@@ -38,7 +38,9 @@ const FehrestItem = ({ section, currentSectionPage, onClick, isActive }: Props) 
               <FehrestItem
                 key={subSection.title}
                 section={subSection}
-                isActive={currentSectionPage !== null && checkActive(currentSectionPage, section)}
+                isActive={
+                  currentSectionPage !== null && checkActive(currentSectionPage, subSection)
+                }
                 onClick={() => onClick(subSection)}
                 currentSectionPage={currentSectionPage}
               />

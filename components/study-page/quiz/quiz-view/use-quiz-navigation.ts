@@ -1,5 +1,5 @@
 // useQuestionNavigation.ts
-import { isInRange } from "@/lib/isInRange";
+import { isInRange } from "@/components/study-page/book/isInRange";
 import { useState } from "react";
 
 export const useQuestionNavigation = (minIndex: number, maxIndex: number, initialIndex: number) => {

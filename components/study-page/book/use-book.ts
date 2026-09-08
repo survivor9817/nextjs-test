@@ -1,218 +1,61 @@
-import { useMemo, useRef, useState } from "react";
-import { useTimeoutFn } from "../../../hooks/use-timeout-fn";
-import { toEnDigits } from "@/lib/toEnDigits";
-import { toFaDigits } from "@/lib/toFaDigits";
-import { parseAsInteger, parseAsString, useQueryState } from "nuqs";
-import { useQuery } from "@tanstack/react-query";
-import { fetchBook } from "@/services/client/fetchBook";
-import { BookOption } from "@/data/booksData";
-import { isInRange } from "@/lib/isInRange";
-// import { Book } from "@/data/booksData";
-// import { useLocalStorage } from "./useLocalStorage";
+import { useBookState } from "./use-book-state";
+import { usePageInput } from "./use-page-input";
+import { usePageState } from "./use-page-state";
 
-export const useBook = (
-  defaultBookId: string = "706",
-  defaultPage: number = 1,
-  lastPage: number = 2,
-) => {
-  const [currentBookId, setCurrentBookId] = useQueryState(
-    "book",
-    parseAsString.withDefault(defaultBookId),
+export const useBook = (defaultBookId = "706", defaultPage = 1) => {
+  const {
+    currentBookId,
+    setCurrentBookId,
+    currentBookInfo,
+    currentBookSelectOption,
+    currentBookLastPage,
+    isBookInfoLoading,
+  } = useBookState(defaultBookId);
+
+  const { currentPage, setCurrentPage, goToPage, goToPrevPage, goToNextPage } = usePageState(
+    currentBookLastPage,
+    defaultPage,
   );
+
+  const {
+    pageInput,
+    pageInputError,
+    handlers: { onInputChange, onInputKeyDown, onFocus, onBlur, onSliderChange },
+  } = usePageInput({
+    currentPage,
+    lastPage: currentBookLastPage,
+    onPageConfirm: goToPage,
+  });
 
   const changeBook = (newBookId: string) => {
     setCurrentBookId(newBookId);
-    setCurrentPage(1);
+    setCurrentPage(1); // or last page read of new book.
   };
 
-  const [currentPage, setCurrentPage] = useQueryState(
-    "page",
-    parseAsInteger.withDefault(defaultPage),
-  );
-
-  const { data: currentBookInfo } = useQuery({
-    queryKey: ["bookInfo", currentBookId],
-    queryFn: () => fetchBook(currentBookId),
-  });
-
-  // const currentBookSelectOption: BookOption | null = currentBookInfo
-  //   ? { value: currentBookInfo.value, label: currentBookInfo.label }
-  //   : null;
-
-  const currentBookSelectOption: BookOption | null = useMemo(() => {
-    if (!currentBookInfo) return null;
-    return {
-      value: currentBookInfo.value,
-      label: currentBookInfo.label,
-    };
-  }, [currentBookInfo]);
-
-  const [pageInput, setPageInput] = useState<string>(toFaDigits(currentPage));
-  const [pageInputError, setPageInputError] = useState(false);
-
-  const { set: autoHideError } = useTimeoutFn(() => {
-    setPageInputError(false);
-  }, 300);
-
-  const showInputError = () => {
-    setPageInputError(true);
-    autoHideError();
-  };
-
-  const setPageInputValue = (page: number) => {
-    setPageInput(toFaDigits(page));
-  };
-
-  const isPageInRange = (page: number, min: number, max: number) => {
-    return isInRange(page, min, max);
-  };
-
-  const currentBookLastPage = currentBookInfo?.lastPage || 2;
-
-  const parseValidPage = (page: string | number): number | null => {
-    const min = 1;
-    const max = currentBookLastPage;
-    if (typeof page === "number") {
-      return isPageInRange(page, min, max) ? page : null;
-    }
-
-    const num = Number(toEnDigits(page));
-    return isPageInRange(num, min, max) ? num : null;
-  };
-
-  const goToPage = (page: string | number) => {
-    const p = parseValidPage(page);
-    if (p != null) {
-      setPageInputValue(p);
-      setCurrentPage(p);
-    }
-  };
-
-  const goToPrevPage = () => {
-    goToPage(currentPage - 1);
-  };
-
-  const goToNextPage = () => {
-    goToPage(currentPage + 1);
-  };
-
-  // const onSliderChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-  //   const newPage = Number(e.target.value);
-  //   goToPage(newPage);
-  // };
-
-  const onSliderChange = (value: number | readonly number[]) => {
-    const newPage = Array.isArray(value) ? value[0] : value;
-    goToPage(newPage);
-  };
-
-  const onInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    const input = e.target.value.trim();
-
-    if (input === "") {
-      setPageInput("");
-      return;
-    }
-
-    const newPage = parseValidPage(input);
-    if (newPage === null) {
-      showInputError();
-      return;
-    }
-    setPageInputValue(newPage);
-  };
-
-  const onInputKeyDown = (e: React.KeyboardEvent<HTMLInputElement>) => {
-    if (e.key !== "Enter") return;
-
-    const newPage = parseValidPage(pageInput);
-    if (newPage === null) {
-      showInputError();
-      return;
-    }
-
-    setPageInputValue(newPage);
-    setCurrentPage(newPage);
-  };
-
-  const onFocusPageNumber = useRef(currentPage);
-
-  const onFocus = (e: React.FocusEvent<HTMLInputElement>) => {
-    onFocusPageNumber.current = currentPage;
-    e.target.select();
-  };
-
-  const onBlur = () => {
-    if (pageInput === "") {
-      const pageBeforeFocus = onFocusPageNumber.current;
-      setPageInputValue(pageBeforeFocus);
-      setCurrentPage(pageBeforeFocus); // maybe extra
-      return;
-    }
-
-    const newPage = parseValidPage(pageInput);
-    if (newPage === null) {
-      setPageInputValue(currentPage);
-      return;
-    }
-
-    setPageInputValue(newPage);
-    setCurrentPage(newPage);
-  };
   return {
+    // Book
     currentBookId,
     setCurrentBookId,
     changeBook,
     currentBookInfo,
     currentBookLastPage,
     currentBookSelectOption,
+    isBookInfoLoading,
 
+    // Page
     currentPage,
-    pageInput,
-    pageInputError,
-
+    setCurrentPage,
     goToPage,
     goToPrevPage,
     goToNextPage,
 
-    onSliderChange,
+    // Page Input & Slider
+    pageInput,
+    pageInputError,
     onInputChange,
+    onInputKeyDown,
     onFocus,
     onBlur,
-    onInputKeyDown,
+    onSliderChange,
   };
-
-  // #1
-  // useEffect(() => {
-  //   setPageInputValue(currentPage);
-  // }, [currentPage]);
-
-  // #2
-  // const [prevPage, setPrevPage] = useState(currentPage);
-  // if (currentPage !== prevPage) {
-  //   setPrevPage(currentPage);
-  //   setPageInput(toFaDigits(currentPage));
-  // }
-
-  //   return {
-  //   book: {
-  //     currentBook,
-  //     setCurrentBook,
-  //   },
-  //   page: {
-  //     current: currentPage,
-  //     goToPage,
-  //     goToPrevPage,
-  //     goToNextPage,
-  //   },
-  //   pageInput: {
-  //     value: pageInput,
-  //     error: pageInputError,
-  //     onSliderChange,
-  //     onInputChange,
-  //     onFocus,
-  //     onBlur,
-  //     onInputKeyDown,
-  //   },
-  // };
 };
