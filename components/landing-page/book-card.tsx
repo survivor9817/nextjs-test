@@ -7,6 +7,7 @@ import {
   CardHeader,
   CardTitle,
 } from "@/components/ui/card";
+import Image from "next/image";
 
 type BookInfo = {
   title: string;
@@ -18,7 +19,14 @@ const BookCard = ({ coverImage, isAvailable, title }: BookInfo) => {
   return (
     <Card className="py-0 gap-0 transition-transform hover:scale-105 active:scale-95">
       <CardContent className="p-0">
-        <img src={coverImage} alt={title} />
+        <Image
+          src={coverImage}
+          alt={title}
+          width={200}
+          height={300}
+          className="w-full h-auto"
+          priority={false}
+        />
       </CardContent>
 
       <CardFooter className="justify-center p-0">

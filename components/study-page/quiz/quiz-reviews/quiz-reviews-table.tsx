@@ -22,7 +22,7 @@ const QuizReviewsTable = ({ reviewQuiz, startQuizLoading }: Props) => {
   const tRowCls =
     "border-t border-gray-300 bg-gray-50 align-middle py-2 px-1 text-center text-base font-semibold text-gray-600";
 
-  const { quizSessions, isLoading, error, loadQuizSessions } = useQuizSessionsData();
+  const { quizSessions, isLoading, isFetching, error, loadQuizSessions } = useQuizSessionsData();
 
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [selectedQuizId, setSelectedQuizId] = useState<string | null>(null);
@@ -37,7 +37,7 @@ const QuizReviewsTable = ({ reviewQuiz, startQuizLoading }: Props) => {
     setSelectedQuizId(null);
   };
 
-  if (isLoading) {
+  if (isLoading || isFetching) {
     return (
       <div className="w-full mt-2 overflow-hidden rounded-xl border border-gray-300">
         <p className="flex justify-center p-4">در حال بارگذاری ...</p>

@@ -7,12 +7,12 @@ import { useQuery } from "@tanstack/react-query";
 import { fetchBookPage } from "@/services/client/fetchBookPage";
 import ErrorFallback from "@/components/error-fallback";
 import { ResponsiveDialog } from "@/components/ui/responsive-dialog";
-import { useBookPageScroll } from "./useBookPageScroll";
+import { useBookPageScroll } from "./use-book-page-scroll";
 
 const BookPage = () => {
   const { currentBookId, currentPage } = useBookContext();
 
-  const { pageRef } = useBookPageScroll();
+  // const { pageRef } = useBookPageScroll();
   const {
     data: pageContent,
     isLoading,
@@ -43,18 +43,16 @@ const BookPage = () => {
   const pageNum = toFaDigits(+currentPage);
   return (
     <section
-      ref={pageRef}
+      // ref={pageRef}
       // key={currentPage}
       id={`page${currentPage}`}
       className="page relative"
     >
-      <div className="absolute top-0 left-0 bg-pink-400 m-1 p-2 rounded">{`${pageNum}`}</div>
       <div className="p-2 pt-8">
         {/* <div className={"w-80"}>
           <Slider min={1} max={100} />
         </div> */}
-        <p>safhe {currentPage}</p>
-        <p>safhe {pageNum}</p>
+
         <p>{pageContent}</p>
         <p>{pageContent}</p>
         <ResponsiveDialog

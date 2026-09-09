@@ -1,5 +1,4 @@
 "use client";
-
 import { useEffect, useState } from "react";
 import {
   Carousel,
@@ -46,9 +45,9 @@ const BookShelf = ({ books }: Props) => {
         ))}
       </CarouselContent>
 
-      <div className="flex justify-end gap-4 mt-4">
-        <CarouselPrevious className="static translate-y-0" />
-        <CarouselNext className="static translate-y-0" />
+      <div className="flex justify-end gap-1 mt-4">
+        <CarouselPrevious className="static translate-y-0 size-12 text-5xl border-none" />
+        <CarouselNext className="static translate-y-0 size-12 text-5xl border-none" />
       </div>
     </Carousel>
   );

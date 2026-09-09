@@ -53,8 +53,7 @@ export const BOOKS: Book[] = [
     label: "آموزش قرآن",
     gradeId: 7,
     fieldId: null,
-    coverImage:
-      "http://www.chap.sch.ir/sites/default/files/styles/image_node_book/public/book_image/1404-1405/C701.jpg",
+    coverImage: "/imgs/book-covers/C701.jpg",
     isAvailable: false,
     lastPage: 100,
     publishedYear: 1404,
@@ -67,8 +66,7 @@ export const BOOKS: Book[] = [
     label: "پیام های آسمان",
     gradeId: 7,
     fieldId: null,
-    coverImage:
-      "http://www.chap.sch.ir/sites/default/files/styles/image_node_book/public/book_image/1404-1405/C702.jpg",
+    coverImage: "/imgs/book-covers/C702.jpg",
     isAvailable: false,
     lastPage: 100,
     publishedYear: 1404,
@@ -81,8 +79,7 @@ export const BOOKS: Book[] = [
     label: "فارسی",
     gradeId: 7,
     fieldId: null,
-    coverImage:
-      "http://www.chap.sch.ir/sites/default/files/styles/image_node_book/public/book_image/1404-1405/C703.jpg",
+    coverImage: "/imgs/book-covers/C703.jpg",
     isAvailable: false,
     lastPage: 100,
     publishedYear: 1404,
@@ -95,8 +92,7 @@ export const BOOKS: Book[] = [
     label: "نگارش",
     gradeId: 7,
     fieldId: null,
-    coverImage:
-      "http://www.chap.sch.ir/sites/default/files/styles/image_node_book/public/book_image/1404-1405/C704.jpg",
+    coverImage: "/imgs/book-covers/C704.jpg",
     isAvailable: false,
     lastPage: 100,
     publishedYear: 1404,
@@ -109,8 +105,7 @@ export const BOOKS: Book[] = [
     label: "ریاضی",
     gradeId: 7,
     fieldId: null,
-    coverImage:
-      "http://www.chap.sch.ir/sites/default/files/styles/image_node_book/public/book_image/1404-1405/C705.jpg",
+    coverImage: "/imgs/book-covers/C705.jpg",
     isAvailable: false,
     lastPage: 100,
     publishedYear: 1404,
@@ -123,8 +118,7 @@ export const BOOKS: Book[] = [
     label: "علوم تجربی ۷",
     gradeId: 7,
     fieldId: null,
-    coverImage:
-      "http://www.chap.sch.ir/sites/default/files/styles/image_node_book/public/book_image/1404-1405/C706.jpg",
+    coverImage: "/imgs/book-covers/C706.jpg",
     isAvailable: true,
     lastPage: 138,
     publishedYear: 1404,
@@ -137,8 +131,7 @@ export const BOOKS: Book[] = [
     label: "مطالعات اجتماعی",
     gradeId: 7,
     fieldId: null,
-    coverImage:
-      "http://www.chap.sch.ir/sites/default/files/styles/image_node_book/public/book_image/1404-1405/C707.jpg",
+    coverImage: "/imgs/book-covers/C707.jpg",
     isAvailable: false,
     lastPage: 100,
     publishedYear: 1404,
@@ -151,8 +144,7 @@ export const BOOKS: Book[] = [
     label: "فرهنگ و هنر",
     gradeId: 7,
     fieldId: null,
-    coverImage:
-      "http://www.chap.sch.ir/sites/default/files/styles/image_node_book/public/book_image/1404-1405/C708.jpg",
+    coverImage: "/imgs/book-covers/C708.jpg",
     isAvailable: false,
     lastPage: 100,
     publishedYear: 1404,
@@ -165,8 +157,7 @@ export const BOOKS: Book[] = [
     label: "عربی",
     gradeId: 7,
     fieldId: null,
-    coverImage:
-      "http://www.chap.sch.ir/sites/default/files/styles/image_node_book/public/book_image/1404-1405/C709.jpg",
+    coverImage: "/imgs/book-covers/C709.jpg",
     isAvailable: false,
     lastPage: 100,
     publishedYear: 1404,
@@ -179,8 +170,7 @@ export const BOOKS: Book[] = [
     label: "انگلیسی ۱",
     gradeId: 7,
     fieldId: null,
-    coverImage:
-      "http://www.chap.sch.ir/sites/default/files/styles/image_node_book/public/book_image/1404-1405/C710.jpg",
+    coverImage: "/imgs/book-covers/C710.jpg",
     isAvailable: false,
     lastPage: 100,
     publishedYear: 1404,
@@ -193,8 +183,7 @@ export const BOOKS: Book[] = [
     label: "کتاب کار انگلیسی ۱",
     gradeId: 7,
     fieldId: null,
-    coverImage:
-      "http://www.chap.sch.ir/sites/default/files/styles/image_node_book/public/book_image/1404-1405/C711.jpg",
+    coverImage: "/imgs/book-covers/C711.jpg",
     isAvailable: false,
     lastPage: 100,
     publishedYear: 1404,
@@ -207,8 +196,7 @@ export const BOOKS: Book[] = [
     label: "تفکر و سبک زندگی (پسران)",
     gradeId: 7,
     fieldId: null,
-    coverImage:
-      "http://www.chap.sch.ir/sites/default/files/styles/image_node_book/public/book_image/1404-1405/C712.jpg",
+    coverImage: "/imgs/book-covers/C712.jpg",
     isAvailable: false,
     lastPage: 100,
     publishedYear: 1404,
@@ -221,8 +209,7 @@ export const BOOKS: Book[] = [
     label: "تفکر و سبک زندگی (دختران)",
     gradeId: 7,
     fieldId: null,
-    coverImage:
-      "http://www.chap.sch.ir/sites/default/files/styles/image_node_book/public/book_image/1404-1405/C713.jpg",
+    coverImage: "/imgs/book-covers/C713.jpg",
     isAvailable: false,
     lastPage: 100,
     publishedYear: 1404,
@@ -235,8 +222,7 @@ export const BOOKS: Book[] = [
     label: "کار و فناوری",
     gradeId: 7,
     fieldId: null,
-    coverImage:
-      "http://www.chap.sch.ir/sites/default/files/styles/image_node_book/public/book_image/1404-1405/C717.jpg",
+    coverImage: "/imgs/book-covers/C717.jpg",
     isAvailable: false,
     lastPage: 100,
     publishedYear: 1404,
@@ -249,8 +235,7 @@ export const BOOKS: Book[] = [
     label: "کار و فناوری (اجرای آزمایشی)",
     gradeId: 7,
     fieldId: null,
-    coverImage:
-      "http://www.chap.sch.ir/sites/default/files/styles/image_node_book/public/book_image/1404-1405/C7171.jpg",
+    coverImage: "/imgs/book-covers/C7171.jpg",
     isAvailable: false,
     lastPage: 100,
     publishedYear: 1404,
@@ -263,8 +248,7 @@ export const BOOKS: Book[] = [
     label: "ضمیمه پیام های آسمان (اهل سنت)",
     gradeId: 7,
     fieldId: null,
-    coverImage:
-      "http://www.chap.sch.ir/sites/default/files/styles/image_node_book/public/book_image/1404-1405/C719.jpg",
+    coverImage: "/imgs/book-covers/C719.jpg",
     isAvailable: false,
     lastPage: 100,
     publishedYear: 1404,
@@ -277,8 +261,7 @@ export const BOOKS: Book[] = [
     label: "تعلیمات ادیان الهی و اخلاق (اقلیت ها)",
     gradeId: 7,
     fieldId: null,
-    coverImage:
-      "http://www.chap.sch.ir/sites/default/files/styles/image_node_book/public/book_image/1404-1405/C720.jpg",
+    coverImage: "/imgs/book-covers/C720.jpg",
     isAvailable: false,
     lastPage: 100,
     publishedYear: 1404,
@@ -291,8 +274,7 @@ export const BOOKS: Book[] = [
     label: "فارسی و نگارش (استعدادهای درخشان)",
     gradeId: 7,
     fieldId: null,
-    coverImage:
-      "http://www.chap.sch.ir/sites/default/files/styles/image_node_book/public/book_image/1404-1405/C722.jpg",
+    coverImage: "/imgs/book-covers/C722.jpg",
     isAvailable: false,
     lastPage: 100,
     publishedYear: 1404,
@@ -305,8 +287,7 @@ export const BOOKS: Book[] = [
     label: "ریاضیات (استعدادهای درخشان)",
     gradeId: 7,
     fieldId: null,
-    coverImage:
-      "http://www.chap.sch.ir/sites/default/files/styles/image_node_book/public/book_image/1404-1405/C723.jpg",
+    coverImage: "/imgs/book-covers/C723.jpg",
     isAvailable: false,
     lastPage: 100,
     publishedYear: 1404,
@@ -319,8 +300,7 @@ export const BOOKS: Book[] = [
     label: "علوم تجربی (استعدادهای درخشان)",
     gradeId: 7,
     fieldId: null,
-    coverImage:
-      "http://www.chap.sch.ir/sites/default/files/styles/image_node_book/public/book_image/1404-1405/C724.jpg",
+    coverImage: "/imgs/book-covers/C724.jpg",
     isAvailable: false,
     lastPage: 100,
     publishedYear: 1404,
@@ -333,8 +313,7 @@ export const BOOKS: Book[] = [
     label: "تربیت دینی (از من تا خدا)",
     gradeId: 7,
     fieldId: null,
-    coverImage:
-      "http://www.chap.sch.ir/sites/default/files/styles/image_node_book/public/book_image/1404-1405/C741.jpg",
+    coverImage: "/imgs/book-covers/C741.jpg",
     isAvailable: false,
     lastPage: 100,
     publishedYear: 1404,
@@ -347,8 +326,7 @@ export const BOOKS: Book[] = [
     label: "تربیت دینی (اهل سنت)",
     gradeId: 7,
     fieldId: null,
-    coverImage:
-      "http://www.chap.sch.ir/sites/default/files/styles/image_node_book/public/book_image/1404-1405/C742.jpg",
+    coverImage: "/imgs/book-covers/C742.jpg",
     isAvailable: false,
     lastPage: 100,
     publishedYear: 1404,
@@ -361,8 +339,7 @@ export const BOOKS: Book[] = [
     label: "از ایرانمان دفاع می کنیم",
     gradeId: 7,
     fieldId: null,
-    coverImage:
-      "http://www.chap.sch.ir/sites/default/files/styles/image_node_book/public/book_image/1404-1405/C765.jpg",
+    coverImage: "/imgs/book-covers/C765.jpg",
     isAvailable: false,
     lastPage: 100,
     publishedYear: 1404,
@@ -377,8 +354,7 @@ export const BOOKS: Book[] = [
     label: "آموزش قرآن",
     gradeId: 8,
     fieldId: null,
-    coverImage:
-      "http://www.chap.sch.ir/sites/default/files/styles/image_node_book/public/book_image/1404-1405/C801.jpg",
+    coverImage: "/imgs/book-covers/C801.jpg",
     isAvailable: false,
     lastPage: 100,
     publishedYear: 1404,
@@ -391,8 +367,7 @@ export const BOOKS: Book[] = [
     label: "پیام های آسمان",
     gradeId: 8,
     fieldId: null,
-    coverImage:
-      "http://www.chap.sch.ir/sites/default/files/styles/image_node_book/public/book_image/1404-1405/C802.jpg",
+    coverImage: "/imgs/book-covers/C802.jpg",
     isAvailable: false,
     lastPage: 100,
     publishedYear: 1404,
@@ -405,8 +380,7 @@ export const BOOKS: Book[] = [
     label: "فارسی",
     gradeId: 8,
     fieldId: null,
-    coverImage:
-      "http://www.chap.sch.ir/sites/default/files/styles/image_node_book/public/book_image/1404-1405/C803.jpg",
+    coverImage: "/imgs/book-covers/C803.jpg",
     isAvailable: false,
     lastPage: 100,
     publishedYear: 1404,
@@ -419,8 +393,7 @@ export const BOOKS: Book[] = [
     label: "نگارش",
     gradeId: 8,
     fieldId: null,
-    coverImage:
-      "http://www.chap.sch.ir/sites/default/files/styles/image_node_book/public/book_image/1404-1405/C804.jpg",
+    coverImage: "/imgs/book-covers/C804.jpg",
     isAvailable: false,
     lastPage: 100,
     publishedYear: 1404,
@@ -433,8 +406,7 @@ export const BOOKS: Book[] = [
     label: "ریاضی",
     gradeId: 8,
     fieldId: null,
-    coverImage:
-      "http://www.chap.sch.ir/sites/default/files/styles/image_node_book/public/book_image/1404-1405/C805.jpg",
+    coverImage: "/imgs/book-covers/C805.jpg",
     isAvailable: false,
     lastPage: 100,
     publishedYear: 1404,
@@ -447,8 +419,7 @@ export const BOOKS: Book[] = [
     label: "علوم تجربی ۸",
     gradeId: 8,
     fieldId: null,
-    coverImage:
-      "http://www.chap.sch.ir/sites/default/files/styles/image_node_book/public/book_image/1404-1405/C806.jpg",
+    coverImage: "/imgs/book-covers/C806.jpg",
     isAvailable: true,
     lastPage: 146,
     publishedYear: 1404,
@@ -461,8 +432,7 @@ export const BOOKS: Book[] = [
     label: "مطالعات اجتماعی",
     gradeId: 8,
     fieldId: null,
-    coverImage:
-      "http://www.chap.sch.ir/sites/default/files/styles/image_node_book/public/book_image/1404-1405/C807.jpg",
+    coverImage: "/imgs/book-covers/C807.jpg",
     isAvailable: false,
     lastPage: 100,
     publishedYear: 1404,
@@ -475,8 +445,7 @@ export const BOOKS: Book[] = [
     label: "فرهنگ و هنر",
     gradeId: 8,
     fieldId: null,
-    coverImage:
-      "http://www.chap.sch.ir/sites/default/files/styles/image_node_book/public/book_image/1404-1405/C808.jpg",
+    coverImage: "/imgs/book-covers/C808.jpg",
     isAvailable: false,
     lastPage: 100,
     publishedYear: 1404,
@@ -489,8 +458,7 @@ export const BOOKS: Book[] = [
     label: "عربی",
     gradeId: 8,
     fieldId: null,
-    coverImage:
-      "http://www.chap.sch.ir/sites/default/files/styles/image_node_book/public/book_image/1404-1405/C809.jpg",
+    coverImage: "/imgs/book-covers/C809.jpg",
     isAvailable: false,
     lastPage: 100,
     publishedYear: 1404,
@@ -503,8 +471,7 @@ export const BOOKS: Book[] = [
     label: "انگلیسی ۲",
     gradeId: 8,
     fieldId: null,
-    coverImage:
-      "http://www.chap.sch.ir/sites/default/files/styles/image_node_book/public/book_image/1404-1405/C810.jpg",
+    coverImage: "/imgs/book-covers/C810.jpg",
     isAvailable: false,
     lastPage: 100,
     publishedYear: 1404,
@@ -517,8 +484,7 @@ export const BOOKS: Book[] = [
     label: "کتاب کار انگلیسی ۲",
     gradeId: 8,
     fieldId: null,
-    coverImage:
-      "http://www.chap.sch.ir/sites/default/files/styles/image_node_book/public/book_image/1404-1405/C811.jpg",
+    coverImage: "/imgs/book-covers/C811.jpg",
     isAvailable: false,
     lastPage: 100,
     publishedYear: 1404,
@@ -531,8 +497,7 @@ export const BOOKS: Book[] = [
     label: "تفکر و سبک زندگی",
     gradeId: 8,
     fieldId: null,
-    coverImage:
-      "http://www.chap.sch.ir/sites/default/files/styles/image_node_book/public/book_image/1404-1405/C812.jpg",
+    coverImage: "/imgs/book-covers/C812.jpg",
     isAvailable: false,
     lastPage: 100,
     publishedYear: 1404,
@@ -545,8 +510,7 @@ export const BOOKS: Book[] = [
     label: "تفکر و سبک زندگی (پسران)",
     gradeId: 8,
     fieldId: null,
-    coverImage:
-      "http://www.chap.sch.ir/sites/default/files/styles/image_node_book/public/book_image/1404-1405/C814.jpg",
+    coverImage: "/imgs/book-covers/C814.jpg",
     isAvailable: false,
     lastPage: 100,
     publishedYear: 1404,
@@ -559,8 +523,7 @@ export const BOOKS: Book[] = [
     label: "کار و فناوری",
     gradeId: 8,
     fieldId: null,
-    coverImage:
-      "http://www.chap.sch.ir/sites/default/files/styles/image_node_book/public/book_image/1404-1405/C817.jpg",
+    coverImage: "/imgs/book-covers/C817.jpg",
     isAvailable: false,
     lastPage: 100,
     publishedYear: 1404,
@@ -573,8 +536,7 @@ export const BOOKS: Book[] = [
     label: "کار و فناوری (اجرای آزمایشی)",
     gradeId: 8,
     fieldId: null,
-    coverImage:
-      "http://www.chap.sch.ir/sites/default/files/styles/image_node_book/public/book_image/1404-1405/C8171.jpg",
+    coverImage: "/imgs/book-covers/C8171.jpg",
     isAvailable: false,
     lastPage: 100,
     publishedYear: 1404,
@@ -587,8 +549,7 @@ export const BOOKS: Book[] = [
     label: "ضمیمه پیام های آسمان (اهل سنت)",
     gradeId: 8,
     fieldId: null,
-    coverImage:
-      "http://www.chap.sch.ir/sites/default/files/styles/image_node_book/public/book_image/1404-1405/C819.jpg",
+    coverImage: "/imgs/book-covers/C819.jpg",
     isAvailable: false,
     lastPage: 100,
     publishedYear: 1404,
@@ -601,8 +562,7 @@ export const BOOKS: Book[] = [
     label: "تعلیمات ادیان الهی و اخلاق (اقلیت ها)",
     gradeId: 8,
     fieldId: null,
-    coverImage:
-      "http://www.chap.sch.ir/sites/default/files/styles/image_node_book/public/book_image/1404-1405/C820.jpg",
+    coverImage: "/imgs/book-covers/C820.jpg",
     isAvailable: false,
     lastPage: 100,
     publishedYear: 1404,
@@ -615,8 +575,7 @@ export const BOOKS: Book[] = [
     label: "فارسی و نگارش (استعدادهای درخشان)",
     gradeId: 8,
     fieldId: null,
-    coverImage:
-      "http://www.chap.sch.ir/sites/default/files/styles/image_node_book/public/book_image/1404-1405/C822.jpg",
+    coverImage: "/imgs/book-covers/C822.jpg",
     isAvailable: false,
     lastPage: 100,
     publishedYear: 1404,
@@ -629,8 +588,7 @@ export const BOOKS: Book[] = [
     label: "ریاضیات (استعدادهای درخشان)",
     gradeId: 8,
     fieldId: null,
-    coverImage:
-      "http://www.chap.sch.ir/sites/default/files/styles/image_node_book/public/book_image/1404-1405/C823.jpg",
+    coverImage: "/imgs/book-covers/C823.jpg",
     isAvailable: false,
     lastPage: 100,
     publishedYear: 1404,
@@ -643,8 +601,7 @@ export const BOOKS: Book[] = [
     label: "علوم تجربی (استعدادهای درخشان)",
     gradeId: 8,
     fieldId: null,
-    coverImage:
-      "http://www.chap.sch.ir/sites/default/files/styles/image_node_book/public/book_image/1404-1405/C824.jpg",
+    coverImage: "/imgs/book-covers/C824.jpg",
     isAvailable: false,
     lastPage: 100,
     publishedYear: 1404,
@@ -657,8 +614,7 @@ export const BOOKS: Book[] = [
     label: "تربیت دینی (از من تا خدا)",
     gradeId: 8,
     fieldId: null,
-    coverImage:
-      "http://www.chap.sch.ir/sites/default/files/styles/image_node_book/public/book_image/1404-1405/C841.jpg",
+    coverImage: "/imgs/book-covers/C841.jpg",
     isAvailable: false,
     lastPage: 100,
     publishedYear: 1404,
@@ -671,8 +627,7 @@ export const BOOKS: Book[] = [
     label: "تربیت دینی (اهل سنت)",
     gradeId: 8,
     fieldId: null,
-    coverImage:
-      "http://www.chap.sch.ir/sites/default/files/styles/image_node_book/public/book_image/1404-1405/C842.jpg",
+    coverImage: "/imgs/book-covers/C842.jpg",
     isAvailable: false,
     lastPage: 100,
     publishedYear: 1404,
@@ -687,8 +642,7 @@ export const BOOKS: Book[] = [
     label: "آموزش قرآن",
     gradeId: 9,
     fieldId: null,
-    coverImage:
-      "http://www.chap.sch.ir/sites/default/files/styles/image_node_book/public/book_image/1404-1405/C901.jpg",
+    coverImage: "/imgs/book-covers/C901.jpg",
     isAvailable: false,
     lastPage: 100,
     publishedYear: 1404,
@@ -701,8 +655,7 @@ export const BOOKS: Book[] = [
     label: "پیام های آسمان",
     gradeId: 9,
     fieldId: null,
-    coverImage:
-      "http://www.chap.sch.ir/sites/default/files/styles/image_node_book/public/book_image/1404-1405/C902.jpg",
+    coverImage: "/imgs/book-covers/C902.jpg",
     isAvailable: false,
     lastPage: 100,
     publishedYear: 1404,
@@ -715,8 +668,7 @@ export const BOOKS: Book[] = [
     label: "فارسی",
     gradeId: 9,
     fieldId: null,
-    coverImage:
-      "http://www.chap.sch.ir/sites/default/files/styles/image_node_book/public/book_image/1404-1405/C903.jpg",
+    coverImage: "/imgs/book-covers/C903.jpg",
     isAvailable: false,
     lastPage: 100,
     publishedYear: 1404,
@@ -729,8 +681,7 @@ export const BOOKS: Book[] = [
     label: "نگارش",
     gradeId: 9,
     fieldId: null,
-    coverImage:
-      "http://www.chap.sch.ir/sites/default/files/styles/image_node_book/public/book_image/1404-1405/C904.jpg",
+    coverImage: "/imgs/book-covers/C904.jpg",
     isAvailable: false,
     lastPage: 100,
     publishedYear: 1404,
@@ -743,8 +694,7 @@ export const BOOKS: Book[] = [
     label: "ریاضی",
     gradeId: 9,
     fieldId: null,
-    coverImage:
-      "http://www.chap.sch.ir/sites/default/files/styles/image_node_book/public/book_image/1404-1405/C905.jpg",
+    coverImage: "/imgs/book-covers/C905.jpg",
     isAvailable: false,
     lastPage: 100,
     publishedYear: 1404,
@@ -757,8 +707,7 @@ export const BOOKS: Book[] = [
     label: "علوم تجربی ۹",
     gradeId: 9,
     fieldId: null,
-    coverImage:
-      "http://www.chap.sch.ir/sites/default/files/styles/image_node_book/public/book_image/1404-1405/C906.jpg",
+    coverImage: "/imgs/book-covers/C906.jpg",
     isAvailable: true,
     lastPage: 176,
     publishedYear: 1404,
@@ -771,8 +720,7 @@ export const BOOKS: Book[] = [
     label: "مطالعات اجتماعی",
     gradeId: 9,
     fieldId: null,
-    coverImage:
-      "http://www.chap.sch.ir/sites/default/files/styles/image_node_book/public/book_image/1404-1405/C907.jpg",
+    coverImage: "/imgs/book-covers/C907.jpg",
     isAvailable: false,
     lastPage: 100,
     publishedYear: 1404,
@@ -785,8 +733,7 @@ export const BOOKS: Book[] = [
     label: "فرهنگ و هنر",
     gradeId: 9,
     fieldId: null,
-    coverImage:
-      "http://www.chap.sch.ir/sites/default/files/styles/image_node_book/public/book_image/1404-1405/C908.jpg",
+    coverImage: "/imgs/book-covers/C908.jpg",
     isAvailable: false,
     lastPage: 100,
     publishedYear: 1404,
@@ -799,8 +746,7 @@ export const BOOKS: Book[] = [
     label: "عربی",
     gradeId: 9,
     fieldId: null,
-    coverImage:
-      "http://www.chap.sch.ir/sites/default/files/styles/image_node_book/public/book_image/1404-1405/C909.jpg",
+    coverImage: "/imgs/book-covers/C909.jpg",
     isAvailable: false,
     lastPage: 100,
     publishedYear: 1404,
@@ -813,8 +759,7 @@ export const BOOKS: Book[] = [
     label: "انگلیسی ۳",
     gradeId: 9,
     fieldId: null,
-    coverImage:
-      "http://www.chap.sch.ir/sites/default/files/styles/image_node_book/public/book_image/1404-1405/C910.jpg",
+    coverImage: "/imgs/book-covers/C910.jpg",
     isAvailable: false,
     lastPage: 100,
     publishedYear: 1404,
@@ -827,8 +772,7 @@ export const BOOKS: Book[] = [
     label: "کتاب کار انگلیسی ۳",
     gradeId: 9,
     fieldId: null,
-    coverImage:
-      "http://www.chap.sch.ir/sites/default/files/styles/image_node_book/public/book_image/1404-1405/C911.jpg",
+    coverImage: "/imgs/book-covers/C911.jpg",
     isAvailable: false,
     lastPage: 100,
     publishedYear: 1404,
@@ -841,8 +785,7 @@ export const BOOKS: Book[] = [
     label: "آمادگی دفاعی",
     gradeId: 9,
     fieldId: null,
-    coverImage:
-      "http://www.chap.sch.ir/sites/default/files/styles/image_node_book/public/book_image/1404-1405/C915.jpg",
+    coverImage: "/imgs/book-covers/C915.jpg",
     isAvailable: false,
     lastPage: 100,
     publishedYear: 1404,
@@ -855,8 +798,7 @@ export const BOOKS: Book[] = [
     label: "کار و فناوری",
     gradeId: 9,
     fieldId: null,
-    coverImage:
-      "http://www.chap.sch.ir/sites/default/files/styles/image_node_book/public/book_image/1404-1405/C917.jpg",
+    coverImage: "/imgs/book-covers/C917.jpg",
     isAvailable: false,
     lastPage: 100,
     publishedYear: 1404,
@@ -869,8 +811,7 @@ export const BOOKS: Book[] = [
     label: "کار و فناوری (اجرای آزمایشی)",
     gradeId: 9,
     fieldId: null,
-    coverImage:
-      "http://www.chap.sch.ir/sites/default/files/styles/image_node_book/public/book_image/1404-1405/C9171.jpg",
+    coverImage: "/imgs/book-covers/C9171.jpg",
     isAvailable: false,
     lastPage: 100,
     publishedYear: 1404,
@@ -883,8 +824,7 @@ export const BOOKS: Book[] = [
     label: "ضمیمه پیام های آسمان (اهل سنت)",
     gradeId: 9,
     fieldId: null,
-    coverImage:
-      "http://www.chap.sch.ir/sites/default/files/styles/image_node_book/public/book_image/1404-1405/C919.jpg",
+    coverImage: "/imgs/book-covers/C919.jpg",
     isAvailable: false,
     lastPage: 100,
     publishedYear: 1404,
@@ -897,8 +837,7 @@ export const BOOKS: Book[] = [
     label: "تعلیمات ادیان الهی و اخلاق (اقلیت ها)",
     gradeId: 9,
     fieldId: null,
-    coverImage:
-      "http://www.chap.sch.ir/sites/default/files/styles/image_node_book/public/book_image/1404-1405/C920.jpg",
+    coverImage: "/imgs/book-covers/C920.jpg",
     isAvailable: false,
     lastPage: 100,
     publishedYear: 1404,
@@ -911,8 +850,7 @@ export const BOOKS: Book[] = [
     label: "فارسی و نگارش (استعدادهای درخشان)",
     gradeId: 9,
     fieldId: null,
-    coverImage:
-      "http://www.chap.sch.ir/sites/default/files/styles/image_node_book/public/book_image/1404-1405/C922.jpg",
+    coverImage: "/imgs/book-covers/C922.jpg",
     isAvailable: false,
     lastPage: 100,
     publishedYear: 1404,
@@ -925,8 +863,7 @@ export const BOOKS: Book[] = [
     label: "ریاضیات (استعدادهای درخشان)",
     gradeId: 9,
     fieldId: null,
-    coverImage:
-      "http://www.chap.sch.ir/sites/default/files/styles/image_node_book/public/book_image/1404-1405/C923.jpg",
+    coverImage: "/imgs/book-covers/C923.jpg",
     isAvailable: false,
     lastPage: 100,
     publishedYear: 1404,
@@ -939,8 +876,7 @@ export const BOOKS: Book[] = [
     label: "علوم تجربی (استعدادهای درخشان)",
     gradeId: 9,
     fieldId: null,
-    coverImage:
-      "http://www.chap.sch.ir/sites/default/files/styles/image_node_book/public/book_image/1404-1405/C924.jpg",
+    coverImage: "/imgs/book-covers/C924.jpg",
     isAvailable: false,
     lastPage: 100,
     publishedYear: 1404,
@@ -956,8 +892,7 @@ export const BOOKS: Book[] = [
     label: "فارسی ۱",
     gradeId: 10,
     fieldId: 1,
-    coverImage:
-      "http://www.chap.sch.ir/sites/default/files/styles/image_node_book/public/book_image/1404-1405/C110201.jpg",
+    coverImage: "/imgs/book-covers/C110201.jpg",
     isAvailable: false,
     lastPage: 100,
     publishedYear: 1404,
@@ -970,8 +905,7 @@ export const BOOKS: Book[] = [
     label: "فارسی ۱",
     gradeId: 10,
     fieldId: 2,
-    coverImage:
-      "http://www.chap.sch.ir/sites/default/files/styles/image_node_book/public/book_image/1404-1405/C110201.jpg",
+    coverImage: "/imgs/book-covers/C110201.jpg",
     isAvailable: false,
     lastPage: 100,
     publishedYear: 1404,
@@ -984,8 +918,7 @@ export const BOOKS: Book[] = [
     label: "فارسی ۱",
     gradeId: 10,
     fieldId: 3,
-    coverImage:
-      "http://www.chap.sch.ir/sites/default/files/styles/image_node_book/public/book_image/1404-1405/C110201.jpg",
+    coverImage: "/imgs/book-covers/C110201.jpg",
     isAvailable: false,
     lastPage: 100,
     publishedYear: 1404,
@@ -998,8 +931,7 @@ export const BOOKS: Book[] = [
     label: "فارسی ۱",
     gradeId: 10,
     fieldId: 4,
-    coverImage:
-      "http://www.chap.sch.ir/sites/default/files/styles/image_node_book/public/book_image/1404-1405/C110201.jpg",
+    coverImage: "/imgs/book-covers/C110201.jpg",
     isAvailable: false,
     lastPage: 100,
     publishedYear: 1404,
@@ -1012,8 +944,7 @@ export const BOOKS: Book[] = [
     label: "نگارش ۱",
     gradeId: 10,
     fieldId: 1,
-    coverImage:
-      "http://www.chap.sch.ir/sites/default/files/styles/image_node_book/public/book_image/1404-1405/C110202.jpg",
+    coverImage: "/imgs/book-covers/C110202.jpg",
     isAvailable: false,
     lastPage: 100,
     publishedYear: 1404,
@@ -1026,8 +957,7 @@ export const BOOKS: Book[] = [
     label: "نگارش ۱",
     gradeId: 10,
     fieldId: 2,
-    coverImage:
-      "http://www.chap.sch.ir/sites/default/files/styles/image_node_book/public/book_image/1404-1405/C110202.jpg",
+    coverImage: "/imgs/book-covers/C110202.jpg",
     isAvailable: false,
     lastPage: 100,
     publishedYear: 1404,
@@ -1040,8 +970,7 @@ export const BOOKS: Book[] = [
     label: "نگارش ۱",
     gradeId: 10,
     fieldId: 3,
-    coverImage:
-      "http://www.chap.sch.ir/sites/default/files/styles/image_node_book/public/book_image/1404-1405/C110202.jpg",
+    coverImage: "/imgs/book-covers/C110202.jpg",
     isAvailable: false,
     lastPage: 100,
     publishedYear: 1404,
@@ -1054,8 +983,7 @@ export const BOOKS: Book[] = [
     label: "نگارش ۱",
     gradeId: 10,
     fieldId: 4,
-    coverImage:
-      "http://www.chap.sch.ir/sites/default/files/styles/image_node_book/public/book_image/1404-1405/C110202.jpg",
+    coverImage: "/imgs/book-covers/C110202.jpg",
     isAvailable: false,
     lastPage: 100,
     publishedYear: 1404,
@@ -1068,8 +996,7 @@ export const BOOKS: Book[] = [
     label: "دین و زندگی ۱",
     gradeId: 10,
     fieldId: 1,
-    coverImage:
-      "http://www.chap.sch.ir/sites/default/files/styles/image_node_book/public/book_image/1404-1405/C110204.jpg",
+    coverImage: "/imgs/book-covers/C110204.jpg",
     isAvailable: false,
     lastPage: 100,
     publishedYear: 1404,
@@ -1082,8 +1009,7 @@ export const BOOKS: Book[] = [
     label: "دین و زندگی ۱",
     gradeId: 10,
     fieldId: 3,
-    coverImage:
-      "http://www.chap.sch.ir/sites/default/files/styles/image_node_book/public/book_image/1404-1405/C110204.jpg",
+    coverImage: "/imgs/book-covers/C110204.jpg",
     isAvailable: false,
     lastPage: 100,
     publishedYear: 1404,
@@ -1096,8 +1022,7 @@ export const BOOKS: Book[] = [
     label: "عربی، زبان قرآن ۱",
     gradeId: 10,
     fieldId: 1,
-    coverImage:
-      "http://www.chap.sch.ir/sites/default/files/styles/image_node_book/public/book_image/1404-1405/C110206.jpg",
+    coverImage: "/imgs/book-covers/C110206.jpg",
     isAvailable: false,
     lastPage: 100,
     publishedYear: 1404,
@@ -1110,8 +1035,7 @@ export const BOOKS: Book[] = [
     label: "عربی، زبان قرآن ۱",
     gradeId: 10,
     fieldId: 3,
-    coverImage:
-      "http://www.chap.sch.ir/sites/default/files/styles/image_node_book/public/book_image/1404-1405/C110206.jpg",
+    coverImage: "/imgs/book-covers/C110206.jpg",
     isAvailable: false,
     lastPage: 100,
     publishedYear: 1404,
@@ -1124,8 +1048,7 @@ export const BOOKS: Book[] = [
     label: "شیمی ۱",
     gradeId: 10,
     fieldId: 1,
-    coverImage:
-      "http://www.chap.sch.ir/sites/default/files/styles/image_node_book/public/book_image/1404-1405/C110210.jpg",
+    coverImage: "/imgs/book-covers/C110210.jpg",
     isAvailable: false,
     lastPage: 100,
     publishedYear: 1404,
@@ -1138,8 +1061,7 @@ export const BOOKS: Book[] = [
     label: "شیمی ۱",
     gradeId: 10,
     fieldId: 3,
-    coverImage:
-      "http://www.chap.sch.ir/sites/default/files/styles/image_node_book/public/book_image/1404-1405/C110210.jpg",
+    coverImage: "/imgs/book-covers/C110210.jpg",
     isAvailable: false,
     lastPage: 100,
     publishedYear: 1404,
@@ -1152,8 +1074,7 @@ export const BOOKS: Book[] = [
     label: "ریاضی ۱",
     gradeId: 10,
     fieldId: 1,
-    coverImage:
-      "http://www.chap.sch.ir/sites/default/files/styles/image_node_book/public/book_image/1404-1405/C110211.jpg",
+    coverImage: "/imgs/book-covers/C110211.jpg",
     isAvailable: false,
     lastPage: 100,
     publishedYear: 1404,
@@ -1166,8 +1087,7 @@ export const BOOKS: Book[] = [
     label: "ریاضی ۱",
     gradeId: 10,
     fieldId: 3,
-    coverImage:
-      "http://www.chap.sch.ir/sites/default/files/styles/image_node_book/public/book_image/1404-1405/C110211.jpg",
+    coverImage: "/imgs/book-covers/C110211.jpg",
     isAvailable: false,
     lastPage: 100,
     publishedYear: 1404,
@@ -1180,8 +1100,7 @@ export const BOOKS: Book[] = [
     label: "آمادگی دفاعی",
     gradeId: 10,
     fieldId: 1,
-    coverImage:
-      "http://www.chap.sch.ir/sites/default/files/styles/image_node_book/public/book_image/1404-1405/C110215.jpg",
+    coverImage: "/imgs/book-covers/C110215.jpg",
     isAvailable: false,
     lastPage: 100,
     publishedYear: 1404,
@@ -1194,8 +1113,7 @@ export const BOOKS: Book[] = [
     label: "آمادگی دفاعی",
     gradeId: 10,
     fieldId: 2,
-    coverImage:
-      "http://www.chap.sch.ir/sites/default/files/styles/image_node_book/public/book_image/1404-1405/C110215.jpg",
+    coverImage: "/imgs/book-covers/C110215.jpg",
     isAvailable: false,
     lastPage: 100,
     publishedYear: 1404,
@@ -1208,8 +1126,7 @@ export const BOOKS: Book[] = [
     label: "آمادگی دفاعی",
     gradeId: 10,
     fieldId: 3,
-    coverImage:
-      "http://www.chap.sch.ir/sites/default/files/styles/image_node_book/public/book_image/1404-1405/C110215.jpg",
+    coverImage: "/imgs/book-covers/C110215.jpg",
     isAvailable: false,
     lastPage: 100,
     publishedYear: 1404,
@@ -1222,8 +1139,7 @@ export const BOOKS: Book[] = [
     label: "آزمایشگاه علوم تجربی ۱",
     gradeId: 10,
     fieldId: 1,
-    coverImage:
-      "http://www.chap.sch.ir/sites/default/files/styles/image_node_book/public/book_image/1404-1405/C110217.jpg",
+    coverImage: "/imgs/book-covers/C110217.jpg",
     isAvailable: false,
     lastPage: 100,
     publishedYear: 1404,
@@ -1236,8 +1152,7 @@ export const BOOKS: Book[] = [
     label: "آزمایشگاه علوم تجربی ۱",
     gradeId: 10,
     fieldId: 3,
-    coverImage:
-      "http://www.chap.sch.ir/sites/default/files/styles/image_node_book/public/book_image/1404-1405/C110217.jpg",
+    coverImage: "/imgs/book-covers/C110217.jpg",
     isAvailable: false,
     lastPage: 100,
     publishedYear: 1404,
@@ -1250,8 +1165,7 @@ export const BOOKS: Book[] = [
     label: "جغرافیای ایران",
     gradeId: 10,
     fieldId: 1,
-    coverImage:
-      "http://www.chap.sch.ir/sites/default/files/styles/image_node_book/public/book_image/1404-1405/C110218.jpg",
+    coverImage: "/imgs/book-covers/C110218.jpg",
     isAvailable: false,
     lastPage: 100,
     publishedYear: 1404,
@@ -1264,8 +1178,7 @@ export const BOOKS: Book[] = [
     label: "جغرافیای ایران",
     gradeId: 10,
     fieldId: 2,
-    coverImage:
-      "http://www.chap.sch.ir/sites/default/files/styles/image_node_book/public/book_image/1404-1405/C110218.jpg",
+    coverImage: "/imgs/book-covers/C110218.jpg",
     isAvailable: false,
     lastPage: 100,
     publishedYear: 1404,
@@ -1278,8 +1191,7 @@ export const BOOKS: Book[] = [
     label: "جغرافیای ایران",
     gradeId: 10,
     fieldId: 3,
-    coverImage:
-      "http://www.chap.sch.ir/sites/default/files/styles/image_node_book/public/book_image/1404-1405/C110218.jpg",
+    coverImage: "/imgs/book-covers/C110218.jpg",
     isAvailable: false,
     lastPage: 100,
     publishedYear: 1404,
@@ -1292,8 +1204,7 @@ export const BOOKS: Book[] = [
     label: "هنر",
     gradeId: 10,
     fieldId: 1,
-    coverImage:
-      "http://www.chap.sch.ir/sites/default/files/styles/image_node_book/public/book_image/1404-1405/C110222.jpg",
+    coverImage: "/imgs/book-covers/C110222.jpg",
     isAvailable: false,
     lastPage: 100,
     publishedYear: 1404,
@@ -1306,8 +1217,7 @@ export const BOOKS: Book[] = [
     label: "هنر",
     gradeId: 10,
     fieldId: 2,
-    coverImage:
-      "http://www.chap.sch.ir/sites/default/files/styles/image_node_book/public/book_image/1404-1405/C110222.jpg",
+    coverImage: "/imgs/book-covers/C110222.jpg",
     isAvailable: false,
     lastPage: 100,
     publishedYear: 1404,
@@ -1320,8 +1230,7 @@ export const BOOKS: Book[] = [
     label: "هنر",
     gradeId: 10,
     fieldId: 3,
-    coverImage:
-      "http://www.chap.sch.ir/sites/default/files/styles/image_node_book/public/book_image/1404-1405/C110222.jpg",
+    coverImage: "/imgs/book-covers/C110222.jpg",
     isAvailable: false,
     lastPage: 100,
     publishedYear: 1404,
@@ -1334,8 +1243,7 @@ export const BOOKS: Book[] = [
     label: "کارگاه کارآفرینی و تولید",
     gradeId: 10,
     fieldId: 1,
-    coverImage:
-      "http://www.chap.sch.ir/sites/default/files/styles/image_node_book/public/book_image/1404-1405/C110224.jpg",
+    coverImage: "/imgs/book-covers/C110224.jpg",
     isAvailable: false,
     lastPage: 100,
     publishedYear: 1404,
@@ -1348,8 +1256,7 @@ export const BOOKS: Book[] = [
     label: "کارگاه کارآفرینی و تولید",
     gradeId: 10,
     fieldId: 2,
-    coverImage:
-      "http://www.chap.sch.ir/sites/default/files/styles/image_node_book/public/book_image/1404-1405/C110224.jpg",
+    coverImage: "/imgs/book-covers/C110224.jpg",
     isAvailable: false,
     lastPage: 100,
     publishedYear: 1404,
@@ -1362,8 +1269,7 @@ export const BOOKS: Book[] = [
     label: "کارگاه کارآفرینی و تولید",
     gradeId: 10,
     fieldId: 3,
-    coverImage:
-      "http://www.chap.sch.ir/sites/default/files/styles/image_node_book/public/book_image/1404-1405/C110224.jpg",
+    coverImage: "/imgs/book-covers/C110224.jpg",
     isAvailable: false,
     lastPage: 100,
     publishedYear: 1404,
@@ -1376,8 +1282,7 @@ export const BOOKS: Book[] = [
     label: "تفکر و سواد رسانه ای",
     gradeId: 10,
     fieldId: 1,
-    coverImage:
-      "http://www.chap.sch.ir/sites/default/files/styles/image_node_book/public/book_image/1404-1405/C110225.jpg",
+    coverImage: "/imgs/book-covers/C110225.jpg",
     isAvailable: false,
     lastPage: 100,
     publishedYear: 1404,
@@ -1390,8 +1295,7 @@ export const BOOKS: Book[] = [
     label: "تفکر و سواد رسانه ای",
     gradeId: 10,
     fieldId: 2,
-    coverImage:
-      "http://www.chap.sch.ir/sites/default/files/styles/image_node_book/public/book_image/1404-1405/C110225.jpg",
+    coverImage: "/imgs/book-covers/C110225.jpg",
     isAvailable: false,
     lastPage: 100,
     publishedYear: 1404,
@@ -1404,8 +1308,7 @@ export const BOOKS: Book[] = [
     label: "تفکر و سواد رسانه ای",
     gradeId: 10,
     fieldId: 3,
-    coverImage:
-      "http://www.chap.sch.ir/sites/default/files/styles/image_node_book/public/book_image/1404-1405/C110225.jpg",
+    coverImage: "/imgs/book-covers/C110225.jpg",
     isAvailable: false,
     lastPage: 100,
     publishedYear: 1404,
@@ -1418,8 +1321,7 @@ export const BOOKS: Book[] = [
     label: "تعلیمات ادیان الهی و اخلاق ۱",
     gradeId: 10,
     fieldId: 1,
-    coverImage:
-      "http://www.chap.sch.ir/sites/default/files/styles/image_node_book/public/book_image/1404-1405/C110228.jpg",
+    coverImage: "/imgs/book-covers/C110228.jpg",
     isAvailable: false,
     lastPage: 100,
     publishedYear: 1404,
@@ -1432,8 +1334,7 @@ export const BOOKS: Book[] = [
     label: "تعلیمات ادیان الهی و اخلاق ۱",
     gradeId: 10,
     fieldId: 2,
-    coverImage:
-      "http://www.chap.sch.ir/sites/default/files/styles/image_node_book/public/book_image/1404-1405/C110228.jpg",
+    coverImage: "/imgs/book-covers/C110228.jpg",
     isAvailable: false,
     lastPage: 100,
     publishedYear: 1404,
@@ -1446,8 +1347,7 @@ export const BOOKS: Book[] = [
     label: "تعلیمات ادیان الهی و اخلاق ۱",
     gradeId: 10,
     fieldId: 3,
-    coverImage:
-      "http://www.chap.sch.ir/sites/default/files/styles/image_node_book/public/book_image/1404-1405/C110228.jpg",
+    coverImage: "/imgs/book-covers/C110228.jpg",
     isAvailable: false,
     lastPage: 100,
     publishedYear: 1404,
@@ -1460,8 +1360,7 @@ export const BOOKS: Book[] = [
     label: "انگلیسی ۱",
     gradeId: 10,
     fieldId: 1,
-    coverImage:
-      "http://www.chap.sch.ir/sites/default/files/styles/image_node_book/public/book_image/1404-1405/C110230.jpg",
+    coverImage: "/imgs/book-covers/C110230.jpg",
     isAvailable: false,
     lastPage: 100,
     publishedYear: 1404,
@@ -1474,8 +1373,7 @@ export const BOOKS: Book[] = [
     label: "کتاب کار انگلیسی ۱",
     gradeId: 10,
     fieldId: 1,
-    coverImage:
-      "http://www.chap.sch.ir/sites/default/files/styles/image_node_book/public/book_image/1404-1405/C110231.jpg",
+    coverImage: "/imgs/book-covers/C110231.jpg",
     isAvailable: false,
     lastPage: 100,
     publishedYear: 1404,
@@ -1488,8 +1386,7 @@ export const BOOKS: Book[] = [
     label: "انگلیسی ۱",
     gradeId: 10,
     fieldId: 2,
-    coverImage:
-      "http://www.chap.sch.ir/sites/default/files/styles/image_node_book/public/book_image/1404-1405/C110230.jpg",
+    coverImage: "/imgs/book-covers/C110230.jpg",
     isAvailable: false,
     lastPage: 100,
     publishedYear: 1404,
@@ -1502,8 +1399,7 @@ export const BOOKS: Book[] = [
     label: "کتاب کار انگلیسی ۱",
     gradeId: 10,
     fieldId: 2,
-    coverImage:
-      "http://www.chap.sch.ir/sites/default/files/styles/image_node_book/public/book_image/1404-1405/C110231.jpg",
+    coverImage: "/imgs/book-covers/C110231.jpg",
     isAvailable: false,
     lastPage: 100,
     publishedYear: 1404,
@@ -1516,8 +1412,7 @@ export const BOOKS: Book[] = [
     label: "انگلیسی ۱",
     gradeId: 10,
     fieldId: 3,
-    coverImage:
-      "http://www.chap.sch.ir/sites/default/files/styles/image_node_book/public/book_image/1404-1405/C110230.jpg",
+    coverImage: "/imgs/book-covers/C110230.jpg",
     isAvailable: false,
     lastPage: 100,
     publishedYear: 1404,
@@ -1530,8 +1425,7 @@ export const BOOKS: Book[] = [
     label: "کتاب کار انگلیسی ۱",
     gradeId: 10,
     fieldId: 3,
-    coverImage:
-      "http://www.chap.sch.ir/sites/default/files/styles/image_node_book/public/book_image/1404-1405/C110231.jpg",
+    coverImage: "/imgs/book-covers/C110231.jpg",
     isAvailable: false,
     lastPage: 100,
     publishedYear: 1404,
@@ -1544,8 +1438,7 @@ export const BOOKS: Book[] = [
     label: "از ایرانمان دفاع می کنیم",
     gradeId: 10,
     fieldId: 1,
-    coverImage:
-      "http://www.chap.sch.ir/sites/default/files/styles/image_node_book/public/book_image/1404-1405/C110345.jpg",
+    coverImage: "/imgs/book-covers/C110345.jpg",
     isAvailable: false,
     lastPage: 100,
     publishedYear: 1404,
@@ -1558,8 +1451,7 @@ export const BOOKS: Book[] = [
     label: "از ایرانمان دفاع می کنیم",
     gradeId: 10,
     fieldId: 2,
-    coverImage:
-      "http://www.chap.sch.ir/sites/default/files/styles/image_node_book/public/book_image/1404-1405/C110345.jpg",
+    coverImage: "/imgs/book-covers/C110345.jpg",
     isAvailable: false,
     lastPage: 100,
     publishedYear: 1404,
@@ -1572,8 +1464,7 @@ export const BOOKS: Book[] = [
     label: "از ایرانمان دفاع می کنیم",
     gradeId: 10,
     fieldId: 3,
-    coverImage:
-      "http://www.chap.sch.ir/sites/default/files/styles/image_node_book/public/book_image/1404-1405/C110345.jpg",
+    coverImage: "/imgs/book-covers/C110345.jpg",
     isAvailable: false,
     lastPage: 100,
     publishedYear: 1404,
@@ -1587,8 +1478,7 @@ export const BOOKS: Book[] = [
     label: "فیزیک ۱ (تجربی)",
     gradeId: 10,
     fieldId: 1,
-    coverImage:
-      "http://www.chap.sch.ir/sites/default/files/styles/image_node_book/public/book_image/1404-1405/C110214.jpg",
+    coverImage: "/imgs/book-covers/C110214.jpg",
     isAvailable: false,
     lastPage: 100,
     publishedYear: 1404,
@@ -1601,8 +1491,7 @@ export const BOOKS: Book[] = [
     label: "زیست شناسی ۱",
     gradeId: 10,
     fieldId: 1,
-    coverImage:
-      "http://www.chap.sch.ir/sites/default/files/styles/image_node_book/public/book_image/1404-1405/C110216.jpg",
+    coverImage: "/imgs/book-covers/C110216.jpg",
     isAvailable: true,
     lastPage: 112,
     publishedYear: 1404,
@@ -1616,8 +1505,7 @@ export const BOOKS: Book[] = [
     label: "علوم و فنون ادبی ۱",
     gradeId: 10,
     fieldId: 2,
-    coverImage:
-      "http://www.chap.sch.ir/sites/default/files/styles/image_node_book/public/book_image/1404-1405/C110203.jpg",
+    coverImage: "/imgs/book-covers/C110203.jpg",
     isAvailable: false,
     lastPage: 100,
     publishedYear: 1404,
@@ -1630,8 +1518,7 @@ export const BOOKS: Book[] = [
     label: "دین و زندگی ۱ (انسانی)",
     gradeId: 10,
     fieldId: 2,
-    coverImage:
-      "http://www.chap.sch.ir/sites/default/files/styles/image_node_book/public/book_image/1404-1405/C110205.jpg",
+    coverImage: "/imgs/book-covers/C110205.jpg",
     isAvailable: false,
     lastPage: 100,
     publishedYear: 1404,
@@ -1644,8 +1531,7 @@ export const BOOKS: Book[] = [
     label: "عربی، زبان قرآن ۱ (انسانی)",
     gradeId: 10,
     fieldId: 2,
-    coverImage:
-      "http://www.chap.sch.ir/sites/default/files/styles/image_node_book/public/book_image/1404-1405/C110207.jpg",
+    coverImage: "/imgs/book-covers/C110207.jpg",
     isAvailable: false,
     lastPage: 100,
     publishedYear: 1404,
@@ -1658,8 +1544,7 @@ export const BOOKS: Book[] = [
     label: "ریاضی و آمار ۱",
     gradeId: 10,
     fieldId: 2,
-    coverImage:
-      "http://www.chap.sch.ir/sites/default/files/styles/image_node_book/public/book_image/1404-1405/C110212.jpg",
+    coverImage: "/imgs/book-covers/C110212.jpg",
     isAvailable: false,
     lastPage: 100,
     publishedYear: 1404,
@@ -1672,8 +1557,7 @@ export const BOOKS: Book[] = [
     label: "تاریخ ۱ (ایران و جهان باستان)",
     gradeId: 10,
     fieldId: 2,
-    coverImage:
-      "http://www.chap.sch.ir/sites/default/files/styles/image_node_book/public/book_image/1404-1405/C110219.jpg",
+    coverImage: "/imgs/book-covers/C110219.jpg",
     isAvailable: false,
     lastPage: 100,
     publishedYear: 1404,
@@ -1686,8 +1570,7 @@ export const BOOKS: Book[] = [
     label: "جامعه شناسی ۱",
     gradeId: 10,
     fieldId: 2,
-    coverImage:
-      "http://www.chap.sch.ir/sites/default/files/styles/image_node_book/public/book_image/1404-1405/C110220.jpg",
+    coverImage: "/imgs/book-covers/C110220.jpg",
     isAvailable: false,
     lastPage: 100,
     publishedYear: 1404,
@@ -1700,8 +1583,7 @@ export const BOOKS: Book[] = [
     label: "اقتصاد",
     gradeId: 10,
     fieldId: 2,
-    coverImage:
-      "http://www.chap.sch.ir/sites/default/files/styles/image_node_book/public/book_image/1404-1405/C110221.jpg",
+    coverImage: "/imgs/book-covers/C110221.jpg",
     isAvailable: false,
     lastPage: 100,
     publishedYear: 1404,
@@ -1714,8 +1596,7 @@ export const BOOKS: Book[] = [
     label: "منطق",
     gradeId: 10,
     fieldId: 2,
-    coverImage:
-      "http://www.chap.sch.ir/sites/default/files/styles/image_node_book/public/book_image/1404-1405/C110223.jpg",
+    coverImage: "/imgs/book-covers/C110223.jpg",
     isAvailable: false,
     lastPage: 100,
     publishedYear: 1404,
@@ -1729,8 +1610,7 @@ export const BOOKS: Book[] = [
     label: "فیزیک ۱ (ریاضی)",
     gradeId: 10,
     fieldId: 3,
-    coverImage:
-      "http://www.chap.sch.ir/sites/default/files/styles/image_node_book/public/book_image/1404-1405/C110209.jpg",
+    coverImage: "/imgs/book-covers/C110209.jpg",
     isAvailable: false,
     lastPage: 100,
     publishedYear: 1404,
@@ -1743,8 +1623,7 @@ export const BOOKS: Book[] = [
     label: "هندسه ۱",
     gradeId: 10,
     fieldId: 3,
-    coverImage:
-      "http://www.chap.sch.ir/sites/default/files/styles/image_node_book/public/book_image/1404-1405/C110213.jpg",
+    coverImage: "/imgs/book-covers/C110213.jpg",
     isAvailable: false,
     lastPage: 100,
     publishedYear: 1404,
@@ -1760,8 +1639,7 @@ export const BOOKS: Book[] = [
     label: "فارسی ۲",
     gradeId: 11,
     fieldId: 1,
-    coverImage:
-      "http://www.chap.sch.ir/sites/default/files/styles/image_node_book/public/book_image/1404-1405/C111201.jpg",
+    coverImage: "/imgs/book-covers/C111201.jpg",
     isAvailable: false,
     lastPage: 100,
     publishedYear: 1404,
@@ -1774,8 +1652,7 @@ export const BOOKS: Book[] = [
     label: "فارسی ۲",
     gradeId: 11,
     fieldId: 2,
-    coverImage:
-      "http://www.chap.sch.ir/sites/default/files/styles/image_node_book/public/book_image/1404-1405/C111201.jpg",
+    coverImage: "/imgs/book-covers/C111201.jpg",
     isAvailable: false,
     lastPage: 100,
     publishedYear: 1404,
@@ -1788,8 +1665,7 @@ export const BOOKS: Book[] = [
     label: "فارسی ۲",
     gradeId: 11,
     fieldId: 3,
-    coverImage:
-      "http://www.chap.sch.ir/sites/default/files/styles/image_node_book/public/book_image/1404-1405/C111201.jpg",
+    coverImage: "/imgs/book-covers/C111201.jpg",
     isAvailable: false,
     lastPage: 100,
     publishedYear: 1404,
@@ -1802,8 +1678,7 @@ export const BOOKS: Book[] = [
     label: "نگارش ۲",
     gradeId: 11,
     fieldId: 1,
-    coverImage:
-      "http://www.chap.sch.ir/sites/default/files/styles/image_node_book/public/book_image/1404-1405/C111202.jpg",
+    coverImage: "/imgs/book-covers/C111202.jpg",
     isAvailable: false,
     lastPage: 100,
     publishedYear: 1404,
@@ -1816,8 +1691,7 @@ export const BOOKS: Book[] = [
     label: "نگارش ۲",
     gradeId: 11,
     fieldId: 2,
-    coverImage:
-      "http://www.chap.sch.ir/sites/default/files/styles/image_node_book/public/book_image/1404-1405/C111202.jpg",
+    coverImage: "/imgs/book-covers/C111202.jpg",
     isAvailable: false,
     lastPage: 100,
     publishedYear: 1404,
@@ -1830,8 +1704,7 @@ export const BOOKS: Book[] = [
     label: "نگارش ۲",
     gradeId: 11,
     fieldId: 3,
-    coverImage:
-      "http://www.chap.sch.ir/sites/default/files/styles/image_node_book/public/book_image/1404-1405/C111202.jpg",
+    coverImage: "/imgs/book-covers/C111202.jpg",
     isAvailable: false,
     lastPage: 100,
     publishedYear: 1404,
@@ -1844,8 +1717,7 @@ export const BOOKS: Book[] = [
     label: "دین و زندگی ۲",
     gradeId: 11,
     fieldId: 1,
-    coverImage:
-      "http://www.chap.sch.ir/sites/default/files/styles/image_node_book/public/book_image/1404-1405/C111204.jpg",
+    coverImage: "/imgs/book-covers/C111204.jpg",
     isAvailable: false,
     lastPage: 100,
     publishedYear: 1404,
@@ -1858,8 +1730,7 @@ export const BOOKS: Book[] = [
     label: "دین و زندگی ۲",
     gradeId: 11,
     fieldId: 3,
-    coverImage:
-      "http://www.chap.sch.ir/sites/default/files/styles/image_node_book/public/book_image/1404-1405/C111204.jpg",
+    coverImage: "/imgs/book-covers/C111204.jpg",
     isAvailable: false,
     lastPage: 100,
     publishedYear: 1404,
@@ -1872,8 +1743,7 @@ export const BOOKS: Book[] = [
     label: "عربی، زبان قرآن ۲",
     gradeId: 11,
     fieldId: 1,
-    coverImage:
-      "http://www.chap.sch.ir/sites/default/files/styles/image_node_book/public/book_image/1404-1405/C111206.jpg",
+    coverImage: "/imgs/book-covers/C111206.jpg",
     isAvailable: false,
     lastPage: 100,
     publishedYear: 1404,
@@ -1886,8 +1756,7 @@ export const BOOKS: Book[] = [
     label: "عربی، زبان قرآن ۲",
     gradeId: 11,
     fieldId: 3,
-    coverImage:
-      "http://www.chap.sch.ir/sites/default/files/styles/image_node_book/public/book_image/1404-1405/C111206.jpg",
+    coverImage: "/imgs/book-covers/C111206.jpg",
     isAvailable: false,
     lastPage: 100,
     publishedYear: 1404,
@@ -1900,8 +1769,7 @@ export const BOOKS: Book[] = [
     label: "شیمی ۲",
     gradeId: 11,
     fieldId: 1,
-    coverImage:
-      "http://www.chap.sch.ir/sites/default/files/styles/image_node_book/public/book_image/1404-1405/C111210.jpg",
+    coverImage: "/imgs/book-covers/C111210.jpg",
     isAvailable: false,
     lastPage: 100,
     publishedYear: 1404,
@@ -1914,8 +1782,7 @@ export const BOOKS: Book[] = [
     label: "شیمی ۲",
     gradeId: 11,
     fieldId: 3,
-    coverImage:
-      "http://www.chap.sch.ir/sites/default/files/styles/image_node_book/public/book_image/1404-1405/C111210.jpg",
+    coverImage: "/imgs/book-covers/C111210.jpg",
     isAvailable: false,
     lastPage: 100,
     publishedYear: 1404,
@@ -1928,8 +1795,7 @@ export const BOOKS: Book[] = [
     label: "آزمایشگاه علوم تجربی ۲",
     gradeId: 11,
     fieldId: 1,
-    coverImage:
-      "http://www.chap.sch.ir/sites/default/files/styles/image_node_book/public/book_image/1404-1405/C111217.jpg",
+    coverImage: "/imgs/book-covers/C111217.jpg",
     isAvailable: false,
     lastPage: 100,
     publishedYear: 1404,
@@ -1942,8 +1808,7 @@ export const BOOKS: Book[] = [
     label: "آزمایشگاه علوم تجربی ۲",
     gradeId: 11,
     fieldId: 3,
-    coverImage:
-      "http://www.chap.sch.ir/sites/default/files/styles/image_node_book/public/book_image/1404-1405/C111217.jpg",
+    coverImage: "/imgs/book-covers/C111217.jpg",
     isAvailable: false,
     lastPage: 100,
     publishedYear: 1404,
@@ -1956,8 +1821,7 @@ export const BOOKS: Book[] = [
     label: "تاریخ معاصر ایران",
     gradeId: 11,
     fieldId: 1,
-    coverImage:
-      "http://www.chap.sch.ir/sites/default/files/styles/image_node_book/public/book_image/1404-1405/C111220.jpg",
+    coverImage: "/imgs/book-covers/C111220.jpg",
     isAvailable: false,
     lastPage: 100,
     publishedYear: 1404,
@@ -1970,8 +1834,7 @@ export const BOOKS: Book[] = [
     label: "تاریخ معاصر ایران",
     gradeId: 11,
     fieldId: 3,
-    coverImage:
-      "http://www.chap.sch.ir/sites/default/files/styles/image_node_book/public/book_image/1404-1405/C111220.jpg",
+    coverImage: "/imgs/book-covers/C111220.jpg",
     isAvailable: false,
     lastPage: 100,
     publishedYear: 1404,
@@ -1984,8 +1847,7 @@ export const BOOKS: Book[] = [
     label: "تعلیمات ادیان الهی و اخلاق ۲",
     gradeId: 11,
     fieldId: 1,
-    coverImage:
-      "http://www.chap.sch.ir/sites/default/files/styles/image_node_book/public/book_image/1404-1405/C112228.jpg",
+    coverImage: "/imgs/book-covers/C112228.jpg",
     isAvailable: false,
     lastPage: 100,
     publishedYear: 1404,
@@ -1998,8 +1860,7 @@ export const BOOKS: Book[] = [
     label: "تعلیمات ادیان الهی و اخلاق ۲",
     gradeId: 11,
     fieldId: 2,
-    coverImage:
-      "http://www.chap.sch.ir/sites/default/files/styles/image_node_book/public/book_image/1404-1405/C112228.jpg",
+    coverImage: "/imgs/book-covers/C112228.jpg",
     isAvailable: false,
     lastPage: 100,
     publishedYear: 1404,
@@ -2012,8 +1873,7 @@ export const BOOKS: Book[] = [
     label: "تعلیمات ادیان الهی و اخلاق ۲",
     gradeId: 11,
     fieldId: 3,
-    coverImage:
-      "http://www.chap.sch.ir/sites/default/files/styles/image_node_book/public/book_image/1404-1405/C112228.jpg",
+    coverImage: "/imgs/book-covers/C112228.jpg",
     isAvailable: false,
     lastPage: 100,
     publishedYear: 1404,
@@ -2026,8 +1886,7 @@ export const BOOKS: Book[] = [
     label: "انگلیسی ۲",
     gradeId: 11,
     fieldId: 1,
-    coverImage:
-      "http://www.chap.sch.ir/sites/default/files/styles/image_node_book/public/book_image/1404-1405/C111230.jpg",
+    coverImage: "/imgs/book-covers/C111230.jpg",
     isAvailable: false,
     lastPage: 100,
     publishedYear: 1404,
@@ -2040,8 +1899,7 @@ export const BOOKS: Book[] = [
     label: "کتاب کار انگلیسی ۲",
     gradeId: 11,
     fieldId: 1,
-    coverImage:
-      "http://www.chap.sch.ir/sites/default/files/styles/image_node_book/public/book_image/1404-1405/C111231.jpg",
+    coverImage: "/imgs/book-covers/C111231.jpg",
     isAvailable: false,
     lastPage: 100,
     publishedYear: 1404,
@@ -2054,8 +1912,7 @@ export const BOOKS: Book[] = [
     label: "انگلیسی ۲",
     gradeId: 11,
     fieldId: 2,
-    coverImage:
-      "http://www.chap.sch.ir/sites/default/files/styles/image_node_book/public/book_image/1404-1405/C111230.jpg",
+    coverImage: "/imgs/book-covers/C111230.jpg",
     isAvailable: false,
     lastPage: 100,
     publishedYear: 1404,
@@ -2068,8 +1925,7 @@ export const BOOKS: Book[] = [
     label: "کتاب کار انگلیسی ۲",
     gradeId: 11,
     fieldId: 2,
-    coverImage:
-      "http://www.chap.sch.ir/sites/default/files/styles/image_node_book/public/book_image/1404-1405/C111231.jpg",
+    coverImage: "/imgs/book-covers/C111231.jpg",
     isAvailable: false,
     lastPage: 100,
     publishedYear: 1404,
@@ -2082,8 +1938,7 @@ export const BOOKS: Book[] = [
     label: "انگلیسی ۲",
     gradeId: 11,
     fieldId: 3,
-    coverImage:
-      "http://www.chap.sch.ir/sites/default/files/styles/image_node_book/public/book_image/1404-1405/C111230.jpg",
+    coverImage: "/imgs/book-covers/C111230.jpg",
     isAvailable: false,
     lastPage: 100,
     publishedYear: 1404,
@@ -2096,8 +1951,7 @@ export const BOOKS: Book[] = [
     label: "کتاب کار انگلیسی ۲",
     gradeId: 11,
     fieldId: 3,
-    coverImage:
-      "http://www.chap.sch.ir/sites/default/files/styles/image_node_book/public/book_image/1404-1405/C111231.jpg",
+    coverImage: "/imgs/book-covers/C111231.jpg",
     isAvailable: false,
     lastPage: 100,
     publishedYear: 1404,
@@ -2110,8 +1964,7 @@ export const BOOKS: Book[] = [
     label: "زمین شناسی",
     gradeId: 11,
     fieldId: 1,
-    coverImage:
-      "http://www.chap.sch.ir/sites/default/files/styles/image_node_book/public/book_image/1404-1405/C111237.jpg",
+    coverImage: "/imgs/book-covers/C111237.jpg",
     isAvailable: false,
     lastPage: 100,
     publishedYear: 1404,
@@ -2124,8 +1977,7 @@ export const BOOKS: Book[] = [
     label: "زمین شناسی",
     gradeId: 11,
     fieldId: 3,
-    coverImage:
-      "http://www.chap.sch.ir/sites/default/files/styles/image_node_book/public/book_image/1404-1405/C111237.jpg",
+    coverImage: "/imgs/book-covers/C111237.jpg",
     isAvailable: false,
     lastPage: 100,
     publishedYear: 1404,
@@ -2138,8 +1990,7 @@ export const BOOKS: Book[] = [
     label: "ضمیمه دین و زندگی ۲ (اهل سنت)",
     gradeId: 11,
     fieldId: 1,
-    coverImage:
-      "http://www.chap.sch.ir/sites/default/files/styles/image_node_book/public/book_image/1404-1405/C111238.jpg",
+    coverImage: "/imgs/book-covers/C111238.jpg",
     isAvailable: false,
     lastPage: 100,
     publishedYear: 1404,
@@ -2152,8 +2003,7 @@ export const BOOKS: Book[] = [
     label: "ضمیمه دین و زندگی ۲ (اهل سنت)",
     gradeId: 11,
     fieldId: 2,
-    coverImage:
-      "http://www.chap.sch.ir/sites/default/files/styles/image_node_book/public/book_image/1404-1405/C111238.jpg",
+    coverImage: "/imgs/book-covers/C111238.jpg",
     isAvailable: false,
     lastPage: 100,
     publishedYear: 1404,
@@ -2166,8 +2016,7 @@ export const BOOKS: Book[] = [
     label: "ضمیمه دین و زندگی ۲ (اهل سنت)",
     gradeId: 11,
     fieldId: 3,
-    coverImage:
-      "http://www.chap.sch.ir/sites/default/files/styles/image_node_book/public/book_image/1404-1405/C111238.jpg",
+    coverImage: "/imgs/book-covers/C111238.jpg",
     isAvailable: false,
     lastPage: 100,
     publishedYear: 1404,
@@ -2180,8 +2029,7 @@ export const BOOKS: Book[] = [
     label: "انسان و محیط زیست",
     gradeId: 11,
     fieldId: 1,
-    coverImage:
-      "http://www.chap.sch.ir/sites/default/files/styles/image_node_book/public/book_image/1404-1405/C111268.jpg",
+    coverImage: "/imgs/book-covers/C111268.jpg",
     isAvailable: false,
     lastPage: 100,
     publishedYear: 1404,
@@ -2194,8 +2042,7 @@ export const BOOKS: Book[] = [
     label: "انسان و محیط زیست",
     gradeId: 11,
     fieldId: 2,
-    coverImage:
-      "http://www.chap.sch.ir/sites/default/files/styles/image_node_book/public/book_image/1404-1405/C111268.jpg",
+    coverImage: "/imgs/book-covers/C111268.jpg",
     isAvailable: false,
     lastPage: 100,
     publishedYear: 1404,
@@ -2208,8 +2055,7 @@ export const BOOKS: Book[] = [
     label: "انسان و محیط زیست",
     gradeId: 11,
     fieldId: 3,
-    coverImage:
-      "http://www.chap.sch.ir/sites/default/files/styles/image_node_book/public/book_image/1404-1405/C111268.jpg",
+    coverImage: "/imgs/book-covers/C111268.jpg",
     isAvailable: false,
     lastPage: 100,
     publishedYear: 1404,
@@ -2223,8 +2069,7 @@ export const BOOKS: Book[] = [
     label: "ریاضی ۲ (تجربی)",
     gradeId: 11,
     fieldId: 1,
-    coverImage:
-      "http://www.chap.sch.ir/sites/default/files/styles/image_node_book/public/book_image/1404-1405/C111211.jpg",
+    coverImage: "/imgs/book-covers/C111211.jpg",
     isAvailable: false,
     lastPage: 100,
     publishedYear: 1404,
@@ -2237,8 +2082,7 @@ export const BOOKS: Book[] = [
     label: "زیست شناسی ۲",
     gradeId: 11,
     fieldId: 1,
-    coverImage:
-      "http://www.chap.sch.ir/sites/default/files/styles/image_node_book/public/book_image/1404-1405/C111216.jpg",
+    coverImage: "/imgs/book-covers/C111216.jpg",
     isAvailable: true,
     lastPage: 154,
     publishedYear: 1404,
@@ -2251,8 +2095,7 @@ export const BOOKS: Book[] = [
     label: "فیزیک ۲ (تجربی)",
     gradeId: 11,
     fieldId: 1,
-    coverImage:
-      "http://www.chap.sch.ir/sites/default/files/styles/image_node_book/public/book_image/1404-1405/C111244.jpg",
+    coverImage: "/imgs/book-covers/C111244.jpg",
     isAvailable: false,
     lastPage: 100,
     publishedYear: 1404,
@@ -2266,8 +2109,7 @@ export const BOOKS: Book[] = [
     label: "علوم و فنون ادبی ۲",
     gradeId: 11,
     fieldId: 2,
-    coverImage:
-      "http://www.chap.sch.ir/sites/default/files/styles/image_node_book/public/book_image/1404-1405/C111203.jpg",
+    coverImage: "/imgs/book-covers/C111203.jpg",
     isAvailable: false,
     lastPage: 100,
     publishedYear: 1404,
@@ -2280,8 +2122,7 @@ export const BOOKS: Book[] = [
     label: "دین و زندگی ۲ (انسانی)",
     gradeId: 11,
     fieldId: 2,
-    coverImage:
-      "http://www.chap.sch.ir/sites/default/files/styles/image_node_book/public/book_image/1404-1405/C111205.jpg",
+    coverImage: "/imgs/book-covers/C111205.jpg",
     isAvailable: false,
     lastPage: 100,
     publishedYear: 1404,
@@ -2294,8 +2135,7 @@ export const BOOKS: Book[] = [
     label: "عربی، زبان قرآن ۲ (انسانی)",
     gradeId: 11,
     fieldId: 2,
-    coverImage:
-      "http://www.chap.sch.ir/sites/default/files/styles/image_node_book/public/book_image/1404-1405/C111207.jpg",
+    coverImage: "/imgs/book-covers/C111207.jpg",
     isAvailable: false,
     lastPage: 100,
     publishedYear: 1404,
@@ -2308,8 +2148,7 @@ export const BOOKS: Book[] = [
     label: "ریاضی و آمار ۲",
     gradeId: 11,
     fieldId: 2,
-    coverImage:
-      "http://www.chap.sch.ir/sites/default/files/styles/image_node_book/public/book_image/1404-1405/C111212.jpg",
+    coverImage: "/imgs/book-covers/C111212.jpg",
     isAvailable: false,
     lastPage: 100,
     publishedYear: 1404,
@@ -2322,8 +2161,7 @@ export const BOOKS: Book[] = [
     label: "جغرافیای ۲ (ناحیه ای)",
     gradeId: 11,
     fieldId: 2,
-    coverImage:
-      "http://www.chap.sch.ir/sites/default/files/styles/image_node_book/public/book_image/1404-1405/C111218.jpg",
+    coverImage: "/imgs/book-covers/C111218.jpg",
     isAvailable: false,
     lastPage: 100,
     publishedYear: 1404,
@@ -2336,8 +2174,7 @@ export const BOOKS: Book[] = [
     label: "تاریخ ۲",
     gradeId: 11,
     fieldId: 2,
-    coverImage:
-      "http://www.chap.sch.ir/sites/default/files/styles/image_node_book/public/book_image/1404-1405/C111219.jpg",
+    coverImage: "/imgs/book-covers/C111219.jpg",
     isAvailable: false,
     lastPage: 100,
     publishedYear: 1404,
@@ -2350,8 +2187,7 @@ export const BOOKS: Book[] = [
     label: "جامعه شناسی ۲",
     gradeId: 11,
     fieldId: 2,
-    coverImage:
-      "http://www.chap.sch.ir/sites/default/files/styles/image_node_book/public/book_image/1404-1405/C111222.jpg",
+    coverImage: "/imgs/book-covers/C111222.jpg",
     isAvailable: false,
     lastPage: 100,
     publishedYear: 1404,
@@ -2364,8 +2200,7 @@ export const BOOKS: Book[] = [
     label: "روان شناسی",
     gradeId: 11,
     fieldId: 2,
-    coverImage:
-      "http://www.chap.sch.ir/sites/default/files/styles/image_node_book/public/book_image/1404-1405/C111224.jpg",
+    coverImage: "/imgs/book-covers/C111224.jpg",
     isAvailable: false,
     lastPage: 100,
     publishedYear: 1404,
@@ -2378,8 +2213,7 @@ export const BOOKS: Book[] = [
     label: "فلسفه ۱",
     gradeId: 11,
     fieldId: 2,
-    coverImage:
-      "http://www.chap.sch.ir/sites/default/files/styles/image_node_book/public/book_image/1404-1405/C111226.jpg",
+    coverImage: "/imgs/book-covers/C111226.jpg",
     isAvailable: false,
     lastPage: 100,
     publishedYear: 1404,
@@ -2393,8 +2227,7 @@ export const BOOKS: Book[] = [
     label: "فیزیک ۲ (ریاضی)",
     gradeId: 11,
     fieldId: 3,
-    coverImage:
-      "http://www.chap.sch.ir/sites/default/files/styles/image_node_book/public/book_image/1404-1405/C111209.jpg",
+    coverImage: "/imgs/book-covers/C111209.jpg",
     isAvailable: false,
     lastPage: 100,
     publishedYear: 1404,
@@ -2407,8 +2240,7 @@ export const BOOKS: Book[] = [
     label: "هندسه ۲",
     gradeId: 11,
     fieldId: 3,
-    coverImage:
-      "http://www.chap.sch.ir/sites/default/files/styles/image_node_book/public/book_image/1404-1405/C111213.jpg",
+    coverImage: "/imgs/book-covers/C111213.jpg",
     isAvailable: false,
     lastPage: 100,
     publishedYear: 1404,
@@ -2421,8 +2253,7 @@ export const BOOKS: Book[] = [
     label: "حسابان ۱",
     gradeId: 11,
     fieldId: 3,
-    coverImage:
-      "http://www.chap.sch.ir/sites/default/files/styles/image_node_book/public/book_image/1404-1405/C111214.jpg",
+    coverImage: "/imgs/book-covers/C111214.jpg",
     isAvailable: false,
     lastPage: 100,
     publishedYear: 1404,
@@ -2435,8 +2266,7 @@ export const BOOKS: Book[] = [
     label: "آمار و احتمال",
     gradeId: 11,
     fieldId: 3,
-    coverImage:
-      "http://www.chap.sch.ir/sites/default/files/styles/image_node_book/public/book_image/1404-1405/C111215.jpg",
+    coverImage: "/imgs/book-covers/C111215.jpg",
     isAvailable: false,
     lastPage: 100,
     publishedYear: 1404,
@@ -2452,8 +2282,7 @@ export const BOOKS: Book[] = [
     label: "فارسی ۳",
     gradeId: 12,
     fieldId: 1,
-    coverImage:
-      "http://www.chap.sch.ir/sites/default/files/styles/image_node_book/public/book_image/1404-1405/C112201.jpg",
+    coverImage: "/imgs/book-covers/C112201.jpg",
     isAvailable: false,
     lastPage: 100,
     publishedYear: 1404,
@@ -2466,8 +2295,7 @@ export const BOOKS: Book[] = [
     label: "فارسی ۳",
     gradeId: 12,
     fieldId: 2,
-    coverImage:
-      "http://www.chap.sch.ir/sites/default/files/styles/image_node_book/public/book_image/1404-1405/C112201.jpg",
+    coverImage: "/imgs/book-covers/C112201.jpg",
     isAvailable: false,
     lastPage: 100,
     publishedYear: 1404,
@@ -2480,8 +2308,7 @@ export const BOOKS: Book[] = [
     label: "فارسی ۳",
     gradeId: 12,
     fieldId: 3,
-    coverImage:
-      "http://www.chap.sch.ir/sites/default/files/styles/image_node_book/public/book_image/1404-1405/C112201.jpg",
+    coverImage: "/imgs/book-covers/C112201.jpg",
     isAvailable: false,
     lastPage: 100,
     publishedYear: 1404,
@@ -2494,8 +2321,7 @@ export const BOOKS: Book[] = [
     label: "نگارش ۳",
     gradeId: 12,
     fieldId: 1,
-    coverImage:
-      "http://www.chap.sch.ir/sites/default/files/styles/image_node_book/public/book_image/1404-1405/C112202.jpg",
+    coverImage: "/imgs/book-covers/C112202.jpg",
     isAvailable: false,
     lastPage: 100,
     publishedYear: 1404,
@@ -2508,8 +2334,7 @@ export const BOOKS: Book[] = [
     label: "نگارش ۳",
     gradeId: 12,
     fieldId: 2,
-    coverImage:
-      "http://www.chap.sch.ir/sites/default/files/styles/image_node_book/public/book_image/1404-1405/C112202.jpg",
+    coverImage: "/imgs/book-covers/C112202.jpg",
     isAvailable: false,
     lastPage: 100,
     publishedYear: 1404,
@@ -2522,8 +2347,7 @@ export const BOOKS: Book[] = [
     label: "نگارش ۳",
     gradeId: 12,
     fieldId: 3,
-    coverImage:
-      "http://www.chap.sch.ir/sites/default/files/styles/image_node_book/public/book_image/1404-1405/C112202.jpg",
+    coverImage: "/imgs/book-covers/C112202.jpg",
     isAvailable: false,
     lastPage: 100,
     publishedYear: 1404,
@@ -2536,8 +2360,7 @@ export const BOOKS: Book[] = [
     label: "دین و زندگی ۳",
     gradeId: 12,
     fieldId: 1,
-    coverImage:
-      "http://www.chap.sch.ir/sites/default/files/styles/image_node_book/public/book_image/1404-1405/C112204.jpg",
+    coverImage: "/imgs/book-covers/C112204.jpg",
     isAvailable: false,
     lastPage: 100,
     publishedYear: 1404,
@@ -2550,8 +2373,7 @@ export const BOOKS: Book[] = [
     label: "دین و زندگی ۳",
     gradeId: 12,
     fieldId: 3,
-    coverImage:
-      "http://www.chap.sch.ir/sites/default/files/styles/image_node_book/public/book_image/1404-1405/C112204.jpg",
+    coverImage: "/imgs/book-covers/C112204.jpg",
     isAvailable: false,
     lastPage: 100,
     publishedYear: 1404,
@@ -2564,8 +2386,7 @@ export const BOOKS: Book[] = [
     label: "عربی، زبان قرآن ۳",
     gradeId: 12,
     fieldId: 1,
-    coverImage:
-      "http://www.chap.sch.ir/sites/default/files/styles/image_node_book/public/book_image/1404-1405/C112206.jpg",
+    coverImage: "/imgs/book-covers/C112206.jpg",
     isAvailable: false,
     lastPage: 100,
     publishedYear: 1404,
@@ -2578,8 +2399,7 @@ export const BOOKS: Book[] = [
     label: "عربی، زبان قرآن ۳",
     gradeId: 12,
     fieldId: 3,
-    coverImage:
-      "http://www.chap.sch.ir/sites/default/files/styles/image_node_book/public/book_image/1404-1405/C112206.jpg",
+    coverImage: "/imgs/book-covers/C112206.jpg",
     isAvailable: false,
     lastPage: 100,
     publishedYear: 1404,
@@ -2592,8 +2412,7 @@ export const BOOKS: Book[] = [
     label: "شیمی ۳",
     gradeId: 12,
     fieldId: 1,
-    coverImage:
-      "http://www.chap.sch.ir/sites/default/files/styles/image_node_book/public/book_image/1404-1405/C112210.jpg",
+    coverImage: "/imgs/book-covers/C112210.jpg",
     isAvailable: false,
     lastPage: 100,
     publishedYear: 1404,
@@ -2606,8 +2425,7 @@ export const BOOKS: Book[] = [
     label: "شیمی ۳",
     gradeId: 12,
     fieldId: 3,
-    coverImage:
-      "http://www.chap.sch.ir/sites/default/files/styles/image_node_book/public/book_image/1404-1405/C112210.jpg",
+    coverImage: "/imgs/book-covers/C112210.jpg",
     isAvailable: false,
     lastPage: 100,
     publishedYear: 1404,
@@ -2620,8 +2438,7 @@ export const BOOKS: Book[] = [
     label: "هویت اجتماعی",
     gradeId: 12,
     fieldId: 1,
-    coverImage:
-      "http://www.chap.sch.ir/sites/default/files/styles/image_node_book/public/book_image/1404-1405/C112220.jpg",
+    coverImage: "/imgs/book-covers/C112220.jpg",
     isAvailable: false,
     lastPage: 100,
     publishedYear: 1404,
@@ -2634,8 +2451,7 @@ export const BOOKS: Book[] = [
     label: "هویت اجتماعی",
     gradeId: 12,
     fieldId: 3,
-    coverImage:
-      "http://www.chap.sch.ir/sites/default/files/styles/image_node_book/public/book_image/1404-1405/C112220.jpg",
+    coverImage: "/imgs/book-covers/C112220.jpg",
     isAvailable: false,
     lastPage: 100,
     publishedYear: 1404,
@@ -2648,8 +2464,7 @@ export const BOOKS: Book[] = [
     label: "تعلیمات ادیان الهی و اخلاق ۳",
     gradeId: 12,
     fieldId: 1,
-    coverImage:
-      "http://www.chap.sch.ir/sites/default/files/styles/image_node_book/public/book_image/1404-1405/C112228.jpg",
+    coverImage: "/imgs/book-covers/C112228.jpg",
     isAvailable: false,
     lastPage: 100,
     publishedYear: 1404,
@@ -2662,8 +2477,7 @@ export const BOOKS: Book[] = [
     label: "تعلیمات ادیان الهی و اخلاق ۳",
     gradeId: 12,
     fieldId: 2,
-    coverImage:
-      "http://www.chap.sch.ir/sites/default/files/styles/image_node_book/public/book_image/1404-1405/C112228.jpg",
+    coverImage: "/imgs/book-covers/C112228.jpg",
     isAvailable: false,
     lastPage: 100,
     publishedYear: 1404,
@@ -2676,8 +2490,7 @@ export const BOOKS: Book[] = [
     label: "تعلیمات ادیان الهی و اخلاق ۳",
     gradeId: 12,
     fieldId: 3,
-    coverImage:
-      "http://www.chap.sch.ir/sites/default/files/styles/image_node_book/public/book_image/1404-1405/C112228.jpg",
+    coverImage: "/imgs/book-covers/C112228.jpg",
     isAvailable: false,
     lastPage: 100,
     publishedYear: 1404,
@@ -2690,8 +2503,7 @@ export const BOOKS: Book[] = [
     label: "انگلیسی ۳",
     gradeId: 12,
     fieldId: 1,
-    coverImage:
-      "http://www.chap.sch.ir/sites/default/files/styles/image_node_book/public/book_image/1404-1405/C112230.jpg",
+    coverImage: "/imgs/book-covers/C112230.jpg",
     isAvailable: false,
     lastPage: 100,
     publishedYear: 1404,
@@ -2704,8 +2516,7 @@ export const BOOKS: Book[] = [
     label: "کتاب کار انگلیسی ۳",
     gradeId: 12,
     fieldId: 1,
-    coverImage:
-      "http://www.chap.sch.ir/sites/default/files/styles/image_node_book/public/book_image/1404-1405/C112231.jpg",
+    coverImage: "/imgs/book-covers/C112231.jpg",
     isAvailable: false,
     lastPage: 100,
     publishedYear: 1404,
@@ -2718,8 +2529,7 @@ export const BOOKS: Book[] = [
     label: "انگلیسی ۳",
     gradeId: 12,
     fieldId: 2,
-    coverImage:
-      "http://www.chap.sch.ir/sites/default/files/styles/image_node_book/public/book_image/1404-1405/C112230.jpg",
+    coverImage: "/imgs/book-covers/C112230.jpg",
     isAvailable: false,
     lastPage: 100,
     publishedYear: 1404,
@@ -2732,8 +2542,7 @@ export const BOOKS: Book[] = [
     label: "کتاب کار انگلیسی ۳",
     gradeId: 12,
     fieldId: 2,
-    coverImage:
-      "http://www.chap.sch.ir/sites/default/files/styles/image_node_book/public/book_image/1404-1405/C112231.jpg",
+    coverImage: "/imgs/book-covers/C112231.jpg",
     isAvailable: false,
     lastPage: 100,
     publishedYear: 1404,
@@ -2746,8 +2555,7 @@ export const BOOKS: Book[] = [
     label: "انگلیسی ۳",
     gradeId: 12,
     fieldId: 3,
-    coverImage:
-      "http://www.chap.sch.ir/sites/default/files/styles/image_node_book/public/book_image/1404-1405/C112230.jpg",
+    coverImage: "/imgs/book-covers/C112230.jpg",
     isAvailable: false,
     lastPage: 100,
     publishedYear: 1404,
@@ -2760,8 +2568,7 @@ export const BOOKS: Book[] = [
     label: "کتاب کار انگلیسی ۳",
     gradeId: 12,
     fieldId: 3,
-    coverImage:
-      "http://www.chap.sch.ir/sites/default/files/styles/image_node_book/public/book_image/1404-1405/C112231.jpg",
+    coverImage: "/imgs/book-covers/C112231.jpg",
     isAvailable: false,
     lastPage: 100,
     publishedYear: 1404,
@@ -2774,8 +2581,7 @@ export const BOOKS: Book[] = [
     label: "مدیریت خانواده و سبک زندگی (دختران)",
     gradeId: 12,
     fieldId: 1,
-    coverImage:
-      "http://www.chap.sch.ir/sites/default/files/styles/image_node_book/public/book_image/1404-1405/C112240.jpg",
+    coverImage: "/imgs/book-covers/C112240.jpg",
     isAvailable: false,
     lastPage: 100,
     publishedYear: 1404,
@@ -2788,8 +2594,7 @@ export const BOOKS: Book[] = [
     label: "مدیریت خانواده و سبک زندگی (دختران)",
     gradeId: 12,
     fieldId: 2,
-    coverImage:
-      "http://www.chap.sch.ir/sites/default/files/styles/image_node_book/public/book_image/1404-1405/C112240.jpg",
+    coverImage: "/imgs/book-covers/C112240.jpg",
     isAvailable: false,
     lastPage: 100,
     publishedYear: 1404,
@@ -2802,8 +2607,7 @@ export const BOOKS: Book[] = [
     label: "مدیریت خانواده و سبک زندگی (دختران)",
     gradeId: 12,
     fieldId: 3,
-    coverImage:
-      "http://www.chap.sch.ir/sites/default/files/styles/image_node_book/public/book_image/1404-1405/C112240.jpg",
+    coverImage: "/imgs/book-covers/C112240.jpg",
     isAvailable: false,
     lastPage: 100,
     publishedYear: 1404,
@@ -2816,8 +2620,7 @@ export const BOOKS: Book[] = [
     label: "مدیریت خانواده و سبک زندگی (پسران)",
     gradeId: 12,
     fieldId: 1,
-    coverImage:
-      "http://www.chap.sch.ir/sites/default/files/styles/image_node_book/public/book_image/1404-1405/C112245.jpg",
+    coverImage: "/imgs/book-covers/C112245.jpg",
     isAvailable: false,
     lastPage: 100,
     publishedYear: 1404,
@@ -2830,8 +2633,7 @@ export const BOOKS: Book[] = [
     label: "مدیریت خانواده و سبک زندگی (پسران)",
     gradeId: 12,
     fieldId: 2,
-    coverImage:
-      "http://www.chap.sch.ir/sites/default/files/styles/image_node_book/public/book_image/1404-1405/C112245.jpg",
+    coverImage: "/imgs/book-covers/C112245.jpg",
     isAvailable: false,
     lastPage: 100,
     publishedYear: 1404,
@@ -2844,8 +2646,7 @@ export const BOOKS: Book[] = [
     label: "مدیریت خانواده و سبک زندگی (پسران)",
     gradeId: 12,
     fieldId: 3,
-    coverImage:
-      "http://www.chap.sch.ir/sites/default/files/styles/image_node_book/public/book_image/1404-1405/C112245.jpg",
+    coverImage: "/imgs/book-covers/C112245.jpg",
     isAvailable: false,
     lastPage: 100,
     publishedYear: 1404,
@@ -2858,8 +2659,7 @@ export const BOOKS: Book[] = [
     label: "سلامت و بهداشت",
     gradeId: 12,
     fieldId: 1,
-    coverImage:
-      "http://www.chap.sch.ir/sites/default/files/styles/image_node_book/public/book_image/1404-1405/C112268.jpg",
+    coverImage: "/imgs/book-covers/C112268.jpg",
     isAvailable: false,
     lastPage: 100,
     publishedYear: 1404,
@@ -2872,8 +2672,7 @@ export const BOOKS: Book[] = [
     label: "سلامت و بهداشت",
     gradeId: 12,
     fieldId: 2,
-    coverImage:
-      "http://www.chap.sch.ir/sites/default/files/styles/image_node_book/public/book_image/1404-1405/C112268.jpg",
+    coverImage: "/imgs/book-covers/C112268.jpg",
     isAvailable: false,
     lastPage: 100,
     publishedYear: 1404,
@@ -2886,8 +2685,7 @@ export const BOOKS: Book[] = [
     label: "سلامت و بهداشت",
     gradeId: 12,
     fieldId: 3,
-    coverImage:
-      "http://www.chap.sch.ir/sites/default/files/styles/image_node_book/public/book_image/1404-1405/C112268.jpg",
+    coverImage: "/imgs/book-covers/C112268.jpg",
     isAvailable: false,
     lastPage: 100,
     publishedYear: 1404,
@@ -2901,8 +2699,7 @@ export const BOOKS: Book[] = [
     label: "ریاضی ۳ (تجربی)",
     gradeId: 12,
     fieldId: 1,
-    coverImage:
-      "http://www.chap.sch.ir/sites/default/files/styles/image_node_book/public/book_image/1404-1405/C112211.jpg",
+    coverImage: "/imgs/book-covers/C112211.jpg",
     isAvailable: false,
     lastPage: 100,
     publishedYear: 1404,
@@ -2915,8 +2712,7 @@ export const BOOKS: Book[] = [
     label: "زیست شناسی ۳",
     gradeId: 12,
     fieldId: 1,
-    coverImage:
-      "http://www.chap.sch.ir/sites/default/files/styles/image_node_book/public/book_image/1404-1405/C112216.jpg",
+    coverImage: "/imgs/book-covers/C112216.jpg",
     isAvailable: true,
     lastPage: 125,
     publishedYear: 1404,
@@ -2929,8 +2725,7 @@ export const BOOKS: Book[] = [
     label: "فیزیک ۳ (تجربی)",
     gradeId: 12,
     fieldId: 1,
-    coverImage:
-      "http://www.chap.sch.ir/sites/default/files/styles/image_node_book/public/book_image/1404-1405/C112244.jpg",
+    coverImage: "/imgs/book-covers/C112244.jpg",
     isAvailable: false,
     lastPage: 100,
     publishedYear: 1404,
@@ -2944,8 +2739,7 @@ export const BOOKS: Book[] = [
     label: "دین و زندگی ۳ (انسانی)",
     gradeId: 12,
     fieldId: 2,
-    coverImage:
-      "http://www.chap.sch.ir/sites/default/files/styles/image_node_book/public/book_image/1404-1405/C112205.jpg",
+    coverImage: "/imgs/book-covers/C112205.jpg",
     isAvailable: false,
     lastPage: 100,
     publishedYear: 1404,
@@ -2958,8 +2752,7 @@ export const BOOKS: Book[] = [
     label: "عربی، زبان قرآن ۳ (انسانی)",
     gradeId: 12,
     fieldId: 2,
-    coverImage:
-      "http://www.chap.sch.ir/sites/default/files/styles/image_node_book/public/book_image/1404-1405/C112207.jpg",
+    coverImage: "/imgs/book-covers/C112207.jpg",
     isAvailable: false,
     lastPage: 100,
     publishedYear: 1404,
@@ -2972,8 +2765,7 @@ export const BOOKS: Book[] = [
     label: "ریاضی و آمار ۳",
     gradeId: 12,
     fieldId: 2,
-    coverImage:
-      "http://www.chap.sch.ir/sites/default/files/styles/image_node_book/public/book_image/1404-1405/C112212.jpg",
+    coverImage: "/imgs/book-covers/C112212.jpg",
     isAvailable: false,
     lastPage: 100,
     publishedYear: 1404,
@@ -2986,8 +2778,7 @@ export const BOOKS: Book[] = [
     label: "جغرافیا ۳ (کاربردی)",
     gradeId: 12,
     fieldId: 2,
-    coverImage:
-      "http://www.chap.sch.ir/sites/default/files/styles/image_node_book/public/book_image/1404-1405/C112218.jpg",
+    coverImage: "/imgs/book-covers/C112218.jpg",
     isAvailable: false,
     lastPage: 100,
     publishedYear: 1404,
@@ -3000,8 +2791,7 @@ export const BOOKS: Book[] = [
     label: "تاریخ ۳ ایران و جهان معاصر",
     gradeId: 12,
     fieldId: 2,
-    coverImage:
-      "http://www.chap.sch.ir/sites/default/files/styles/image_node_book/public/book_image/1404-1405/C112219.jpg",
+    coverImage: "/imgs/book-covers/C112219.jpg",
     isAvailable: false,
     lastPage: 100,
     publishedYear: 1404,
@@ -3014,8 +2804,7 @@ export const BOOKS: Book[] = [
     label: "جامعه شناسی ۳",
     gradeId: 12,
     fieldId: 2,
-    coverImage:
-      "http://www.chap.sch.ir/sites/default/files/styles/image_node_book/public/book_image/1404-1405/C112222.jpg",
+    coverImage: "/imgs/book-covers/C112222.jpg",
     isAvailable: false,
     lastPage: 100,
     publishedYear: 1404,
@@ -3028,8 +2817,7 @@ export const BOOKS: Book[] = [
     label: "تحلیل فرهنگی",
     gradeId: 12,
     fieldId: 2,
-    coverImage:
-      "http://www.chap.sch.ir/sites/default/files/styles/image_node_book/public/book_image/1404-1405/C112223.jpg",
+    coverImage: "/imgs/book-covers/C112223.jpg",
     isAvailable: false,
     lastPage: 100,
     publishedYear: 1404,
@@ -3042,8 +2830,7 @@ export const BOOKS: Book[] = [
     label: "فلسفه ۲",
     gradeId: 12,
     fieldId: 2,
-    coverImage:
-      "http://www.chap.sch.ir/sites/default/files/styles/image_node_book/public/book_image/1404-1405/C112226.jpg",
+    coverImage: "/imgs/book-covers/C112226.jpg",
     isAvailable: false,
     lastPage: 100,
     publishedYear: 1404,
@@ -3057,8 +2844,7 @@ export const BOOKS: Book[] = [
     label: "فیزیک ۳ (ریاضی)",
     gradeId: 12,
     fieldId: 3,
-    coverImage:
-      "http://www.chap.sch.ir/sites/default/files/styles/image_node_book/public/book_image/1404-1405/C112209.jpg",
+    coverImage: "/imgs/book-covers/C112209.jpg",
     isAvailable: false,
     lastPage: 100,
     publishedYear: 1404,
@@ -3071,8 +2857,7 @@ export const BOOKS: Book[] = [
     label: "هندسه ۳",
     gradeId: 12,
     fieldId: 3,
-    coverImage:
-      "http://www.chap.sch.ir/sites/default/files/styles/image_node_book/public/book_image/1404-1405/C112213.jpg",
+    coverImage: "/imgs/book-covers/C112213.jpg",
     isAvailable: false,
     lastPage: 100,
     publishedYear: 1404,
@@ -3085,8 +2870,7 @@ export const BOOKS: Book[] = [
     label: "حسابان ۲",
     gradeId: 12,
     fieldId: 3,
-    coverImage:
-      "http://www.chap.sch.ir/sites/default/files/styles/image_node_book/public/book_image/1404-1405/C112214.jpg",
+    coverImage: "/imgs/book-covers/C112214.jpg",
     isAvailable: false,
     lastPage: 100,
     publishedYear: 1404,
@@ -3099,8 +2883,7 @@ export const BOOKS: Book[] = [
     label: "ریاضیات گسسته",
     gradeId: 12,
     fieldId: 3,
-    coverImage:
-      "http://www.chap.sch.ir/sites/default/files/styles/image_node_book/public/book_image/1404-1405/C112215.jpg",
+    coverImage: "/imgs/book-covers/C112215.jpg",
     isAvailable: false,
     lastPage: 100,
     publishedYear: 1404,

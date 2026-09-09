@@ -229,7 +229,7 @@ export const questionsData: QuestionType[] = [
       <strong>گزینه ۴:</strong> نادرست. گلوکز به داخل یاخته وارد می‌شود، نه خارج.
     </div>
     `,
-    author: "سامان رضایی",
+    author: "رضا قزلسفلو",
     date: "اردیبهشت ۱۴۰۱",
     score: 1,
     tags: ["چهار گزینه ای", "جای خالی", "مفهومی", "آسان"],

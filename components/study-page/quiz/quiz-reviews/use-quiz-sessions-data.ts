@@ -14,6 +14,7 @@ export const useQuizSessionsData = () => {
     isLoading,
     error,
     refetch,
+    isFetching,
   } = useQuery({
     queryKey,
     queryFn: () => fetchQuizSessions(USER_ID, currentBookId),
@@ -23,6 +24,7 @@ export const useQuizSessionsData = () => {
   return {
     quizSessions,
     isLoading,
+    isFetching,
     error,
     loadQuizSessions: refetch,
   };

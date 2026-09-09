@@ -1,0 +1,35 @@
+.ref-page {
+  background-color: black;
+  color: white;
+  font-weight: bold;
+  box-sizing: border-box;
+  min-width: 40px;
+  height: 40px;
+  border-radius: 30px;
+  margin: 2px 0px;
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+  flex-shrink: 0;
+  cursor: pointer;
+}
+
+.ref-page:hover {
+  background-color: #555;
+}
+
+span.ref-page {
+  background-color: black;
+  color: white;
+  font-weight: bold;
+  font-size: 14px;
+  box-sizing: border-box;
+  min-width: 24px;
+  height: 24px;
+  border-radius: 6px;
+  margin: 0;
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+  flex-shrink: 0;
+}

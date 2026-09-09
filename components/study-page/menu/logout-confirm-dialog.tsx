@@ -27,9 +27,18 @@ export function LogoutConfirmDialog({
           خروج از حساب کاربری
         </span>
       }
-      description="آیا از خروج از حساب کاربری خود اطمینان دارید؟ برای ورود مجدد نیاز به دریافت کد تایید یا وارد کردن رمز عبور خواهید داشت."
+      // description="آیا از خروج از حساب کاربری خود اطمینان دارید؟ برای ورود مجدد نیاز به دریافت کد تایید یا وارد کردن رمز عبور خواهید داشت."
     >
       <div className="flex flex-col gap-3 pt-2" dir="rtl">
+        <button
+          onClick={() => {
+            localStorage.clear();
+            window.location.reload();
+          }}
+        >
+          پاک کردن لوکال استورج
+        </button>
+
         <div className="flex flex-row-reverse justify-start gap-2 pt-2">
           <Button
             variant="destructive"

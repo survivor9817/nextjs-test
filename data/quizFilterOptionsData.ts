@@ -39,16 +39,6 @@ const referenceOptions = [
 ];
 const getReferenceOptions = () => referenceOptions;
 
-// // masalan api gereftane filter option haa.
-// export const getOptionsFromDB = (id: string, quizFilters: QuizFiltersType) => {
-//   // baayad dependant dropdown list baashe. yani agar level ya source bood,
-//   // baa darnazar gereftane quiz filters gozine haa bargardande beshan.
-//   if (!quizFilters.book?.value) return;
-//   if (id === "where") return getFlatFehrestSectionsById(quizFilters.book?.value);
-//   if (id === "level") return getLevelOptions();
-//   if (id === "source") return getReferenceOptions();
-// };
-
 export const getOptionsFromDB = (id: string, quizFilters: QuizFiltersType) => {
   if (!quizFilters.book?.value) return null;
   if (id === "where") return getFlatFehrestSectionsById(quizFilters.book.value);
