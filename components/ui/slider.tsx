@@ -1,10 +1,10 @@
-"use client"
+"use client";
 
-import * as React from "react"
-import { DirectionProvider } from "@base-ui/react/direction-provider"
-import { Slider as SliderPrimitive } from "@base-ui/react/slider"
+import * as React from "react";
+import { DirectionProvider } from "@base-ui/react/direction-provider";
+import { Slider as SliderPrimitive } from "@base-ui/react/slider";
 
-import { cn } from "@/lib/utils"
+import { cn } from "@/lib/utils";
 
 /**
  * Base UI's Slider resolves drag and keyboard direction through its own
@@ -16,28 +16,28 @@ import { cn } from "@/lib/utils"
  * ContextMenu/Menubar/Tooltip in this repo.
  */
 function useAmbientDirection() {
-  const ref = React.useRef<HTMLDivElement>(null)
-  const [dir, setDir] = React.useState<"ltr" | "rtl">("ltr")
+  const ref = React.useRef<HTMLDivElement>(null);
+  const [dir, setDir] = React.useState<"ltr" | "rtl">("ltr");
 
   React.useEffect(() => {
     function update() {
-      if (!ref.current) return
-      setDir(getComputedStyle(ref.current).direction === "rtl" ? "rtl" : "ltr")
+      if (!ref.current) return;
+      setDir(getComputedStyle(ref.current).direction === "rtl" ? "rtl" : "ltr");
     }
 
-    update()
+    update();
 
-    const observer = new MutationObserver(update)
+    const observer = new MutationObserver(update);
     observer.observe(document.documentElement, {
       attributes: true,
       attributeFilter: ["dir"],
       subtree: true,
-    })
+    });
 
-    return () => observer.disconnect()
-  }, [])
+    return () => observer.disconnect();
+  }, []);
 
-  return { ref, dir }
+  return { ref, dir };
 }
 
 function Slider({
@@ -49,29 +49,26 @@ function Slider({
   max = 100,
   ...props
 }: SliderPrimitive.Root.Props) {
-  const { ref: controlRef, dir } = useAmbientDirection()
+  const { ref: controlRef, dir } = useAmbientDirection();
 
   const _values = Array.isArray(value)
     ? value
     : Array.isArray(defaultValue)
       ? defaultValue
-      : [min, max]
+      : [min, max];
 
-  const isArrayValue = Array.isArray(value) || Array.isArray(defaultValue)
+  const isArrayValue = Array.isArray(value) || Array.isArray(defaultValue);
 
   // Base UI's pointer-drag path reports a bare number for a single-thumb
   // slider even when value/defaultValue is an array — keyboard input goes
   // through a different internal code path that gets this right, so the
   // shape only breaks on drag. Normalize to the shape the consumer opted
   // into so `value[0]` never turns undefined mid-drag.
-  const handleValueChange: SliderPrimitive.Root.Props["onValueChange"] = (
-    next,
-    eventDetails
-  ) => {
+  const handleValueChange: SliderPrimitive.Root.Props["onValueChange"] = (next, eventDetails) => {
     const normalized: typeof next =
-      isArrayValue && !Array.isArray(next) ? ([next] as typeof next) : next
-    onValueChange?.(normalized, eventDetails)
-  }
+      isArrayValue && !Array.isArray(next) ? ([next] as typeof next) : next;
+    onValueChange?.(normalized, eventDetails);
+  };
 
   return (
     <DirectionProvider direction={dir}>
@@ -109,7 +106,7 @@ function Slider({
         </SliderPrimitive.Control>
       </SliderPrimitive.Root>
     </DirectionProvider>
-  )
+  );
 }
 
-export { Slider }
+export { Slider };

@@ -7,7 +7,9 @@ import {
   DialogTrigger,
 } from "@/components/ui/dialog";
 import { Button } from "../ui/button";
-import LoginField from "./login-field";
+import SignInForm from "../auth/sign-in-form";
+import PhoneAuthFlow from "../auth/phone-auth-flow";
+import SignUpForm from "../auth/sign-up-form";
 type Props = {};
 
 const AuthModalBtn = (props: Props) => {
@@ -26,10 +28,13 @@ const AuthModalBtn = (props: Props) => {
 
       <DialogContent>
         <DialogHeader>
-          <DialogTitle>ورود به حساب کاربری</DialogTitle>
-          <DialogDescription>وارد شوید یا حساب کاربری بسازید.</DialogDescription>
+          <DialogTitle className={"text-center"}>ورود به حساب کاربری</DialogTitle>
+          {/* <DialogDescription className={"text-center"}>
+            وارد شوید یا حساب کاربری بسازید.
+          </DialogDescription> */}
         </DialogHeader>
-        <LoginField />
+
+        <SignInForm />
       </DialogContent>
     </Dialog>
   );

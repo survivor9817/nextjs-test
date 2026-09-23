@@ -30,7 +30,7 @@ const BookPagination = () => {
 
   return (
     <>
-      <div className="flex items-center p-1 w-[86vw] max-w-[86vw] sm:max-w-90 sm:w-90 border-2 border-black rounded-[48px] bg-white">
+      <div className="flex items-center p-1 w-[86vw] max-w-[86vw] sm:max-w-90 sm:w-90 border-2 rounded-[48px] bg-[#eee] border-[#bcbcbc]">
         <IconBtn
           icon={<span className="msr text-5xl">arrow_circle_right</span>}
           onClick={goToPrevPage}
@@ -64,7 +64,7 @@ const BookPagination = () => {
           disabled={isDisabled}
           autoComplete="off"
           className={cn(
-            "h-11 w-11 min-w-11 max-w-11 rounded-3xl border-[3px] border-black p-0 text-center text-[18px] appearance-none",
+            "h-10 w-10 min-w-10 max-w-10 rounded-3xl border-[3px] border-gray-500 p-0 text-center text-[18px] appearance-none",
             "focus-visible:ring-0 focus-visible:ring-offset-0",
             inputError,
           )}
