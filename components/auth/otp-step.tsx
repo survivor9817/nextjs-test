@@ -65,7 +65,7 @@ function OtpStep({
       <FieldGroup className="gap-4">
         <FieldContent className="flex justify-center items-center">
           <FieldTitle className="text-2xl font-bold">تأیید شماره موبایل</FieldTitle>
-          <FieldDescription>کد ۶ رقمی ارسال شده به {phone} را وارد کنید</FieldDescription>
+          <FieldDescription>کد ۶ رقمی ارسال شده به {phone} را وارد کنید.</FieldDescription>
         </FieldContent>
 
         <Controller
@@ -106,7 +106,9 @@ function OtpStep({
 
         <div className="text-center text-sm space-y-2">
           {timeLeft > 0 ? (
-            <span className="text-muted-foreground block">ارسال مجدد تا {timeLeft} ثانیه دیگر</span>
+            <span className="text-muted-foreground block">
+              ارسال دوباره تا {timeLeft} ثانیه دیگر
+            </span>
           ) : (
             <button
               type="button"

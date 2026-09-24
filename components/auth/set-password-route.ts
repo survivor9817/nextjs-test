@@ -54,3 +54,58 @@ export async function POST(req: Request) {
 //     }),
 //   ],
 // });
+
+// app/api/auth/complete-signup/route.ts
+export async function POST(req: NextRequest) {
+  const { phone, code, password } = await req.json();
+
+  // ۱. تایید OTP (داخلی، بدون ساخت session جدا)
+  const verifyResult = await auth.api.signInPhoneNumber({
+    body: { phoneNumber: phone, code, disableSession: true },
+  });
+
+  if (!verifyResult?.user) {
+    return NextResponse.json({ error: "کد نامعتبر است" }, { status: 400 });
+  }
+
+  // ۲. ست کردن رمز مستقیم روی همون userId، بدون نیاز به session
+  const ctx = await auth.$context;
+  const hash = await ctx.password.hash(password);
+  await ctx.internalAdapter.updatePassword(verifyResult.user.id, hash);
+
+  // ۳. حالا session واقعی رو بساز و کوکی بذار
+  // (یا از همون verify با disableSession:false استفاده کن بعد از موفقیت رمز)
+}
+
+//            phone + otp
+//                │
+//                ▼
+//     consumePhoneNumberOTP()
+//                │
+//            OTP معتبر؟
+//           /          \
+//         نه            بله
+//         │              │
+//       error            ▼
+//                    پیدا کردن user
+//                         │
+//              ┌──────────┴──────────┐
+//              │                     │
+//           user هست             user نیست
+//              │                     │
+//              ▼                     ▼
+//        password?              create user
+//         /    \                    │
+//       yes     no                  │
+//        │       │                 │
+//        ▼       │             password?
+//  set password  │              /      \
+//        │       │            yes       no
+//        │       │             │         │
+//        └───────┴─────────────┴─────────┘
+//                        │
+//                        ▼
+//                  create session
+//                        │
+//                        ▼
+//                    success

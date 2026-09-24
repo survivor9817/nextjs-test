@@ -10,48 +10,51 @@ export default function PhoneAuthFlow() {
   const {
     step,
     phone,
+    requestOtp,
     loading,
     serverError,
-    isNewUser,
-    requestOtp,
     verifyOtp,
     resendOtp,
+    isNewUser,
     submitPassword,
     skipPassword,
     handleChangePhone,
   } = usePhoneAuthFlow();
 
   return (
-    <div className="flex justify-center items-center">
-      <Card className="w-full">
-        <CardContent>
-          {step === "phone" && (
-            <PhoneStep loading={loading} serverError={serverError} onSubmit={requestOtp} />
-          )}
+    <Card className="min-w-80 max-w-100 w-full mx-2">
+      <CardContent>
+        {step === "phone" && (
+          <PhoneStep
+            defaultValue={phone}
+            loading={loading}
+            serverError={serverError}
+            onSubmit={requestOtp}
+          />
+        )}
 
-          {step === "otp" && (
-            <OtpStep
-              phone={phone}
-              resendDelay={RESEND_DELAY_SECONDS}
-              loading={loading}
-              serverError={serverError}
-              onVerify={verifyOtp}
-              onResend={resendOtp}
-              onChangePhone={handleChangePhone}
-            />
-          )}
+        {step === "otp" && (
+          <OtpStep
+            phone={phone}
+            resendDelay={RESEND_DELAY_SECONDS}
+            loading={loading}
+            serverError={serverError}
+            onVerify={verifyOtp}
+            onResend={resendOtp}
+            onChangePhone={handleChangePhone}
+          />
+        )}
 
-          {step === "password" && (
-            <PasswordStep
-              loading={loading}
-              serverError={serverError}
-              onSubmit={submitPassword}
-              onSkip={skipPassword}
-              isNewUser={isNewUser}
-            />
-          )}
-        </CardContent>
-      </Card>
-    </div>
+        {step === "password" && (
+          <PasswordStep
+            loading={loading}
+            serverError={serverError}
+            onSubmit={submitPassword}
+            onSkip={skipPassword}
+            isNewUser={isNewUser}
+          />
+        )}
+      </CardContent>
+    </Card>
   );
 }

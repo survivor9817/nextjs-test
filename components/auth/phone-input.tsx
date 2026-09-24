@@ -22,7 +22,7 @@ function PhoneInput({ className, ref, ...props }: PhoneInputProps) {
         ref={ref}
         type="tel"
         dir="rtl"
-        inputMode="tel"
+        inputMode="numeric" // or tel?
         autoComplete="tel"
         className={cn("pr-10", className)}
         {...props}
