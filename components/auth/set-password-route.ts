@@ -1,29 +1,64 @@
+// app/api/auth/set-password/route.ts
 import { auth } from "@/lib/auth";
 import { headers } from "next/headers";
 import { NextResponse } from "next/server";
 
+// پنجره زمانی مجاز برای تنظیم رمز پس از لاگین با OTP (مثلاً ۲ دقیقه)
+const MAX_SESSION_AGE_MS = 2 * 60 * 1000;
+
 export async function POST(req: Request) {
   try {
-    const { password } = await req.json();
-    const reqHeaders = await headers();
+    const { newPassword } = await req.json();
 
-    const session = await auth.api.getSession({ headers: reqHeaders });
-    if (!session) {
-      return NextResponse.json({ message: "سشن معتبری یافت نشد." }, { status: 401 });
+    if (!newPassword || newPassword.length < 6) {
+      // پیام مبهم: نگوییم "رمز کوتاه است"، بگوییم درخواست نامعتبر است
+      return NextResponse.json({ message: "درخواست نامعتبر است." }, { status: 400 });
     }
 
-    // متد رسمی Better Auth برای ثبت یا تغییر پسورد کاربر لاگین‌شده
+    // // ۱. type-safety بیشتر روی ورودی
+    // const { newPassword } = await req.json();
+
+    // if (typeof newPassword !== "string" || newPassword.length < 6) {
+    //   return NextResponse.json({ message: "درخواست نامعتبر است." }, { status: 400 });
+    // }
+
+    const reqHeaders = await headers();
+
+    // ۱. بررسی وجود سشن
+    const session = await auth.api.getSession({ headers: reqHeaders });
+
+    // پیام مبهم برای امنیت (جلوگیری از Enumration)
+    if (!session) {
+      return NextResponse.json({ message: "عملیات مجاز نیست." }, { status: 401 });
+    }
+
+    // ۲. بررسی تازگی سشن (جلوگیری از استفاده از سشن‌های قدیمی)
+    const sessionCreatedAt = new Date(session.session.createdAt).getTime();
+    const sessionAge = Date.now() - sessionCreatedAt;
+
+    if (sessionAge > MAX_SESSION_AGE_MS) {
+      // به جای اینکه بگوییم "سشن منقضی شده"، می‌گوییم نیاز به احراز هویت مجدد است
+      return NextResponse.json(
+        { message: "لطفاً برای انجام این عملیات، مجدداً وارد حساب کاربری خود شوید." },
+        { status: 401 },
+      );
+    }
+
+    // ۳. استفاده از API رسمی Better Auth برای تنظیم/تغییر رمز
+    // این متد به طور خودکار تشخیص می‌دهد که آیا باید رکورد جدید بسازد یا قبلی را آپدیت کند
     await auth.api.setPassword({
-      body: { newPassword: password },
+      body: { newPassword: newPassword },
       headers: reqHeaders,
     });
 
-    return NextResponse.json({ success: true });
+    return NextResponse.json({
+      success: true,
+      message: "رمز عبور با موفقیت تنظیم شد.",
+    });
   } catch (error: any) {
-    return NextResponse.json(
-      { message: error?.message || "خطا در تنظیم رمز عبور" },
-      { status: 400 },
-    );
+    console.error("Set Password Error:", error);
+    // پیام خطای عمومی و مبهم برای تمام خطاهای پیش‌بینی‌نشده
+    return NextResponse.json({ message: "خطا در پردازش درخواست." }, { status: 400 });
   }
 }
 
@@ -35,14 +70,17 @@ export async function POST(req: Request) {
 //   rateLimit: {
 //     enabled: true,
 //     window: 60, // پنجره زمانی بر حسب ثانیه (مثلاً ۶۰ ثانیه)
-//     max: 1,      // در هر ۶۰ ثانیه حداکثر ۱ بار اجازه ارسال بده
+//     max: 1, // در هر ۶۰ ثانیه حداکثر ۱ بار اجازه ارسال بده
 //     customRules: {
 //       // اعمال محدودیت اختصاصی برای اندپوینت ارسال پیامک
 //       "/phone-number/send-otp": {
 //         window: 60, // هر ۶۰ ثانیه
-//         max: 1,     // فقط ۱ درخواست برای هر کاربر/IP
+//         max: 1, // فقط ۱ درخواست برای هر کاربر/IP
 //       },
 //     },
+//   },
+//   session: {
+//     freshAge: 60 * 2, // دو دقیقه
 //   },
 //   plugins: [
 //     phoneNumber({
@@ -55,57 +93,24 @@ export async function POST(req: Request) {
 //   ],
 // });
 
-// app/api/auth/complete-signup/route.ts
-export async function POST(req: NextRequest) {
-  const { phone, code, password } = await req.json();
+// // lib/auth.ts
+// import { betterAuth } from "better-auth";
+// import { phoneNumber } from "better-auth/plugins";
 
-  // ۱. تایید OTP (داخلی، بدون ساخت session جدا)
-  const verifyResult = await auth.api.signInPhoneNumber({
-    body: { phoneNumber: phone, code, disableSession: true },
-  });
-
-  if (!verifyResult?.user) {
-    return NextResponse.json({ error: "کد نامعتبر است" }, { status: 400 });
-  }
-
-  // ۲. ست کردن رمز مستقیم روی همون userId، بدون نیاز به session
-  const ctx = await auth.$context;
-  const hash = await ctx.password.hash(password);
-  await ctx.internalAdapter.updatePassword(verifyResult.user.id, hash);
-
-  // ۳. حالا session واقعی رو بساز و کوکی بذار
-  // (یا از همون verify با disableSession:false استفاده کن بعد از موفقیت رمز)
-}
-
-//            phone + otp
-//                │
-//                ▼
-//     consumePhoneNumberOTP()
-//                │
-//            OTP معتبر؟
-//           /          \
-//         نه            بله
-//         │              │
-//       error            ▼
-//                    پیدا کردن user
-//                         │
-//              ┌──────────┴──────────┐
-//              │                     │
-//           user هست             user نیست
-//              │                     │
-//              ▼                     ▼
-//        password?              create user
-//         /    \                    │
-//       yes     no                  │
-//        │       │                 │
-//        ▼       │             password?
-//  set password  │              /      \
-//        │       │            yes       no
-//        │       │             │         │
-//        └───────┴─────────────┴─────────┘
-//                        │
-//                        ▼
-//                  create session
-//                        │
-//                        ▼
-//                    success
+// export const auth = betterAuth({
+//   emailAndPassword: {
+//     enabled: true,
+//   },
+//   plugins: [
+//     phoneNumber({
+//       sendOTP: async ({ phoneNumber, code }) => {
+//         // ارسال پیامک
+//       },
+//       // این گزینه جادوی کار شماست:
+//       signUpOnVerification: {
+//         getTempEmail: (phoneNumber) => `${phoneNumber.replace(/\+/g, "")}@temp.local`,
+//         getTempName: (phoneNumber) => `User ${phoneNumber}`,
+//       }
+//     }),
+//   ],
+// });

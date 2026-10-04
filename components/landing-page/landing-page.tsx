@@ -2,6 +2,7 @@ import LandingNavbar from "@/components/landing-page/landing-navbar";
 import HeroTypeWriter from "@/components/landing-page/hero-typewriter";
 import ChooseBook from "@/components/landing-page/choose-book";
 import ArrowDown from "./arrow-down";
+import { BirthDateField } from "./birth-date-field";
 
 const LandingPage = () => {
   return (
@@ -16,6 +17,7 @@ const LandingPage = () => {
           <ArrowDown className="size-12 sm:size-18" />
           <ArrowDown className="size-12 sm:size-18" />
         </div>
+        <BirthDateField />
 
         <ChooseBook />
         {/* <ChooseBook2 /> */}

@@ -1,4 +1,4 @@
-import PhoneAuthFlow from "@/components/auth/phone-auth-flow";
+import PhoneAuthFlow from "@/components/auth/sign-up-form";
 import Logo from "@/components/landing-page/logo";
 
 const page = async () => {

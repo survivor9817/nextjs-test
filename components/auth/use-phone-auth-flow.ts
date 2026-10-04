@@ -1,3 +1,4 @@
+// use-phone-auth-flow.ts
 "use client";
 
 import { useState } from "react";
@@ -11,8 +12,8 @@ export const RESEND_DELAY_SECONDS = 60;
 /**
  * منطق مشترک فلوی احراز هویت با شماره تلفن:
  * مرحله ۱) ارسال OTP
- * مرحله ۲) تایید OTP و تشخیص وضعیت کاربر (کاربر جدید است یا قدیمی)
- * مرحله ۳) ست/تغییر رمز عبور یا رد شدن از آن با حفظ نشست لاگین
+ * مرحله ۲) تایید OTP و تشخیص وضعیت کاربر (آیا رمز عبور تعیین کرده یا نه)
+ * مرحله ۳) در صورت نداشتن رمز عبور، تعیین رمز؛ در غیر این صورت لاگین کامل و ری‌دایرکت
  */
 export function usePhoneAuthFlow(onSuccess?: () => void) {
   const router = useRouter();
@@ -24,7 +25,7 @@ export function usePhoneAuthFlow(onSuccess?: () => void) {
   const [loading, setLoading] = useState(false);
   const [serverError, setServerError] = useState<string | null>(null);
 
-  // وضعیت کاربر: آیا کاربر تازه ثبت‌نام کرده (true) یا از قبل اکانت داشته (false)
+  // true یعنی کاربر برای اکانتش هنوز رمزی تعیین نکرده (باید به مرحله ۳ برود)
   const [isNewUser, setIsNewUser] = useState<boolean | null>(null);
 
   // --- بازگشت به مرحله شماره تلفن و پاک‌سازی وضعیت‌ها ---
@@ -35,7 +36,7 @@ export function usePhoneAuthFlow(onSuccess?: () => void) {
     setStep("phone");
   }
 
-  // --- هدایت کاربر به صفحه نهایی (پس از ثبت رمز یا رد شدن) ---
+  // --- هدایت کاربر به صفحه نهایی (پس از ثبت رمز یا لاگین کامل) ---
   function handleCompleteFlow() {
     if (onSuccess) {
       onSuccess();
@@ -44,7 +45,7 @@ export function usePhoneAuthFlow(onSuccess?: () => void) {
     }
   }
 
-  // --- رد شدن از مرحله رمز عبور (ورود مستقیم به حساب با OTP) ---
+  // --- رد شدن از مرحله رمز عبور (در صورت نیاز به دکمه‌ی "بعداً") ---
   function skipPassword() {
     handleCompleteFlow();
   }
@@ -82,7 +83,7 @@ export function usePhoneAuthFlow(onSuccess?: () => void) {
     */
   }
 
-  // --- مرحله ۲: تایید OTP و بررسی زمان ساخت کاربر ---
+  // --- مرحله ۲: تایید OTP و بررسی این‌که کاربر رمز عبور دارد یا نه ---
   async function verifyOtp(otpValue: string) {
     setServerError(null);
     setLoading(true);
@@ -91,7 +92,7 @@ export function usePhoneAuthFlow(onSuccess?: () => void) {
     console.log("کد تایید شد:", otpValue);
     await new Promise((resolve) => setTimeout(resolve, 500));
 
-    // شبیه‌سازی: مثلاً کاربر جدید تشخیص داده شد (یا برای تست false بگذارید)
+    // شبیه‌سازی: مثلاً کاربر هنوز رمز عبور ندارد (برای تست false بگذارید تا مستقیم ری‌دایرکت شود)
     setIsNewUser(true);
     setLoading(false);
     setStep("password");
@@ -99,9 +100,10 @@ export function usePhoneAuthFlow(onSuccess?: () => void) {
     /*
     // --- پیاده‌سازی واقعی با Better Auth ---
     try {
+      // verifyPhoneNumber به‌صورت پیش‌فرض یک سشن برای کاربر می‌سازد
       const { data, error } = await authClient.phoneNumber.verify({
         phoneNumber: phone,
-        code: otpValue, // کلید پارامتر در Better Auth الزاماً code است
+        code: otpValue,
       });
 
       if (error) {
@@ -109,19 +111,27 @@ export function usePhoneAuthFlow(onSuccess?: () => void) {
         return;
       }
 
-      // تشخیص نوپا بودن کاربر:
-      // اگر اختلاف زمان ایجاد اکانت (createdAt) با زمان حال کمتر از ۱۵ ثانیه باشد،
-      // یعنی کاربر در همین لحظه ایجاد شده و کاربر جدید (ثبت‌نامی) است.
-      if (data?.user?.createdAt) {
-        const createdAtTime = new Date(data.user.createdAt).getTime();
-        const now = Date.now();
-        const newlyCreated = now - createdAtTime < 15_000;
-        setIsNewUser(newlyCreated);
-      } else {
-        setIsNewUser(false);
+      // حالا که سشن ساخته شده، بررسی می‌کنیم آیا اکانت credential (رمز عبور) دارد یا نه
+      const { data: accounts, error: accountsError } =
+        await authClient.listAccounts();
+
+      if (accountsError) {
+        setServerError(accountsError.message || "خطا در بررسی وضعیت حساب.");
+        return;
       }
 
-      setStep("password");
+      const hasPassword = accounts?.some(
+        (account) => account.providerId === "credential"
+      );
+
+      if (hasPassword) {
+        // کاربر از قبل رمز دارد → لاگین کامل شد، مستقیم ری‌دایرکت شود
+        handleCompleteFlow();
+      } else {
+        // هنوز رمزی تعیین نشده → برو مرحله تعیین رمز
+        setIsNewUser(true);
+        setStep("password");
+      }
     } catch (err: any) {
       setServerError(err?.message || "خطا در تایید کد.");
     } finally {
@@ -150,7 +160,7 @@ export function usePhoneAuthFlow(onSuccess?: () => void) {
     */
   }
 
-  // --- مرحله ۳: ست/تغییر رمز عبور برای کاربر سشن‌دار جاری ---
+  // --- مرحله ۳: تعیین رمز عبور برای کاربر سشن‌دار جاری که هنوز credential ندارد ---
   async function submitPassword(password: string) {
     setServerError(null);
     setLoading(true);
@@ -163,11 +173,13 @@ export function usePhoneAuthFlow(onSuccess?: () => void) {
 
     /*
     // --- پیاده‌سازی واقعی با Better Auth ---
+    // نکته: auth.api.setPassword فقط سمت سرور قابل فراخوانی است،
+    // پس باید از طریق یک API Route فراخوانی شود (نه مستقیم authClient)
     try {
       const res = await fetch("/api/auth/set-password", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ password }),
+        body: JSON.stringify({ newPassword: password }),
       });
 
       if (!res.ok) {
@@ -190,12 +202,12 @@ export function usePhoneAuthFlow(onSuccess?: () => void) {
     phone,
     loading,
     serverError,
-    isNewUser, // 👈 مقدار true برای ثبت‌نامی و false برای کاربر قبلی
+    isNewUser, // 👈 true یعنی کاربر هنوز رمز عبور تعیین نکرده
     requestOtp,
     verifyOtp,
     resendOtp,
     submitPassword,
-    skipPassword, // 👈 متد رد شدن از مرحله پسورد
+    skipPassword, // 👈 متد رد شدن از مرحله پسورد (در صورت نیاز به این گزینه)
     handleChangePhone,
   };
 }
