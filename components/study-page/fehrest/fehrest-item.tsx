@@ -15,10 +15,13 @@ const FehrestItem = ({ section, currentSectionPage, onClick, isActive }: Props) 
   const isHighlighted = isActive ? "bg-[#e1a3c1]" : "hover:bg-[#e1a3c175]";
   const hasSubSection = section.sections && section.sections?.length > 0;
 
+  const shouldClose = !hasSubSection || isActive;
+
   return (
     <li>
       <Button
         variant={"unstyled"}
+        data-close-fehrest={shouldClose ? "true" : undefined}
         className={`flex justify-between w-full text-start font-semibold py-1.25 px-2 pl-1 my-1 rounded cursor-pointer transition-colors duration-300 ${isHighlighted}`}
         onClick={() => onClick(section)}
       >
