@@ -44,7 +44,7 @@ const QuizReviewModal = ({ isOpen, onClose, quizId, reviewQuiz, startQuizLoading
             className="flex-1 rounded-full h-11"
             onClick={onClose}
           >
-            بستن
+            اشتراک گذاری
           </Button>
         </div>
       </div>

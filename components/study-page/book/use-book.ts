@@ -20,7 +20,7 @@ export const useBook = (defaultBookId = "706", defaultPage = 1) => {
   const {
     pageInput,
     pageInputError,
-    handlers: { onInputChange, onInputKeyDown, onFocus, onBlur, onSliderChange },
+    handlers: { handleConfirmPage, onInputChange, onInputKeyDown, onFocus, onBlur, onSliderChange },
   } = usePageInput({
     currentPage,
     lastPage: currentBookLastPage,
@@ -52,6 +52,7 @@ export const useBook = (defaultBookId = "706", defaultPage = 1) => {
     // Page Input & Slider
     pageInput,
     pageInputError,
+    handleConfirmPage,
     onInputChange,
     onInputKeyDown,
     onFocus,

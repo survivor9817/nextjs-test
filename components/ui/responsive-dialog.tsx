@@ -36,6 +36,7 @@ export interface ResponsiveDialogProps {
   snapPoint?: string | number | null;
   onSnapPointChange?: (snapPoint: string | number | null) => void;
   showSwipeHandle?: boolean;
+  nativeButton?: boolean;
 }
 
 export function ResponsiveDialog({
@@ -54,6 +55,7 @@ export function ResponsiveDialog({
   snapPoint,
   onSnapPointChange,
   showSwipeHandle = true,
+  nativeButton,
 }: ResponsiveDialogProps) {
   const [internalOpen, setInternalOpen] = React.useState(false);
   const isDesktop = useMediaQuery(desktopBreakpoint);
@@ -67,7 +69,7 @@ export function ResponsiveDialog({
   if (renderAsDialog) {
     return (
       <Dialog open={open} onOpenChange={setOpen}>
-        {trigger && <DialogTrigger render={trigger} />}
+        {trigger && <DialogTrigger nativeButton={nativeButton} render={trigger} />}
         <DialogContent
           className={cn(
             "sm:max-w-[480px] max-h-[85vh] flex flex-col gap-0 p-0 overflow-hidden",
@@ -103,7 +105,7 @@ export function ResponsiveDialog({
       snapPoint={snapPoint}
       onSnapPointChange={onSnapPointChange}
     >
-      {trigger && <DrawerTrigger render={trigger} />}
+      {trigger && <DrawerTrigger nativeButton={nativeButton} render={trigger} />}
       <DrawerContent
         className={cn(
           "mx-0 mb-0 rounded-b-none flex flex-col",

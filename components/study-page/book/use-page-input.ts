@@ -46,14 +46,18 @@ export const usePageInput = ({ currentPage, lastPage, onPageConfirm }: PageInput
     setPageInput(toFaDigits(parsed));
   };
 
-  const onInputKeyDown = (e: React.KeyboardEvent<HTMLInputElement>) => {
-    if (e.key !== "Enter") return;
+  const handleConfirmPage = () => {
     const parsed = parseValidPage(pageInput, 1, lastPage);
     if (parsed === null) {
       showError();
       return;
     }
     onPageConfirm(parsed);
+  };
+
+  const onInputKeyDown = (e: React.KeyboardEvent<HTMLInputElement>) => {
+    if (e.key !== "Enter") return;
+    handleConfirmPage();
   };
 
   const onFocus = (e: React.FocusEvent<HTMLInputElement>) => {
@@ -78,6 +82,7 @@ export const usePageInput = ({ currentPage, lastPage, onPageConfirm }: PageInput
     pageInput,
     pageInputError,
     handlers: {
+      handleConfirmPage,
       onInputChange,
       onInputKeyDown,
       onFocus,
