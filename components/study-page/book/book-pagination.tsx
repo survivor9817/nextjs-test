@@ -7,8 +7,6 @@ import { ArrowRight, ArrowLeft, Search } from "lucide-react";
 import { FehrestButton } from "../fehrest/fehrest-sheet";
 import { BookSearch } from "./book-search";
 
-// type Props = {};
-
 const BookPagination = () => {
   const {
     currentBookId,
@@ -27,27 +25,15 @@ const BookPagination = () => {
     onInputKeyDown,
   } = useBookContext();
 
-  const inputError = pageInputError ? "bg-[rgb(255,124,124)]" : "";
+  // اضافه شدن انیمیشن لرزش همزمان با قرمز شدن پس‌زمینه
+  const inputError = pageInputError ? "bg-[rgb(255,124,124)] animate-shake" : "";
   const isDisabled = !currentBookId && !currentPage;
 
-  // کلاس‌های مشترک برای دکمه‌های آیکونی (بر اساس دکمه List موجود)
   const iconButtonClasses = "h-10 w-10 text-muted-foreground hover:text-foreground shadow-none";
 
   return (
     <>
-      <div className="flex items-center p-1 w-fit max-w-fit gap-1 sm:max-w-fit sm:w-fit border-2 rounded-[48px]  border-[#bcbcbc]">
-        {/* <Button
-          type="button"
-          variant="outline"
-          size="icon"
-          onClick={goToPrevPage}
-          title="فهرست"
-          disabled={isDisabled}
-          className={iconButtonClasses}
-        >
-          <List className=" scale-x-[-1]" strokeWidth={3} />
-        </Button> */}
-
+      <div className="flex items-center p-1 w-fit max-w-fit gap-1 sm:max-w-fit sm:w-fit border-2 rounded-[48px] bg-white border-[#bcbcbc]">
         <FehrestButton />
 
         <Button
@@ -104,16 +90,6 @@ const BookPagination = () => {
             </Button>
           }
         />
-
-        {/* <Slider
-          className="  mx-1"
-          min={1}
-          max={currentBookLastPage}
-          step={1}
-          value={[currentPage]}
-          onValueChange={onSliderChange}
-          disabled={isDisabled}
-        /> */}
       </div>
     </>
   );

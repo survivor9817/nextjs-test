@@ -1,5 +1,6 @@
 import BookPage from "./book-page";
 import BookPagination from "./book-pagination";
+import "./book.css";
 
 const Book = () => {
   return (
