@@ -1,5 +1,5 @@
 import PhoneAuthFlow from "@/components/auth/sign-up-form";
-import Logo from "@/components/landing-page/logo";
+import Logo from "@/components/logo";
 
 const page = async () => {
   // const session = await auth.api.getSession({ headers: await headers() });

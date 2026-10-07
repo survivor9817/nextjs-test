@@ -13,20 +13,22 @@ import {
   SheetTrigger,
 } from "@/components/ui/sheet";
 import Fehrest from "./fehrest";
+import { usePanelParam } from "../use-sheet-params";
 
 export function FehrestButton() {
-  const [open, setOpen] = React.useState(false);
+  const { open, setOpen, closeReplace } = usePanelParam("fehrest");
 
   const handleContainerClick = (e: React.MouseEvent<HTMLDivElement>) => {
     const target = e.target as HTMLElement;
-    // بررسی می‌کند که آیا هدف کلیک داخل دکمه‌ای با data-close-sheet="true" بوده یا خیر
     if (target.closest('[data-close-fehrest="true"]')) {
-      setOpen(false);
+      closeReplace();
     }
   };
 
+  const listRef = React.useRef<HTMLDivElement>(null);
+
   return (
-    <Sheet open={open} onOpenChange={setOpen}>
+    <Sheet open={open} onOpenChange={setOpen} backClose={false}>
       <SheetTrigger
         render={
           <Button
@@ -42,14 +44,18 @@ export function FehrestButton() {
         <List className="scale-x-[-1]" strokeWidth={3} />
       </SheetTrigger>
 
-      <SheetContent side="right" className="flex flex-col gap-0 p-0">
+      <SheetContent
+        side="right"
+        initialFocus={() => listRef.current?.querySelector<HTMLElement>("li button") ?? true}
+        className="flex flex-col gap-0 p-0"
+      >
         <SheetHeader className="sr-only">
           <SheetTitle>فهرست مطالب</SheetTitle>
           <SheetDescription>رفتن به بخش‌های کتاب</SheetDescription>
         </SheetHeader>
 
         {/* بررسی انتشار رویداد روی والد */}
-        <div className="flex-1 overflow-y-auto p-4" onClick={handleContainerClick}>
+        <div ref={listRef} className="flex-1 overflow-y-auto p-4" onClick={handleContainerClick}>
           <Fehrest />
         </div>
       </SheetContent>

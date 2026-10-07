@@ -1,7 +1,16 @@
 "use client";
 
 import * as React from "react";
-import type { BookSearchResult, UseBookSearchOptions } from "./types";
+import { BookSearchResult } from "./book-search";
+
+export type UseBookSearchOptions = {
+  /** آدرس API جستجو */
+  endpoint?: string;
+  /** تاخیر debounce به میلی‌ثانیه */
+  debounceMs?: number;
+  /** حداقل تعداد کاراکتر برای شروع جستجو */
+  minChars?: number;
+};
 
 export function useBookSearch({
   endpoint = "/api/search",

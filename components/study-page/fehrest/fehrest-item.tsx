@@ -22,11 +22,13 @@ const FehrestItem = ({ section, currentSectionPage, onClick, isActive }: Props) 
       <Button
         variant={"unstyled"}
         data-close-fehrest={shouldClose ? "true" : undefined}
-        className={`flex justify-between w-full text-start font-semibold py-1.25 px-2 pl-1 my-1 rounded cursor-pointer transition-colors duration-300 ${isHighlighted}`}
+        className={`flex justify-between items-center gap-2 w-full min-w-0 text-start font-semibold py-1.25 px-2 pl-1 my-1 rounded cursor-pointer transition-colors duration-300 ${isHighlighted}`}
         onClick={() => onClick(section)}
       >
-        <span className="h-full w-full my-auto text-sm leading-6">{section.title}</span>
-        <span className="flex justify-center w-7 h-full p-1 border-2 rounded text-xs">
+        <span className="min-w-0 flex-1 truncate my-auto text-sm leading-6" title={section.title}>
+          {section.title}
+        </span>
+        <span className="flex justify-center w-7 shrink-0 h-full p-1 border-2 rounded text-xs">
           {toFaDigits(section.page)}
         </span>
       </Button>

@@ -15,7 +15,7 @@ const BookSelect = () => {
       onValueChange={(book) => book && changeBook(book.value)}
       getLabel={(book) => book.label}
       getKey={(book) => book.value}
-      label={"فهرست کتاب"}
+      label={"فهرست‌های کتب درسی"}
       emptyMessage="کتابی موجود نیست"
       error={error}
       onRetry={loadBookSelectData}

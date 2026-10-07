@@ -191,7 +191,7 @@ const QuizView = ({
             isAnswerVisible ? "rounded-bl-[6px]" : "rounded-bl-2xl",
           )}
         >
-          <div className="relative h-14.5">
+          <div className="relative h-12">
             <div className="absolute top-1/2 -translate-y-1/2 right-4.5 z-1 text-[16px]">
               <Label>{progressLabel}</Label>
             </div>

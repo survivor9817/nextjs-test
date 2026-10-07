@@ -3,67 +3,19 @@ import { ComponentType } from "react";
 import { cn } from "@/lib/utils";
 import { ScrollArea } from "@/components/ui/scroll-area";
 import { Tabs } from "@base-ui/react/tabs";
-import Fehrest from "./fehrest/fehrest";
-import Book from "./book/book";
-import Quiz from "./quiz/quiz";
-import Yavar from "./yavar/yavar";
-import Menu from "./menu/menu";
 import { useStudyTabs, StudyTabsProvider } from "./tabs-provider";
-import { TabValue, isTabValue } from "./use-study-tabs-state";
-
-interface TabConfigItem {
-  value: TabValue;
-  icon: string;
-  iconClass: string;
-  label: string;
-  Component: ComponentType;
-}
-
-const TABS_CONFIG: TabConfigItem[] = [
-  {
-    value: "fehrest",
-    icon: "list",
-    iconClass: "text-[34px] scale-x-[-1]",
-    label: "فهرست",
-    Component: Fehrest,
-  },
-  {
-    value: "book",
-    icon: "menu_book",
-    iconClass: "text-[32px]",
-    label: "کتاب",
-    Component: Book,
-  },
-  {
-    value: "quiz",
-    icon: "exercise",
-    iconClass: "text-[32px] rotate-45",
-    label: "تمرین",
-    Component: Quiz,
-  },
-  {
-    value: "yavar",
-    icon: "school",
-    iconClass: "text-[32px]",
-    label: "یاور",
-    Component: Yavar,
-  },
-  {
-    value: "menu",
-    icon: "menu",
-    iconClass: "text-[28px]",
-    label: "منو",
-    Component: Menu,
-  },
-];
+import StudyPageNavbar from "./study-page-navbar";
+import { TABS_CONFIG, isTabValue } from "./use-study-tabs-state";
 
 const StudyTabsView = () => {
   const { activeTab, changeTab, activeIndex } = useStudyTabs();
 
   return (
-    <div className="w-full max-w-210 min-w-80 h-dvh mx-auto overflow-hidden flex">
+    <div className="w-full max-w-210 min-w-80 h-dvh mx-auto flex flex-col overflow-hidden">
+      <StudyPageNavbar />
+
       <Tabs.Root
-        className="min-h-0 flex-1 flex flex-col-reverse sm:flex-col min-w-0"
+        className="min-h-0 flex-1 flex flex-col-reverse min-w-0 mx-1"
         value={activeTab}
         onValueChange={(val) => {
           if (isTabValue(val)) {
@@ -75,7 +27,9 @@ const StudyTabsView = () => {
         <Tabs.List
           className={cn(
             "relative z-10 -mb-px flex gap-1",
-            "border-2 border-b-0 rounded-t-3xl bg-[#eee] border-[#bcbcbc] h-14 sm:rounded-b-3xl sm:border-b-2 sm:border-t-0 sm:rounded-t-none",
+            "border-2 border-[#bcbcbc] bg-[#eee] h-14",
+            "rounded-3xl rounded-b-none border-b-0",
+            // "sm:rounded-3xl sm:rounded-t-none sm:border-b-2 sm:border-t-0",
           )}
         >
           {TABS_CONFIG.map((tab) => (

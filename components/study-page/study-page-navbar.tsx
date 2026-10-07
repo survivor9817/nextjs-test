@@ -1,9 +1,9 @@
 "use client";
 import Link from "next/link";
-import { Button } from "../ui/button";
 import Logo from "../logo";
+import { MenuButton } from "./menu/menu-sheet";
 
-const LandingNavbar = () => {
+const StudyPageNavbar = () => {
   return (
     <>
       <div
@@ -14,16 +14,11 @@ const LandingNavbar = () => {
           <Logo />
         </div>
         <div className="flex items-center gap-4 mx-1">
-          <Button
-            nativeButton={false}
-            render={<Link href="/sign-in">ورود / ثبت‌نام</Link>}
-            variant={"unstyled"}
-            className="h-11 border-2 border-[#bcbcbc] hover:bg-[#ddd] px-4 transition-colors duration-200 ease-in-out text-sm"
-          />
+          <MenuButton />
         </div>
       </div>
     </>
   );
 };
 
-export default LandingNavbar;
+export default StudyPageNavbar;

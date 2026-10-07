@@ -2,23 +2,38 @@
 "use client";
 
 import { useState } from "react";
-import { useRouter, useSearchParams } from "next/navigation";
+import { useRouter } from "next/navigation";
 // import { authClient } from "@/lib/auth-client"; // مطمئن شوید phoneNumberClient به کلاینت اضافه شده باشد
 
 export type PhoneAuthStep = "phone" | "otp" | "password";
 
 export const RESEND_DELAY_SECONDS = 60;
 
+const DEFAULT_CALLBACK_URL = "/dashboard";
+
+/**
+ * فقط مسیرهای داخلی سایت پذیرفته می‌شوند (جلوگیری از open redirect).
+ * رشته‌ی خالی، undefined و آدرس‌های خارجی به مسیر پیش‌فرض برمی‌گردند.
+ */
+function getSafeCallbackUrl(url?: string | null): string {
+  if (!url) return DEFAULT_CALLBACK_URL;
+  if (!url.startsWith("/") || url.startsWith("//") || url.startsWith("/\\")) {
+    return DEFAULT_CALLBACK_URL;
+  }
+  return url;
+}
+
 /**
  * منطق مشترک فلوی احراز هویت با شماره تلفن:
  * مرحله ۱) ارسال OTP
  * مرحله ۲) تایید OTP و تشخیص وضعیت کاربر (آیا رمز عبور تعیین کرده یا نه)
  * مرحله ۳) در صورت نداشتن رمز عبور، تعیین رمز؛ در غیر این صورت لاگین کامل و ری‌دایرکت
+ *
+ * callbackUrl از بیرون (props صفحه) داده می‌شود؛ این هوک دیگر useSearchParams صدا نمی‌زند.
  */
-export function usePhoneAuthFlow(onSuccess?: () => void) {
+export function usePhoneAuthFlow(callbackUrl?: string | null, onSuccess?: () => void) {
   const router = useRouter();
-  const searchParams = useSearchParams();
-  const callbackUrl = searchParams.get("callbackUrl") || "/dashboard";
+  const redirectTo = getSafeCallbackUrl(callbackUrl);
 
   const [step, setStep] = useState<PhoneAuthStep>("phone");
   const [phone, setPhone] = useState("");
@@ -41,7 +56,7 @@ export function usePhoneAuthFlow(onSuccess?: () => void) {
     if (onSuccess) {
       onSuccess();
     } else {
-      router.push(callbackUrl);
+      router.push(redirectTo);
     }
   }
 

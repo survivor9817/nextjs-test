@@ -6,7 +6,6 @@ import { Button } from "@/components/ui/button";
 import { ArrowRight, ArrowLeft, Search } from "lucide-react";
 import { FehrestButton } from "../fehrest/fehrest-sheet";
 import { BookSearch } from "./book-search";
-import { MenuButton } from "../menu/menu-sheet";
 
 // type Props = {};
 
@@ -48,7 +47,9 @@ const BookPagination = () => {
         >
           <List className=" scale-x-[-1]" strokeWidth={3} />
         </Button> */}
+
         <FehrestButton />
+
         <Button
           type="button"
           variant="outline"
@@ -60,6 +61,7 @@ const BookPagination = () => {
         >
           <ArrowRight className="" strokeWidth={3} />
         </Button>
+
         <Input
           type="text"
           inputMode="numeric"
@@ -76,6 +78,7 @@ const BookPagination = () => {
             inputError,
           )}
         />
+
         <Button
           type="button"
           variant="outline"
@@ -87,6 +90,7 @@ const BookPagination = () => {
         >
           <ArrowLeft className="" strokeWidth={3} />
         </Button>
+
         <BookSearch
           trigger={
             <Button
@@ -100,7 +104,7 @@ const BookPagination = () => {
             </Button>
           }
         />
-        <MenuButton />
+
         {/* <Slider
           className="  mx-1"
           min={1}

@@ -29,15 +29,6 @@ export type BookSearchResult = {
   chapterId?: string;
 };
 
-export type UseBookSearchOptions = {
-  /** آدرس API جستجو */
-  endpoint?: string;
-  /** تاخیر debounce به میلی‌ثانیه */
-  debounceMs?: number;
-  /** حداقل تعداد کاراکتر برای شروع جستجو */
-  minChars?: number;
-};
-
 export type BookSearchProps = {
   /** متن دکمه‌ی بازکننده */
   triggerLabel?: string;

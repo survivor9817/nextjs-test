@@ -19,6 +19,7 @@ export function LogoutConfirmDialog({
 }: LogoutConfirmDialogProps) {
   return (
     <ResponsiveDialog
+      // type="dialog"
       open={open}
       onOpenChange={onOpenChange}
       title={

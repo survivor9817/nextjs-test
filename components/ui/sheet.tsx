@@ -5,10 +5,26 @@ import { Dialog as SheetPrimitive } from "@base-ui/react/dialog";
 import { cn } from "cn";
 
 import { Button } from "@/components/ui/button";
+import { useBackCloseControl } from "@/hooks/use-back-close";
 import { XIcon } from "lucide-react";
 
-function Sheet({ ...props }: SheetPrimitive.Root.Props) {
-  return <SheetPrimitive.Root data-slot="sheet" {...props} />;
+function Sheet({
+  open,
+  defaultOpen,
+  onOpenChange,
+  backClose = true,
+  ...props
+}: SheetPrimitive.Root.Props & { backClose?: boolean }) {
+  const control = useBackCloseControl({ open, defaultOpen, onOpenChange, backClose });
+
+  return (
+    <SheetPrimitive.Root
+      data-slot="sheet"
+      {...props}
+      open={control.open}
+      onOpenChange={control.onOpenChange}
+    />
+  );
 }
 
 function SheetTrigger({ ...props }: SheetPrimitive.Trigger.Props) {

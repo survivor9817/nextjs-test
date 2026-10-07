@@ -18,22 +18,8 @@ export interface MenuButtonProps {
 }
 
 export function MenuButton({ trigger }: MenuButtonProps) {
-  const [open, setOpen] = React.useState(false);
-
-  const handleContainerClick = (e: React.MouseEvent<HTMLDivElement>) => {
-    const target = e.target as HTMLElement;
-    // با کلیک روی هر لینک، دکمه یا المنتی که دارای data-close-menu="true" باشد، شیت بسته می‌شود
-    if (
-      target.closest('[data-close-menu="true"]') ||
-      target.closest("a") ||
-      target.closest("button")
-    ) {
-      setOpen(false);
-    }
-  };
-
   return (
-    <Sheet open={open} onOpenChange={setOpen}>
+    <Sheet>
       <SheetTrigger
         render={
           trigger ?? (
@@ -50,7 +36,6 @@ export function MenuButton({ trigger }: MenuButtonProps) {
           )
         }
       />
-
       <SheetContent
         showCloseButton={false}
         side="left"
@@ -62,7 +47,7 @@ export function MenuButton({ trigger }: MenuButtonProps) {
         </SheetHeader>
 
         {/* شنود کلیک برای بستن خودکار شیت پس از انتخاب آیتم */}
-        <div className="flex-1 overflow-y-auto" onClick={handleContainerClick}>
+        <div className="flex-1 overflow-y-auto">
           <Menu />
         </div>
       </SheetContent>

@@ -1,16 +1,31 @@
 "use client";
 
 import { useState } from "react";
-import { useRouter, useSearchParams } from "next/navigation";
+import { useRouter } from "next/navigation";
 // import { authClient } from "@/lib/auth-client"; // مطمئن شوید phoneNumberClient به کلاینت اضافه شده باشد
+
+const DEFAULT_CALLBACK_URL = "/dashboard";
+
+/**
+ * فقط مسیرهای داخلی سایت پذیرفته می‌شوند (جلوگیری از open redirect).
+ * رشته‌ی خالی، undefined و آدرس‌های خارجی به مسیر پیش‌فرض برمی‌گردند.
+ */
+function getSafeCallbackUrl(url?: string | null): string {
+  if (!url) return DEFAULT_CALLBACK_URL;
+  if (!url.startsWith("/") || url.startsWith("//") || url.startsWith("/\\")) {
+    return DEFAULT_CALLBACK_URL;
+  }
+  return url;
+}
 
 /**
  * منطق فرم ورود با شماره تلفن و رمز عبور
+ *
+ * callbackUrl از بیرون (props صفحه یا کامپوننت احاطه‌شده با Suspense) پاس داده می‌شود.
  */
-export function useSignInForm(onSuccess?: () => void) {
+export function useSignInForm(callbackUrl?: string | null, onSuccess?: () => void) {
   const router = useRouter();
-  const searchParams = useSearchParams();
-  const callbackUrl = searchParams.get("callbackUrl") || "/dashboard";
+  const redirectTo = getSafeCallbackUrl(callbackUrl);
 
   const [loading, setLoading] = useState(false);
   const [serverError, setServerError] = useState<string | null>(null);
@@ -20,7 +35,7 @@ export function useSignInForm(onSuccess?: () => void) {
     if (onSuccess) {
       onSuccess();
     } else {
-      router.push(callbackUrl);
+      router.push(redirectTo);
     }
   }
 
