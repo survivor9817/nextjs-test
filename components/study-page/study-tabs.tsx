@@ -93,12 +93,14 @@ const StudyTabsView = () => {
                 keepMounted
                 hidden={false}
                 className={cn(
-                  "flex h-full w-full min-w-full shrink-0 overflow-x-hidden overflow-y-auto",
+                  "relative h-full w-full min-w-full shrink-0 overflow-x-hidden overflow-y-auto",
                   "text-sm text-foreground outline-none",
+                  // "[scrollbar-width:thin] [scrollbar-color:var(--border)_transparent]",
                 )}
-                render={<ScrollArea className="h-full min-w-0" />}
               >
-                <Component />
+                <div className="h-full overflow-x-hidden overflow-y-auto">
+                  <Component />
+                </div>
               </Tabs.Panel>
             ))}
           </div>

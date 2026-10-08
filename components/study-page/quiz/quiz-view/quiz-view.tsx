@@ -161,17 +161,31 @@ const QuizView = ({
           delay: 150,
           duration: 300,
           offsetBottom: 80,
-          maxDistance: 100,
+          maxDistance: 200,
         })
-      : scrollBackToClosedLimit(answerRef.current, { duration: 250 });
+      : scrollBackToClosedLimit(answerRef.current, { duration: 225 });
   };
 
   useEffect(() => () => cancelScrollRef.current?.(), []);
 
+  // or
+  // const answerRef = useRef<HTMLDivElement>(null);
+  // const timeoutRef = useRef<(() => void) | null>(null);
+
+  // const handleOpenChange = (open: boolean) => {
+  //   toggleAnswer();
+  //   timeoutRef.current?.();
+  //   timeoutRef.current = open && answerRef.current ? revealAnswer(answerRef.current) : null;
+  // };
+
   useSyncLastVisitedQuestion(quiz.quizId, currentQuestionId, quiz.userId, quiz.bookId);
 
   return (
-    <Collapsible open={isAnswerVisible} onOpenChange={handleOpenChange}>
+    <Collapsible
+      // className={"relative"}
+      open={isAnswerVisible}
+      onOpenChange={handleOpenChange}
+    >
       <QuizEndConfirm
         isOpen={isEndConfirmOpen}
         isLoading={isSubmitting}
@@ -186,7 +200,7 @@ const QuizView = ({
         onTerminate={handleFinalTerminate}
         onClose={() => setIsResultsModalOpen(false)}
       />
-      <div className="quiz-box flex flex-col p-2 overflow-hidden">
+      <div className="flex flex-col p-2 overflow-hidden">
         {/* نوار ابزار بالا */}
         {/* نوار شناور پایین */}
         <div className="flex justify-center items-center py-2 absolute bottom-0 left-1/2 -translate-x-1/2 z-10">
@@ -200,7 +214,6 @@ const QuizView = ({
             onGoToQuestion={(n) => goTo(n - 1)}
           />
         </div>
-
         {/* نوار ابزار بالا */}
         <div className="flex justify-between items-center h-12 mb-1">
           <div className="flex">
@@ -226,7 +239,6 @@ const QuizView = ({
               </div>
             </ResponsiveDialog>{" "}
           </div>
-
           <div className="flex">
             <IconBtn
               className="text-red-700"
@@ -240,7 +252,6 @@ const QuizView = ({
             />
           </div>
         </div>
-
         {/* جعبه سوال */}
         <div
           className={cn(
@@ -254,9 +265,7 @@ const QuizView = ({
             </div>
             <QuestionTagBar tags={tags || []} />
           </div>
-
           <ProgressBar value={progressBarLength} />
-
           <div className="relative min-h-30">
             <Question
               question={questionContent}
@@ -267,7 +276,6 @@ const QuizView = ({
             <QuestionReactionMsgs msgs={msgsMeta} />
           </div>
         </div>
-
         {/* سطر میانی دکمه پاسخ و مشخصات */}
         <div className="flex flex-col-reverse sm:flex-row justify-between gap-2 my-2 w-full text-[16px]">
           <div
@@ -286,7 +294,6 @@ const QuizView = ({
             />
             <Author author={author || ""} />
           </div>
-
           <div
             className={cn(
               "grid items-center sm:w-85 h-16 max-h-16 overflow-hidden border-2 border-[#bcbcbc]",
@@ -306,7 +313,6 @@ const QuizView = ({
             </div>
           </div>
         </div>
-
         {/* جعبه پاسخ تشریحی */}
         <CollapsibleContent
           ref={answerRef}
@@ -321,7 +327,6 @@ const QuizView = ({
         >
           <Answer answer={descriptiveAnswer} />
         </CollapsibleContent>
-
         <div className={cn(isAnswerVisible ? "mb-14" : "mb-14")} />
       </div>
     </Collapsible>
