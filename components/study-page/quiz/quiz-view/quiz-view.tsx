@@ -290,13 +290,15 @@ const QuizView = ({
             "flex flex-col gap-2 overflow-hidden",
             "max-h-(--collapsible-panel-height) data-starting-style:max-h-0 data-ending-style:max-h-0",
             "opacity-100 data-starting-style:opacity-0 data-ending-style:opacity-0",
-            "border-2 border-[#bcbcbc] rounded-[16px_6px_28px_28px] mb-16 leading-[1.6] text-justify pb-12 min-h-32.5 relative",
+            "border-2 border-[#bcbcbc] rounded-[16px_6px_28px_28px] mb-4 leading-[1.6] text-justify pb-12 min-h-32.5 relative",
             "transition-[max-height,opacity] duration-400 ease-in-out",
           )}
           keepMounted
         >
           <Answer answer={descriptiveAnswer} />
         </CollapsibleContent>
+
+        <div className={cn(isAnswerVisible ? "mb-14" : "mb-14")} />
       </div>
     </Collapsible>
   );
