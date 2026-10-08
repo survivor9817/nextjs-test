@@ -1,13 +1,12 @@
 "use client";
-
 import { Input } from "@/components/ui/input";
 import { cn } from "@/lib/utils";
 import { useBookContext } from "@/components/study-page/book/book-provider";
-import { Button } from "@/components/ui/button";
 import { ArrowRight, ArrowLeft, Search } from "lucide-react";
 import { FehrestButton } from "../fehrest/fehrest-sheet";
 import { BookSearch } from "./book-search";
 import { NumberWheelPickerResponsive } from "@/components/ui/number-wheel-picker-responsive";
+import IconButton from "@/components/ui/icon-button";
 
 const BookPagination = () => {
   const {
@@ -19,17 +18,10 @@ const BookPagination = () => {
     goToPage,
     goToPrevPage,
     goToNextPage,
-
-    onInputChange,
-    onFocus,
-    onBlur,
-    onInputKeyDown,
   } = useBookContext();
 
   const inputError = pageInputError ? "bg-[rgb(255,124,124)] animate-shake" : "";
   const isDisabled = !currentBookId && !currentPage;
-
-  const iconButtonClasses = "h-10 w-10 text-muted-foreground hover:text-foreground shadow-none";
 
   return (
     <div className="flex items-center p-1 w-fit max-w-fit gap-1 sm:max-w-fit sm:w-fit border-2 rounded-[48px] bg-white border-[#bcbcbc]">
@@ -37,17 +29,12 @@ const BookPagination = () => {
       <FehrestButton />
 
       {/* رفتن به صفحه قبل */}
-      <Button
-        type="button"
-        variant="outline"
-        size="icon"
+      <IconButton
         onClick={goToPrevPage}
         disabled={isDisabled}
         title="رفتن به صفحه قبلی"
-        className={iconButtonClasses}
-      >
-        <ArrowRight strokeWidth={3} />
-      </Button>
+        icon={<ArrowRight strokeWidth={3} />}
+      />
 
       {/* ویل‌پیکر واکنش‌گرا (پاپ‌اور دسکتاپ / دراور موبایل) */}
       <NumberWheelPickerResponsive
@@ -71,51 +58,16 @@ const BookPagination = () => {
         }
       />
 
-      {/* <Input
-        // readOnly
-        type="text"
-        inputMode="numeric"
-        value={pageInput}
-        onChange={onInputChange}
-        onFocus={onFocus}
-        onBlur={onBlur}
-        onKeyDown={onInputKeyDown}
-        disabled={isDisabled}
-        autoComplete="off"
-        className={cn(
-          "h-10 w-10 min-w-10 max-w-10 rounded-3xl border-[3px] border-gray-300 p-0 text-center text-sm appearance-none",
-          "focus-visible:ring-0 focus-visible:ring-offset-0",
-          inputError,
-        )}
-      /> */}
-
       {/* رفتن به صفحه بعد */}
-      <Button
-        type="button"
-        variant="outline"
-        size="icon"
+      <IconButton
         onClick={goToNextPage}
         disabled={isDisabled}
         title="رفتن به صفحه بعدی"
-        className={iconButtonClasses}
-      >
-        <ArrowLeft strokeWidth={3} />
-      </Button>
+        icon={<ArrowLeft strokeWidth={3} />}
+      />
 
       {/* جستجو در کتاب */}
-      <BookSearch
-        trigger={
-          <Button
-            type="button"
-            variant="outline"
-            size="icon"
-            title="جستجو"
-            className={iconButtonClasses}
-          >
-            <Search strokeWidth={3} />
-          </Button>
-        }
-      />
+      <BookSearch trigger={<IconButton title="جستجو" icon={<Search strokeWidth={3} />} />} />
     </div>
   );
 };

@@ -22,6 +22,11 @@ import StopWatchDrawer from "./stop-watch-drawer";
 import QuizEndConfirm from "./quiz-end-confirm";
 import QuizResultsModal from "./quiz-results-modal";
 import { useSyncLastVisitedQuestion } from "./useSyncLastVisitedQuestion";
+import QuizActions from "./quiz-actions";
+import IconButton from "@/components/ui/icon-button";
+import { ResponsiveDialog } from "@/components/ui/responsive-dialog";
+import { Timer } from "lucide-react";
+import StopWatch from "./stop-watch";
 // کامپوننت‌های مودال را از مسیر پروژه‌ات ایمپورت کن:
 // import QuizEndConfirm from "./quiz-end-confirm";
 // import QuizResultsModal from "./quiz-results-modal";
@@ -50,7 +55,7 @@ const QuizView = ({
     return foundIndex !== -1 ? foundIndex : 0;
   }, [quiz.lastVisitedQuestion, questionIds]);
 
-  const { currentIndex, lastIndex, isOnFirst, isOnLast, goToPrev, goToNext } =
+  const { currentIndex, lastIndex, isOnFirst, isOnLast, goToPrev, goToNext, goTo } =
     useQuestionNavigation(0, totalQuestions, initialIndex);
 
   const currentQuestionId = questionIds[currentIndex];
@@ -160,6 +165,20 @@ const QuizView = ({
 
       <div className="quiz-box flex flex-col p-2 overflow-hidden">
         {/* نوار ابزار بالا */}
+        {/* نوار شناور پایین */}
+        <div className="flex justify-center items-center py-2 absolute bottom-0 left-1/2 -translate-x-1/2 z-10">
+          <QuizActions
+            currentQuestion={currentIndex + 1}
+            totalQuestions={totalQuestions}
+            isQuizCompleted={isQuizCompleted}
+            onPrev={goToPrev}
+            onNext={goToNext}
+            onPowerClick={handlePowerButtonClick}
+            onGoToQuestion={(n) => goTo(n - 1)}
+          />
+        </div>
+
+        {/* نوار ابزار بالا */}
         <div className="flex justify-between items-center h-12 mb-1">
           <div className="flex">
             <IconBtn
@@ -167,7 +186,22 @@ const QuizView = ({
               disabled={isOnFirst}
               onClick={goToPrev}
             />
-            <StopWatchDrawer />
+            <ResponsiveDialog
+              trigger={
+                <IconBtn
+                  icon={
+                    <span className="msr text-5xl">timer</span>
+                    // <Timer className="size-5" strokeWidth={3} />
+                  }
+                />
+              }
+              title="کرنومتر"
+              description="ابزار ثبت و اندازه‌گیری زمان"
+            >
+              <div className="flex flex-col items-center justify-center py-2">
+                <StopWatch />
+              </div>
+            </ResponsiveDialog>{" "}
           </div>
 
           <div className="flex">
@@ -256,7 +290,7 @@ const QuizView = ({
             "flex flex-col gap-2 overflow-hidden",
             "max-h-(--collapsible-panel-height) data-starting-style:max-h-0 data-ending-style:max-h-0",
             "opacity-100 data-starting-style:opacity-0 data-ending-style:opacity-0",
-            "border-2 border-[#bcbcbc] rounded-[16px_6px_28px_28px] mb-4 leading-[1.6] text-justify pb-12 min-h-32.5 relative",
+            "border-2 border-[#bcbcbc] rounded-[16px_6px_28px_28px] mb-16 leading-[1.6] text-justify pb-12 min-h-32.5 relative",
             "transition-[max-height,opacity] duration-400 ease-in-out",
           )}
           keepMounted
