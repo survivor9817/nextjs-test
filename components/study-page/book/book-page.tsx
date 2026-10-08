@@ -55,12 +55,6 @@ const BookPage = () => {
 
         <p>{pageContent}</p>
         <p>{pageContent}</p>
-        <ResponsiveDialog
-          trigger={<button> باز شود دیده شود</button>}
-          children={<p className="h-80"> flds</p>}
-          title={"مودال"}
-          description={"adwadیشیصش"}
-        />
         <p>{pageContent}</p>
         <p>{pageContent}</p>
       </div>

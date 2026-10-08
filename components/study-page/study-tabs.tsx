@@ -72,7 +72,7 @@ const StudyTabsView = () => {
             }}
             className={cn(
               "absolute top-1 sm:top-2 z-[-1] h-[calc(100%-8px)] sm:h-[calc(100%-16px)]",
-              "bg-background rounded-lg sm:rounded-2xl shadow-sm",
+              "bg-background rounded-2xl sm:rounded-2xl shadow-sm",
               "transition-all duration-200 ease-out",
             )}
           />

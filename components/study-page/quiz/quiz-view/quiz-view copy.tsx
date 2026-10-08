@@ -1,3 +1,4 @@
+import { useEffect, useMemo, useRef, useState } from "react";
 import ProgressBar from "./progress-bar";
 import { Label } from "@/components/ui/label";
 import QuestionTagBar from "./question-tag-bar";
@@ -26,12 +27,92 @@ import IconButton from "@/components/ui/icon-button";
 import { ResponsiveDialog } from "@/components/ui/responsive-dialog";
 import { Timer } from "lucide-react";
 import StopWatch from "./stop-watch";
-import { useEffect, useMemo, useRef, useState } from "react";
-import { scrollToRevealBottom, scrollBackToClosedLimit } from "./quiz-scroll-utils";
 
-// کامپوننت‌های مودال را از مسیر پروژه‌ات ایمپورت کن:
-// import QuizEndConfirm from "./quiz-end-confirm";
-// import QuizResultsModal from "./quiz-results-modal";
+/* ------------------------------------------------------------------ */
+/* ابزار اسکرول (بعداً می‌تونی جداش کنی: lib/scroll-to-reveal-bottom.ts) */
+/* ------------------------------------------------------------------ */
+
+const getScrollParent = (el: HTMLElement): HTMLElement | null => {
+  let parent = el.parentElement;
+  while (parent) {
+    const { overflowY } = getComputedStyle(parent);
+    if (/(auto|scroll)/.test(overflowY) && parent.scrollHeight > parent.clientHeight) {
+      return parent;
+    }
+    parent = parent.parentElement;
+  }
+  return null;
+};
+
+const easeInOutCubic = (t: number) => (t < 0.5 ? 4 * t * t * t : 1 - Math.pow(-2 * t + 2, 3) / 2);
+
+type ScrollRevealOptions = {
+  delay?: number; // شروع نسبت به لحظهٔ کلیک (ms)
+  duration?: number; // مدت اسکرول (ms)
+  offsetBottom?: number; // فاصله از پایین (مثلاً ارتفاع نوار شناور)
+  maxDistance?: number; // سقف اسکرول به پیکسل
+};
+
+function scrollToRevealBottom(
+  el: HTMLElement,
+  { delay = 150, duration = 300, offsetBottom = 80, maxDistance = 100 }: ScrollRevealOptions = {},
+) {
+  let rafId = 0;
+
+  const timeoutId = window.setTimeout(() => {
+    const parent = getScrollParent(el);
+    // ارتفاع نهایی کادر (بعد از نمایش پنل قابل خواندنه)
+    const finalHeight = el.scrollHeight + 4; // ۴ پیکسل برای border
+
+    const viewportBottom = parent ? parent.getBoundingClientRect().bottom : window.innerHeight;
+    const startScroll = parent ? parent.scrollTop : window.scrollY;
+
+    const finalBottom = el.getBoundingClientRect().top + finalHeight;
+    const delta = Math.min(maxDistance, Math.max(finalBottom - (viewportBottom - offsetBottom), 0));
+    if (delta <= 0) return;
+
+    const startTime = performance.now();
+    const step = (now: number) => {
+      const progress = Math.min((now - startTime) / duration, 1);
+      const value = startScroll + delta * easeInOutCubic(progress);
+      if (parent) parent.scrollTop = value;
+      else window.scrollTo(0, value);
+      if (progress < 1) rafId = requestAnimationFrame(step);
+    };
+    rafId = requestAnimationFrame(step);
+  }, delay);
+
+  // تابع لغو
+  return () => {
+    clearTimeout(timeoutId);
+    cancelAnimationFrame(rafId);
+  };
+}
+
+function scrollParentToTop(el: HTMLElement, { duration = 250 }: { duration?: number } = {}) {
+  let rafId = 0;
+  const parent = getScrollParent(el); // قبل از جمع شدن پنل پیدا می‌شه
+  const startScroll = parent ? parent.scrollTop : window.scrollY;
+  if (startScroll <= 0) return () => {};
+
+  const startTime = performance.now();
+  const step = (now: number) => {
+    const progress = Math.min((now - startTime) / duration, 1);
+    const target = startScroll * (1 - easeInOutCubic(progress));
+    // چون پنل در حال جمع شدنه، مرورگر scrollTop رو کلمپ می‌کنه؛
+    // با min از مقدار فعلی، حرکت هیچ‌وقت رو به پایین برنمی‌گرده
+    const current = parent ? parent.scrollTop : window.scrollY;
+    const value = Math.min(current, target);
+    if (parent) parent.scrollTop = value;
+    else window.scrollTo(0, value);
+    if (progress < 1) rafId = requestAnimationFrame(step);
+  };
+  rafId = requestAnimationFrame(step);
+
+  return () => cancelAnimationFrame(rafId);
+}
+
+/* ------------------------------------------------------------------ */
 
 type Props = {
   quiz: QuizSession;
@@ -145,7 +226,7 @@ const QuizView = ({
     onTerminateQuiz();
   };
 
-  // اسکرول نرم هنگام باز و بسته شدن پاسخ
+  // اسکرول نرم هنگام باز شدن پاسخ
   const answerRef = useRef<HTMLDivElement>(null);
   const cancelScrollRef = useRef<(() => void) | null>(null);
 
@@ -163,7 +244,7 @@ const QuizView = ({
           offsetBottom: 80,
           maxDistance: 100,
         })
-      : scrollBackToClosedLimit(answerRef.current, { duration: 250 });
+      : scrollParentToTop(answerRef.current, { duration: 250 });
   };
 
   useEffect(() => () => cancelScrollRef.current?.(), []);
@@ -178,6 +259,7 @@ const QuizView = ({
         onConfirm={handleConfirmEnd}
         onClose={() => setIsEndConfirmOpen(false)}
       />
+
       {/* مودال کارنامه نتیجه */}
       <QuizResultsModal
         isOpen={isResultsModalOpen}
@@ -186,8 +268,8 @@ const QuizView = ({
         onTerminate={handleFinalTerminate}
         onClose={() => setIsResultsModalOpen(false)}
       />
+
       <div className="quiz-box flex flex-col p-2 overflow-hidden">
-        {/* نوار ابزار بالا */}
         {/* نوار شناور پایین */}
         <div className="flex justify-center items-center py-2 absolute bottom-0 left-1/2 -translate-x-1/2 z-10">
           <QuizActions
@@ -322,7 +404,7 @@ const QuizView = ({
           <Answer answer={descriptiveAnswer} />
         </CollapsibleContent>
 
-        <div className={cn(isAnswerVisible ? "mb-14" : "mb-14")} />
+        <div className="mb-14" />
       </div>
     </Collapsible>
   );
