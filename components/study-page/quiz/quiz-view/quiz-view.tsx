@@ -26,8 +26,10 @@ import IconButton from "@/components/ui/icon-button";
 import { ResponsiveDialog } from "@/components/ui/responsive-dialog";
 import { Timer } from "lucide-react";
 import StopWatch from "./stop-watch";
-import { useEffect, useMemo, useRef, useState } from "react";
+import { useCallback, useEffect, useMemo, useRef, useState } from "react";
 import { scrollToRevealBottom, scrollBackToClosedLimit } from "./quiz-scroll-utils";
+import { useQuizReactionsMap } from "./use-quiz-reactions-map";
+import WheelQuestionLabel from "./wheel-question-label";
 
 // کامپوننت‌های مودال را از مسیر پروژه‌ات ایمپورت کن:
 // import QuizEndConfirm from "./quiz-end-confirm";
@@ -178,6 +180,14 @@ const QuizView = ({
   //   timeoutRef.current = open && answerRef.current ? revealAnswer(answerRef.current) : null;
   // };
 
+  // داخل کامپوننت، بعد از تعریف questionIds
+  const reactionsMap = useQuizReactionsMap(quiz.quizId, "123");
+
+  const renderQuestionLabel = useCallback(
+    (n: number) => <WheelQuestionLabel number={n} reactions={reactionsMap[questionIds[n - 1]]} />,
+    [reactionsMap, questionIds],
+  );
+
   useSyncLastVisitedQuestion(quiz.quizId, currentQuestionId, quiz.userId, quiz.bookId);
 
   return (
@@ -212,6 +222,7 @@ const QuizView = ({
             onNext={goToNext}
             onPowerClick={handlePowerButtonClick}
             onGoToQuestion={(n) => goTo(n - 1)}
+            renderQuestionLabel={renderQuestionLabel}
           />
         </div>
         {/* نوار ابزار بالا */}

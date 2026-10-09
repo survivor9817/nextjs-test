@@ -64,6 +64,14 @@ const INITIAL_REACTIONS: DbReaction[] = [
     reactionType: "feedback",
     createdAt: new Date().toISOString(),
   },
+  {
+    quizId: "1",
+    userId: "123",
+    questionId: "8",
+    reactionId: "isIncorrect",
+    reactionType: "feedback",
+    createdAt: new Date().toISOString(),
+  },
 ];
 
 // دریافت واکنش‌ها با پشتیبانی از رفرش و localStorage
@@ -232,86 +240,6 @@ export const questionsData: QuestionType[] = [
       گلوکز از طریق انتقال فعال ثانویه و با کمک پروتئین‌های ناقل مخصوص (SGLT1) وارد یاخته‌های پوششی روده می‌شود. این انتقال وابسته به شیب غلظت سدیم است و نیاز به پروتئین‌های ویژه دارد.
       <span class="ref-page" data-ref-page="82" data-ref-id="ref1">۸۲</span>
     </p>
-    <h2>بررسی سایر گزینه‌ها:</h2>
-    <div class="option">
-      <strong>گزینه ۲:</strong> نادرست. انتقال پتاسیم ارتباط مستقیمی با انتقال گلوکز ندارد.
-    </div>
-    <div class="option">
-      <strong>گزینه ۳:</strong> نادرست. گلوکز از طریق ناقل‌های غشایی منتقل می‌شود، نه کیسه‌های غشایی.
-    </div>
-    <div class="option">
-      <strong>گزینه ۴:</strong> نادرست. گلوکز به داخل یاخته وارد می‌شود، نه خارج.
-    </div>    <h2>پاسخ: گزینه ۱</h2>
-        <p>
-      گلوکز از طریق انتقال فعال ثانویه و با کمک پروتئین‌های ناقل مخصوص (SGLT1) وارد یاخته‌های پوششی روده می‌شود. این انتقال وابسته به شیب غلظت سدیم است و نیاز به پروتئین‌های ویژه دارد.
-      <span class="ref-page" data-ref-page="82" data-ref-id="ref1">۸۲</span>
-    </p>
-    <h2>بررسی سایر گزینه‌ها:</h2>
-    <div class="option">
-      <strong>گزینه ۲:</strong> نادرست. انتقال پتاسیم ارتباط مستقیمی با انتقال گلوکز ندارد.
-    </div>
-    <div class="option">
-      <strong>گزینه ۳:</strong> نادرست. گلوکز از طریق ناقل‌های غشایی منتقل می‌شود، نه کیسه‌های غشایی.
-    </div>
-    <div class="option">
-      <strong>گزینه ۴:</strong> نادرست. گلوکز به داخل یاخته وارد می‌شود، نه خارج.
-    </div>    <h2>پاسخ: گزینه ۱</h2>
-        <p>
-      گلوکز از طریق انتقال فعال ثانویه و با کمک پروتئین‌های ناقل مخصوص (SGLT1) وارد یاخته‌های پوششی روده می‌شود. این انتقال وابسته به شیب غلظت سدیم است و نیاز به پروتئین‌های ویژه دارد.
-      <span class="ref-page" data-ref-page="82" data-ref-id="ref1">۸۲</span>
-    </p>
-    <h2>بررسی سایر گزینه‌ها:</h2>
-    <div class="option">
-      <strong>گزینه ۲:</strong> نادرست. انتقال پتاسیم ارتباط مستقیمی با انتقال گلوکز ندارد.
-    </div>
-    <div class="option">
-      <strong>گزینه ۳:</strong> نادرست. گلوکز از طریق ناقل‌های غشایی منتقل می‌شود، نه کیسه‌های غشایی.
-    </div>
-    <div class="option">
-      <strong>گزینه ۴:</strong> نادرست. گلوکز به داخل یاخته وارد می‌شود، نه خارج.
-    </div>    <h2>پاسخ: گزینه ۱</h2>
-        <p>
-      گلوکز از طریق انتقال فعال ثانویه و با کمک پروتئین‌های ناقل مخصوص (SGLT1) وارد یاخته‌های پوششی روده می‌شود. این انتقال وابسته به شیب غلظت سدیم است و نیاز به پروتئین‌های ویژه دارد.
-      <span class="ref-page" data-ref-page="82" data-ref-id="ref1">۸۲</span>
-    </p>
-    <h2>بررسی سایر گزینه‌ها:</h2>
-    <div class="option">
-      <strong>گزینه ۲:</strong> نادرست. انتقال پتاسیم ارتباط مستقیمی با انتقال گلوکز ندارد.
-    </div>
-    <div class="option">
-      <strong>گزینه ۳:</strong> نادرست. گلوکز از طریق ناقل‌های غشایی منتقل می‌شود، نه کیسه‌های غشایی.
-    </div>
-    <div class="option">
-      <strong>گزینه ۴:</strong> نادرست. گلوکز به داخل یاخته وارد می‌شود، نه خارج.
-    </div>    <h2>پاسخ: گزینه ۱</h2>
-        <p>
-      گلوکز از طریق انتقال فعال ثانویه و با کمک پروتئین‌های ناقل مخصوص (SGLT1) وارد یاخته‌های پوششی روده می‌شود. این انتقال وابسته به شیب غلظت سدیم است و نیاز به پروتئین‌های ویژه دارد.
-      <span class="ref-page" data-ref-page="82" data-ref-id="ref1">۸۲</span>
-    </p>
-    <h2>بررسی سایر گزینه‌ها:</h2>
-    <div class="option">
-      <strong>گزینه ۲:</strong> نادرست. انتقال پتاسیم ارتباط مستقیمی با انتقال گلوکز ندارد.
-    </div>
-    <div class="option">
-      <strong>گزینه ۳:</strong> نادرست. گلوکز از طریق ناقل‌های غشایی منتقل می‌شود، نه کیسه‌های غشایی.
-    </div>
-    <div class="option">
-      <strong>گزینه ۴:</strong> نادرست. گلوکز به داخل یاخته وارد می‌شود، نه خارج.
-    </div>    <h2>پاسخ: گزینه ۱</h2>
-        <p>
-      گلوکز از طریق انتقال فعال ثانویه و با کمک پروتئین‌های ناقل مخصوص (SGLT1) وارد یاخته‌های پوششی روده می‌شود. این انتقال وابسته به شیب غلظت سدیم است و نیاز به پروتئین‌های ویژه دارد.
-      <span class="ref-page" data-ref-page="82" data-ref-id="ref1">۸۲</span>
-    </p>
-    <h2>بررسی سایر گزینه‌ها:</h2>
-    <div class="option">
-      <strong>گزینه ۲:</strong> نادرست. انتقال پتاسیم ارتباط مستقیمی با انتقال گلوکز ندارد.
-    </div>
-    <div class="option">
-      <strong>گزینه ۳:</strong> نادرست. گلوکز از طریق ناقل‌های غشایی منتقل می‌شود، نه کیسه‌های غشایی.
-    </div>
-    <div class="option">
-      <strong>گزینه ۴:</strong> نادرست. گلوکز به داخل یاخته وارد می‌شود، نه خارج.
-    </div>
     `,
     //     <p>
     //   گلوکز از طریق انتقال فعال ثانویه و با کمک پروتئین‌های ناقل مخصوص (SGLT1) وارد یاخته‌های پوششی روده می‌شود. این انتقال وابسته به شیب غلظت سدیم است و نیاز به پروتئین‌های ویژه دارد.
@@ -719,4 +647,17 @@ export const getQuestionForQuiz = (questionId: string, quizId: string): Question
     q.reactions = getUiReactionObjectForQuiz(questionId, quizId, "123");
   }
   return q;
+};
+
+export const getUiReactionsMapForQuiz = (
+  quizId: string,
+  userId = "123",
+): Record<string, UiReaction> => {
+  const byQuestion: Record<string, DbReaction[]> = {};
+  for (const r of getReactions(userId, undefined, quizId)) {
+    (byQuestion[r.questionId] ??= []).push(r);
+  }
+  return Object.fromEntries(
+    Object.entries(byQuestion).map(([qId, list]) => [qId, createUiReactionsObject(list)]),
+  );
 };

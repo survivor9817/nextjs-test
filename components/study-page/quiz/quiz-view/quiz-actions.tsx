@@ -13,6 +13,7 @@ type Props = {
   onNext: () => void;
   onPowerClick: () => void;
   onGoToQuestion: (questionNumber: number) => void;
+  renderQuestionLabel?: (questionNumber: number) => React.ReactNode;
 };
 
 const QuizActions = ({
@@ -24,6 +25,7 @@ const QuizActions = ({
   onNext,
   onPowerClick,
   onGoToQuestion,
+  renderQuestionLabel,
 }: Props) => {
   const powerLabel = isQuizCompleted ? "مشاهده کارنامه" : "پایان آزمون";
   const isOnFirst = currentQuestion <= 1;
@@ -44,12 +46,22 @@ const QuizActions = ({
       />
 
       {/* انتخاب شماره سوال */}
+      {/* <NumberWheelPickerResponsive
+        value={currentQuestion}
+        min={1}
+        max={Math.max(totalQuestions, 1)}
+        title="انتخاب شماره سوال"
+        error={inputError}
+        onValueChange={onGoToQuestion}
+      /> */}
+
       <NumberWheelPickerResponsive
         value={currentQuestion}
         min={1}
         max={Math.max(totalQuestions, 1)}
         title="انتخاب شماره سوال"
         error={inputError}
+        renderLabel={renderQuestionLabel}
         onValueChange={onGoToQuestion}
       />
 

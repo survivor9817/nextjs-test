@@ -97,6 +97,7 @@ const StudyTabsView = () => {
                   "text-sm text-foreground outline-none",
                   // "[scrollbar-width:thin] [scrollbar-color:var(--border)_transparent]",
                 )}
+                // render={<div className=" relative h-full overflow-x-hidden overflow-y-auto" />}
               >
                 <div className="h-full overflow-x-hidden overflow-y-auto">
                   <Component />

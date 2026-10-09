@@ -46,9 +46,21 @@ export const useQuizReactions = (
       postQuizReaction(quizId, userId, targetQuestionId, reactionId),
     onSuccess: (_data, variables) => {
       queryClient.invalidateQueries({ queryKey: ["quiz-results", quizId] });
+
+      // کش ری‌اکشن‌های چرخ شماره سوال
+      queryClient.invalidateQueries({
+        queryKey: ["quiz-reactions", quizId, userId],
+      });
+
       // استفاده دقیق از شناسه‌ای که در زمان کلیک فرستاده شده بود
       queryClient.invalidateQueries({
-        queryKey: ["question-data", variables.targetQuestionId, quizId],
+        queryKey: [
+          "question-data",
+          variables.targetQuestionId,
+          quizId,
+          userId,
+          "question-reactions",
+        ],
       });
     },
   });
