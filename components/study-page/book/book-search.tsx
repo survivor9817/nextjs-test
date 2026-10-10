@@ -58,8 +58,8 @@ export type BookSearchProps = {
 
 export function BookSearch({
   triggerLabel,
-  inputPlaceholder = "کلمه مورد نظر را بنویسید...",
-  emptyHint = "برای جستجو در کتاب، کلمه مورد نظرتان را در ورودی بالا بنویسید.",
+  inputPlaceholder = "کلمه مورد نظرتان را اینجا بنویسید...",
+  emptyHint = "برای جستجو در کتاب، کلمه مورد نظرتان را در کادر بالا ثبت کنید.",
   noResultsText = "نتیجه‌ای یافت نشد.",
   loadingText = "در حال جستجو...",
   endpoint = "/api/search",

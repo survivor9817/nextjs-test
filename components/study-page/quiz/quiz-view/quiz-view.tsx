@@ -1,6 +1,6 @@
 import ProgressBar from "./progress-bar";
 import { Label } from "@/components/ui/label";
-import QuestionTagBar from "./question-tag-bar";
+import QuestionTagBar from "./question-tag";
 import Question from "./question";
 import QuestionReactionMsgs from "./question-reaction-msgs";
 import Author from "./author";
@@ -30,6 +30,11 @@ import { useCallback, useEffect, useMemo, useRef, useState } from "react";
 import { scrollToRevealBottom, scrollBackToClosedLimit } from "./quiz-scroll-utils";
 import { useQuizReactionsMap } from "./use-quiz-reactions-map";
 import WheelQuestionLabel from "./wheel-question-label";
+import HorizontalScroll from "./horizontal-scroll";
+import ScrollRow from "./horizontal-scroll";
+import { Badge } from "@/components/ui/badge";
+import QuestionTag from "./question-tag";
+import QuestionTagRow from "./question-tag-row";
 
 // کامپوننت‌های مودال را از مسیر پروژه‌ات ایمپورت کن:
 // import QuizEndConfirm from "./quiz-end-confirm";
@@ -89,9 +94,18 @@ const QuizView = ({
 
   // اصلاح برچسب بدون +1 اضافه برای کل سوالات
   const progressLabel = `تمرین شماره ${toFaDigits(currentIndex + 1)} از ${toFaDigits(totalQuestions)}`;
+
   const questionDetails = [source, date, score ? `${toFaDigits(score)} نمره` : null]
     .filter(Boolean)
     .join(" - ");
+
+  const tagsData = [
+    source,
+    date,
+    score ? `${toFaDigits(score)} نمره` : null,
+    ...tags.slice(1),
+  ].filter((t): t is string => Boolean(t));
+
   const progressBarLength = totalQuestions > 0 ? ((currentIndex + 1) / totalQuestions) * 100 : 0;
 
   const { btnsMeta, msgsMeta, onClickOnReactionBtn } = useQuizReactions(
@@ -169,16 +183,6 @@ const QuizView = ({
   };
 
   useEffect(() => () => cancelScrollRef.current?.(), []);
-
-  // or
-  // const answerRef = useRef<HTMLDivElement>(null);
-  // const timeoutRef = useRef<(() => void) | null>(null);
-
-  // const handleOpenChange = (open: boolean) => {
-  //   toggleAnswer();
-  //   timeoutRef.current?.();
-  //   timeoutRef.current = open && answerRef.current ? revealAnswer(answerRef.current) : null;
-  // };
 
   // داخل کامپوننت، بعد از تعریف questionIds
   const reactionsMap = useQuizReactionsMap(quiz.quizId, "123");
@@ -274,7 +278,15 @@ const QuizView = ({
             <div className="absolute top-1/2 -translate-y-1/2 right-4.5 z-1 text-[16px]">
               <Label>{progressLabel}</Label>
             </div>
-            <QuestionTagBar tags={tags || []} />
+            <div
+              className={cn(
+                "absolute left-2 top-1/2 -translate-y-1/2 max-w-32 hover:max-w-full",
+                "bg-white rounded-full overflow-hidden z-3",
+                "transition-[max-width] duration-300 ease-in-out",
+              )}
+            >
+              <QuestionTag tag={tags[0]} isLoading={questionLoading} />
+            </div>
           </div>
           <ProgressBar value={progressBarLength} />
           <div className="relative min-h-30">
@@ -319,11 +331,13 @@ const QuizView = ({
                 isAnswerVisible ? "translate-x-[50%]" : "translate-x-0",
               )}
             >
-              <QuestionDetails questionDetails={questionDetails} />
+              {/* <QuestionDetails questionDetails={questionDetails} /> */}
+              <QuestionTagRow tags={tagsData} isLoading={questionLoading} />
               <QuizReactionBtns btnsMeta={btnsMeta} onClick={onClickOnReactionBtn} />
             </div>
           </div>
         </div>
+
         {/* جعبه پاسخ تشریحی */}
         <CollapsibleContent
           ref={answerRef}

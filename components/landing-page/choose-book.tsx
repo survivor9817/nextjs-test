@@ -3,6 +3,7 @@ import { useChooseBook } from "@/components/landing-page/use-choose-book";
 import BookShelf from "./book-shelf";
 import { Button } from "../ui/button";
 import FieldSelect from "./field-select";
+import { Library } from "lucide-react";
 
 const ChooseBook = () => {
   const {
@@ -36,6 +37,7 @@ const ChooseBook = () => {
       </div>
 
       <div className="flex gap-2 my-2 mx-2">
+        <Library />
         <span className="text-xl py-1">کتابخانه پایه {selectedGrade.label}</span>
         {selectedGrade.dore === "متوسطه دوم" ? (
           <FieldSelect

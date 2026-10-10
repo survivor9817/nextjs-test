@@ -1,8 +1,9 @@
 import Image from "next/image";
-import { Clock } from "lucide-react";
+import { BookOpen, Clock } from "lucide-react";
 import { Card, CardContent, CardFooter } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { cn } from "@/lib/utils";
+import { Button } from "../ui/button";
 
 type BookInfo = {
   title: string;
@@ -35,7 +36,7 @@ const BookCard = ({ coverImage, isAvailable, title }: BookInfo) => {
         )}
 
         {/* تصویر کتاب */}
-        <div className="relative aspect-[2/3] w-full overflow-hidden bg-muted">
+        <div className="relative aspect-2/3 w-full overflow-hidden bg-muted">
           <Image
             src={coverImage}
             alt={title}
@@ -43,14 +44,14 @@ const BookCard = ({ coverImage, isAvailable, title }: BookInfo) => {
             sizes="(max-width: 640px) 50vw, (max-width: 1024px) 33vw, 20vw"
             className={cn(
               "object-cover transition-all duration-300",
-              !isAvailable && "grayscale-[40%] contrast-[0.9]",
+              !isAvailable && "grayscale-40 contrast-[0.9]",
             )}
             priority={false}
           />
         </div>
       </CardContent>
 
-      <CardFooter className="justify-center p-3 sm:p-4">
+      <CardFooter className="flex flex-col items-center gap-3 p-3 sm:p-4 mt-auto">
         <span
           title={title}
           className={cn(
@@ -60,6 +61,16 @@ const BookCard = ({ coverImage, isAvailable, title }: BookInfo) => {
         >
           {title}
         </span>
+
+        <Button
+          size="sm"
+          disabled={!isAvailable}
+          // onClick={onRead}
+          className="w-full gap-2 text-xs sm:text-sm font-medium transition-all"
+        >
+          <BookOpen className="w-4 h-4" />
+          <span>{isAvailable ? "شروع خواندن" : "به‌زودی"}</span>
+        </Button>
       </CardFooter>
     </Card>
   );

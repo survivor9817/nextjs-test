@@ -37,7 +37,7 @@ const BookShelf = ({ books }: Props) => {
     >
       <CarouselContent className="px-2 gap-5">
         {books.map(({ id, coverImage, isAvailable, label }, index) => (
-          <CarouselItem key={index} className="h-full my-2 basis-[43%] sm:basis-[22%]">
+          <CarouselItem key={index} className="h-full my-2 basis-[42%] sm:basis-[22%]">
             {/* <Link href={`/study?book=${id}&tab=fehrest&page=1`}>
               <BookCard coverImage={coverImage} isAvailable={isAvailable} title={label} />
             </Link> */}
@@ -54,9 +54,9 @@ const BookShelf = ({ books }: Props) => {
         ))}
       </CarouselContent>
 
-      <div className="flex justify-end gap-1 mt-4">
-        <CarouselPrevious className="static translate-y-0 size-12 text-5xl border-none" />
-        <CarouselNext className="static translate-y-0 size-12 text-5xl border-none" />
+      <div className="flex justify-end gap-2 mt-4 pl-4">
+        <CarouselPrevious className="static translate-y-0" />
+        <CarouselNext className="static translate-y-0" />
       </div>
     </Carousel>
   );

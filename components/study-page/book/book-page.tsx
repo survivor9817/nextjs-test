@@ -1,37 +1,38 @@
 "use client";
-import { toFaDigits } from "@/lib/toFaDigits";
 import BookPageSkeleton from "./book-page-skeleton";
 import UnavailableBookError from "./unavailable-book-error";
 import { useBookContext } from "@/components/study-page/book/book-provider";
 import { useQuery } from "@tanstack/react-query";
 import { fetchBookPage } from "@/services/client/fetchBookPage";
 import ErrorFallback from "@/components/error-fallback";
-import { ResponsiveDialog } from "@/components/ui/responsive-dialog";
-import { useBookPageScroll } from "./use-book-page-scroll";
+import { useRef, useEffect } from "react";
 
 const BookPage = () => {
   const { currentBookId, currentPage } = useBookContext();
 
-  // const { pageRef } = useBookPageScroll();
   const {
     data: pageContent,
     isLoading,
     error,
     refetch: loadPageContent,
   } = useQuery({
-    queryKey: ["pageContent", currentBookId, currentPage],
+    queryKey: ["page-content", currentBookId, currentPage],
     queryFn: () => fetchBookPage(currentBookId, currentPage),
-
-    // Data stays fresh for 1 minute. No new API calls within this window.
     // staleTime: 60 * 1000,
-
-    // If the user leaves this page, keep the data in memory for 10 minutes
-    // before destroying it.
     // gcTime: 10 * 60 * 1000,
   });
 
+  const sectionRef = useRef<HTMLElement>(null);
+  useEffect(() => {
+    if (!isLoading && pageContent) {
+      sectionRef.current?.scrollIntoView({ behavior: "smooth", block: "start" });
+    }
+  }, [pageContent, isLoading, currentPage]);
+
   if (!currentBookId || !currentPage) return <UnavailableBookError />;
+
   if (isLoading) return <BookPageSkeleton />;
+
   if (error) {
     return (
       <div className="h-full grid place-items-center">
@@ -40,19 +41,20 @@ const BookPage = () => {
     );
   }
 
-  const pageNum = toFaDigits(+currentPage);
   return (
-    <section
-      // ref={pageRef}
-      // key={currentPage}
-      id={`page${currentPage}`}
-      className="page relative"
-    >
+    <section ref={sectionRef} key={currentPage} id={`page${currentPage}`} className="page relative">
       <div className="p-2 pt-8">
-        {/* <div className={"w-80"}>
-          <Slider min={1} max={100} />
-        </div> */}
-
+        <p>{pageContent}</p>
+        <p>{pageContent}</p>
+        <p>{pageContent}</p>
+        <p>{pageContent}</p>
+        <p>{pageContent}</p>
+        <p>{pageContent}</p>
+        <p>{pageContent}</p>
+        <p>{pageContent}</p>
+        <p>{pageContent}</p>
+        <p>{pageContent}</p>
+        <p>{pageContent}</p>
         <p>{pageContent}</p>
         <p>{pageContent}</p>
         <p>{pageContent}</p>
