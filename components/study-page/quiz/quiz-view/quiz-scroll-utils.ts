@@ -92,11 +92,21 @@ export function scrollBackToClosedLimit(
   return () => cancelAnimationFrame(rafId);
 }
 
-// baalaaee haa ya in:
-export function revealAnswer(el: HTMLElement, delay = 150) {
-  const id = window.setTimeout(
-    () => el.scrollIntoView({ behavior: "smooth", block: "nearest" }),
-    delay,
-  );
-  return () => clearTimeout(id);
+export function scrollToTop(scroller: HTMLElement | null, duration = 300) {
+  const start = scroller ? scroller.scrollTop : window.scrollY;
+  if (start <= 0) return () => {};
+
+  let rafId = 0;
+  const startTime = performance.now();
+
+  const step = (now: number) => {
+    const progress = Math.min((now - startTime) / duration, 1);
+    const value = start * (1 - easeInOutCubic(progress));
+    if (scroller) scroller.scrollTop = value;
+    else window.scrollTo(0, value);
+    if (progress < 1) rafId = requestAnimationFrame(step);
+  };
+  rafId = requestAnimationFrame(step);
+
+  return () => cancelAnimationFrame(rafId);
 }

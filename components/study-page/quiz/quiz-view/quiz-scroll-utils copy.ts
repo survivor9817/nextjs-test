@@ -91,3 +91,12 @@ export function scrollBackToClosedLimit(
 
   return () => cancelAnimationFrame(rafId);
 }
+
+// baalaaee haa ya in:
+export function revealAnswer(el: HTMLElement, delay = 150) {
+  const id = window.setTimeout(
+    () => el.scrollIntoView({ behavior: "smooth", block: "nearest" }),
+    delay,
+  );
+  return () => clearTimeout(id);
+}

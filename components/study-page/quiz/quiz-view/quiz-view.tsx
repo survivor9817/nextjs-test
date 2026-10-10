@@ -27,7 +27,7 @@ import { ResponsiveDialog } from "@/components/ui/responsive-dialog";
 import { Timer } from "lucide-react";
 import StopWatch from "./stop-watch";
 import { useCallback, useEffect, useMemo, useRef, useState } from "react";
-import { scrollToRevealBottom, scrollBackToClosedLimit } from "./quiz-scroll-utils";
+import { scrollToRevealBottom, scrollBackToClosedLimit, scrollToTop } from "./quiz-scroll-utils";
 import { useQuizReactionsMap } from "./use-quiz-reactions-map";
 import WheelQuestionLabel from "./wheel-question-label";
 import HorizontalScroll from "./horizontal-scroll";
@@ -161,8 +161,12 @@ const QuizView = ({
     onTerminateQuiz();
   };
 
+  const quizContainer = useRef<HTMLDivElement>(null);
+  useEffect(() => scrollToTop(quizContainer.current), [question]);
+
   // اسکرول نرم هنگام باز و بسته شدن پاسخ
   const answerRef = useRef<HTMLDivElement>(null);
+  const separatorRef = useRef<HTMLDivElement>(null);
   const cancelScrollRef = useRef<(() => void) | null>(null);
 
   const handleOpenChange = (open: boolean) => {
@@ -195,166 +199,177 @@ const QuizView = ({
   useSyncLastVisitedQuestion(quiz.quizId, currentQuestionId, quiz.userId, quiz.bookId);
 
   return (
-    <Collapsible
-      // className={"relative"}
-      open={isAnswerVisible}
-      onOpenChange={handleOpenChange}
-    >
-      <QuizEndConfirm
-        isOpen={isEndConfirmOpen}
-        isLoading={isSubmitting}
-        onConfirm={handleConfirmEnd}
-        onClose={() => setIsEndConfirmOpen(false)}
-      />
-      {/* مودال کارنامه نتیجه */}
-      <QuizResultsModal
-        isOpen={isResultsModalOpen}
-        quizId={quiz.quizId}
-        onReview={handleReviewAgain}
-        onTerminate={handleFinalTerminate}
-        onClose={() => setIsResultsModalOpen(false)}
-      />
-      <div className="flex flex-col p-2 overflow-hidden">
-        {/* نوار ابزار بالا */}
-        {/* نوار شناور پایین */}
-        <div className="flex justify-center items-center py-2 absolute bottom-0 left-1/2 -translate-x-1/2 z-10">
-          <QuizActions
-            currentQuestion={currentIndex + 1}
-            totalQuestions={totalQuestions}
-            isQuizCompleted={isQuizCompleted}
-            onPrev={goToPrev}
-            onNext={goToNext}
-            onPowerClick={handlePowerButtonClick}
-            onGoToQuestion={(n) => goTo(n - 1)}
-            renderQuestionLabel={renderQuestionLabel}
-          />
-        </div>
-        {/* نوار ابزار بالا */}
-        <div className="flex justify-between items-center h-12 mb-1">
-          <div className="flex">
-            <IconBtn
-              icon={<span className="msr text-5xl">arrow_circle_right</span>}
-              disabled={isOnFirst}
-              onClick={goToPrev}
+    <div ref={quizContainer} className="h-full overflow-x-hidden overflow-y-auto">
+      <Collapsible
+        // className={"relative"}
+        open={isAnswerVisible}
+        onOpenChange={handleOpenChange}
+      >
+        <QuizEndConfirm
+          isOpen={isEndConfirmOpen}
+          isLoading={isSubmitting}
+          onConfirm={handleConfirmEnd}
+          onClose={() => setIsEndConfirmOpen(false)}
+        />
+        {/* مودال کارنامه نتیجه */}
+        <QuizResultsModal
+          isOpen={isResultsModalOpen}
+          quizId={quiz.quizId}
+          onReview={handleReviewAgain}
+          onTerminate={handleFinalTerminate}
+          onClose={() => setIsResultsModalOpen(false)}
+        />
+        <div className="flex flex-col p-2 overflow-hidden">
+          {/* نوار ابزار بالا */}
+          {/* نوار شناور پایین */}
+          <div className="flex justify-center items-center py-2 absolute bottom-0 left-1/2 -translate-x-1/2 z-10">
+            <QuizActions
+              currentQuestion={currentIndex + 1}
+              totalQuestions={totalQuestions}
+              isQuizCompleted={isQuizCompleted}
+              onPrev={goToPrev}
+              onNext={goToNext}
+              onPowerClick={handlePowerButtonClick}
+              onGoToQuestion={(n) => goTo(n - 1)}
+              renderQuestionLabel={renderQuestionLabel}
             />
-            <ResponsiveDialog
-              trigger={
-                <IconBtn
-                  icon={
-                    <span className="msr text-5xl">timer</span>
-                    // <Timer className="size-5" strokeWidth={3} />
-                  }
-                />
-              }
-              title="کرنومتر"
-              description="ابزار ثبت و اندازه‌گیری زمان"
-            >
-              <div className="flex flex-col items-center justify-center py-2">
-                <StopWatch />
+          </div>
+          {/* نوار ابزار بالا */}
+          <div className="flex justify-between items-center h-12 mb-1">
+            <div className="flex">
+              <IconBtn
+                icon={<span className="msr text-5xl">arrow_circle_right</span>}
+                disabled={isOnFirst}
+                onClick={goToPrev}
+              />
+              <ResponsiveDialog
+                trigger={
+                  <IconBtn
+                    icon={
+                      <span className="msr text-5xl">timer</span>
+                      // <Timer className="size-5" strokeWidth={3} />
+                    }
+                  />
+                }
+                title="کرنومتر"
+                description="ابزار ثبت و اندازه‌گیری زمان"
+              >
+                <div className="flex flex-col items-center justify-center py-2">
+                  <StopWatch />
+                </div>
+              </ResponsiveDialog>{" "}
+            </div>
+            <div className="flex">
+              <IconBtn
+                className="text-red-700"
+                icon={<span className="msr text-5xl">power_settings_circle</span>}
+                onClick={handlePowerButtonClick}
+              />
+              <IconBtn
+                icon={<span className="msr text-5xl">arrow_circle_left</span>}
+                disabled={isOnLast}
+                onClick={goToNext}
+              />
+            </div>
+          </div>
+          {/* جعبه سوال */}
+          <div
+            className={cn(
+              "border-2 rounded-t-3xl rounded-b-2xl transition-[border-radius] border-[#bcbcbc]",
+              isAnswerVisible ? "rounded-bl-[6px]" : "rounded-bl-2xl",
+            )}
+          >
+            <div className="relative h-12">
+              <div className="absolute top-1/2 -translate-y-1/2 right-4.5 z-1 text-[16px]">
+                <Label>{progressLabel}</Label>
               </div>
-            </ResponsiveDialog>{" "}
+              <div
+                className={cn(
+                  "absolute left-2 top-1/2 -translate-y-1/2 max-w-32 hover:max-w-full",
+                  "bg-white rounded-full overflow-hidden z-3",
+                  "transition-[max-width] duration-300 ease-in-out",
+                )}
+              >
+                <QuestionTag tag={tags[0]} isLoading={questionLoading} />
+              </div>
+            </div>
+            <ProgressBar value={progressBarLength} />
+            <div className="relative min-h-30">
+              <Question
+                question={questionContent}
+                isLoading={questionLoading}
+                error={questionError}
+                refetch={loadQuestion}
+              />
+              <QuestionReactionMsgs msgs={msgsMeta} />
+            </div>
           </div>
-          <div className="flex">
-            <IconBtn
-              className="text-red-700"
-              icon={<span className="msr text-5xl">power_settings_circle</span>}
-              onClick={handlePowerButtonClick}
-            />
-            <IconBtn
-              icon={<span className="msr text-5xl">arrow_circle_left</span>}
-              disabled={isOnLast}
-              onClick={goToNext}
-            />
-          </div>
-        </div>
-        {/* جعبه سوال */}
-        <div
-          className={cn(
-            "border-2 rounded-t-3xl rounded-b-2xl transition-[border-radius] border-[#bcbcbc]",
-            isAnswerVisible ? "rounded-bl-[6px]" : "rounded-bl-2xl",
-          )}
-        >
-          <div className="relative h-12">
-            <div className="absolute top-1/2 -translate-y-1/2 right-4.5 z-1 text-[16px]">
-              <Label>{progressLabel}</Label>
+          {/* سطر میانی دکمه پاسخ و مشخصات */}
+          <div className="flex flex-col-reverse sm:flex-row justify-between gap-2 my-2 w-full text-[16px]">
+            <div
+              className={cn(
+                "flex items-center w-full sm:w-85 h-16 border-2 border-[#bcbcbc] overflow-hidden transition-[border-radius] duration-400",
+                isAnswerVisible ? "rounded-[150px_150px_25px_150px]" : "rounded-[150px]",
+              )}
+            >
+              <CollapsibleTrigger
+                render={
+                  <ShowAnswerBtn
+                    isAnswerVisible={isAnswerVisible}
+                    disabled={!questionContent || questionLoading}
+                  />
+                }
+              />
+              <Author author={author || ""} />
             </div>
             <div
               className={cn(
-                "absolute left-2 top-1/2 -translate-y-1/2 max-w-32 hover:max-w-full",
-                "bg-white rounded-full overflow-hidden z-3",
-                "transition-[max-width] duration-300 ease-in-out",
+                "grid items-center sm:w-85 h-16 max-h-16 overflow-hidden border-2 border-[#bcbcbc]",
+                "transition-[border-radius] duration-400",
+                isAnswerVisible ? "rounded-[25px_150px_150px_150px]" : "rounded-[150px]",
               )}
             >
-              <QuestionTag tag={tags[0]} isLoading={questionLoading} />
+              <div
+                className={cn(
+                  "grid grid-cols-2 w-[200%] justify-center h-full max-h-12",
+                  "transition-transform duration-400 ease-in-out",
+                  isAnswerVisible ? "translate-x-[50%]" : "translate-x-0",
+                )}
+              >
+                {/* <QuestionDetails questionDetails={questionDetails} /> */}
+                <QuestionTagRow tags={tagsData} isLoading={questionLoading} />
+                <QuizReactionBtns btnsMeta={btnsMeta} onClick={onClickOnReactionBtn} />
+              </div>
             </div>
           </div>
-          <ProgressBar value={progressBarLength} />
-          <div className="relative min-h-30">
-            <Question
-              question={questionContent}
-              isLoading={questionLoading}
-              error={questionError}
-              refetch={loadQuestion}
-            />
-            <QuestionReactionMsgs msgs={msgsMeta} />
-          </div>
-        </div>
-        {/* سطر میانی دکمه پاسخ و مشخصات */}
-        <div className="flex flex-col-reverse sm:flex-row justify-between gap-2 my-2 w-full text-[16px]">
-          <div
-            className={cn(
-              "flex items-center w-full sm:w-85 h-16 border-2 border-[#bcbcbc] overflow-hidden transition-[border-radius] duration-400",
-              isAnswerVisible ? "rounded-[150px_150px_25px_150px]" : "rounded-[150px]",
-            )}
-          >
-            <CollapsibleTrigger
-              render={
-                <ShowAnswerBtn
-                  isAnswerVisible={isAnswerVisible}
-                  disabled={!questionContent || questionLoading}
-                />
-              }
-            />
-            <Author author={author || ""} />
-          </div>
-          <div
-            className={cn(
-              "grid items-center sm:w-85 h-16 max-h-16 overflow-hidden border-2 border-[#bcbcbc]",
-              "transition-[border-radius] duration-400",
-              isAnswerVisible ? "rounded-[25px_150px_150px_150px]" : "rounded-[150px]",
-            )}
-          >
-            <div
-              className={cn(
-                "grid grid-cols-2 w-[200%] justify-center h-full max-h-12",
-                "transition-transform duration-400 ease-in-out",
-                isAnswerVisible ? "translate-x-[50%]" : "translate-x-0",
-              )}
-            >
-              {/* <QuestionDetails questionDetails={questionDetails} /> */}
-              <QuestionTagRow tags={tagsData} isLoading={questionLoading} />
-              <QuizReactionBtns btnsMeta={btnsMeta} onClick={onClickOnReactionBtn} />
-            </div>
-          </div>
-        </div>
 
-        {/* جعبه پاسخ تشریحی */}
-        <CollapsibleContent
-          ref={answerRef}
-          className={cn(
-            "flex flex-col gap-2 overflow-hidden",
-            "max-h-(--collapsible-panel-height) data-starting-style:max-h-0 data-ending-style:max-h-0",
-            "opacity-100 data-starting-style:opacity-0 data-ending-style:opacity-0",
-            "border-2 border-[#bcbcbc] rounded-[16px_6px_28px_28px] mb-4 leading-[1.6] text-justify pb-12 min-h-32.5 relative",
-            "transition-[max-height,opacity] duration-400 ease-in-out",
-          )}
-          keepMounted
-        >
-          <Answer answer={descriptiveAnswer} />
-        </CollapsibleContent>
-        <div className={cn(isAnswerVisible ? "mb-14" : "mb-14")} />
-      </div>
-    </Collapsible>
+          <div ref={separatorRef} />
+
+          {/* جعبه پاسخ تشریحی */}
+          <CollapsibleContent
+            ref={answerRef}
+            className={cn(
+              "relative flex flex-col gap-2 overflow-hidden",
+              "min-h-32.5 max-h-(--collapsible-panel-height)",
+              "mb-4",
+              "border-2 border-[#bcbcbc] rounded-[16px_6px_28px_28px]",
+              "leading-[1.6] text-justify",
+              "opacity-100",
+              "transition-[max-height,opacity] duration-400 ease-in-out",
+              "data-starting-style:max-h-0 data-starting-style:opacity-0",
+              "data-ending-style:max-h-0 data-ending-style:opacity-0",
+            )}
+            keepMounted
+          >
+            <Answer answer={descriptiveAnswer} />
+            <div className="flex w-full justify-end">
+              <QuestionTagRow tags={tagsData} isLoading={questionLoading} />
+            </div>
+          </CollapsibleContent>
+          <div className={cn(isAnswerVisible ? "mb-14" : "mb-14")} />
+        </div>
+      </Collapsible>
+    </div>
   );
 };
 

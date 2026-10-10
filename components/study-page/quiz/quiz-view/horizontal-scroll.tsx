@@ -83,19 +83,21 @@ const ScrollRow = ({ children, className, fadeSize = 32 }: Props) => {
     fade.left ? fadeSize : 0
   }px, #000 calc(100% - ${fade.right ? fadeSize : 0}px), transparent 100%)`;
 
+  const isScrollable = fade.left || fade.right;
+
   return (
     <div
       ref={ref}
-      onPointerDown={onPointerDown}
-      onPointerMove={onPointerMove}
-      onPointerUp={endDrag}
-      onPointerCancel={endDrag}
-      onClickCapture={onClickCapture}
-      onDragStart={(e) => e.preventDefault()}
-      style={fade.left || fade.right ? { maskImage: mask, WebkitMaskImage: mask } : undefined}
+      onPointerDown={isScrollable ? onPointerDown : undefined}
+      onPointerMove={isScrollable ? onPointerMove : undefined}
+      onPointerUp={isScrollable ? endDrag : undefined}
+      onPointerCancel={isScrollable ? endDrag : undefined}
+      onClickCapture={isScrollable ? onClickCapture : undefined}
+      onDragStart={isScrollable ? (e) => e.preventDefault() : undefined}
+      style={isScrollable ? { maskImage: mask, WebkitMaskImage: mask } : undefined}
       className={cn(
-        "overflow-x-auto [scrollbar-width:none] [&::-webkit-scrollbar]:hidden",
-        dragging ? "cursor-grabbing select-none" : "cursor-grab",
+        "overflow-x-auto scrollbar-none [&::-webkit-scrollbar]:hidden",
+        isScrollable && (dragging ? "cursor-grabbing select-none" : "cursor-grab"),
         className,
       )}
     >
